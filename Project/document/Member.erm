@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2024-01-03 09:32:32</creation_date>
-			<updated_date>2024-01-03 10:39:52</updated_date>
+			<updated_date>2024-01-03 11:10:47</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1073,6 +1073,41 @@
 						<decimal_size>0</decimal_size>
 					</sequence>
 				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+				<character_set></character_set>
+				<collation></collation>
+				<storage_engine></storage_engine>
+				<primary_key_length_of_text>null</primary_key_length_of_text>
+			</table_properties>
+		</table>
+		<table>
+			<id>2</id>
+			<height>169</height>
+			<width>277</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>576</x>
+			<y>432</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+			</connections>
+			<physical_name>product_reply</physical_name>
+			<logical_name>상품 후기</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
 			</columns>
 			<indexes>
 			</indexes>
