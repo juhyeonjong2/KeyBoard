@@ -41,7 +41,15 @@ header hr{
 .hidden li:hover a{color: #29a4ff;}
 
 
-main{height: 1500px;} /*임시 값*/ 
+
+
+
+
+
+
+
+
+main{height: 1000px;} /*임시 값*/ 
 /*
 1. 호버시 색상  임시로 파란색으로 함
 2. inner 넓이는 임시로 1200px로함 (좌우 간격)
@@ -51,7 +59,9 @@ main{height: 1500px;} /*임시 값*/
 .inner_member{
     width: 1000px; margin: 0 auto;
 }
-
+.inner_member2{
+    width: 800px; margin: 0 auto;
+}
 
 #main_line{
     width: 1920px; height: 1px; background-color: #dfe0e2; border: 0; 
@@ -61,7 +71,43 @@ main h3{padding-top: 60px; padding-bottom: 30px;}
     width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
 }
 main h4{margin-bottom: 30px;}
-#joinBox{width: 1000px; height: 800px; border: 1px solid #111;}
+#joinBox{width: 800px; height: 800px; border: 1px solid #111; }
+
+
+.text{margin-left: 60px; float: left;}
+
+
+input[type=text]{
+    width:177px;
+}
+input[type=submit]{
+    width:120px;
+    height:40px;
+    margin-right: 50px;
+    float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
