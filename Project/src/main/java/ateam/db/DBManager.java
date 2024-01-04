@@ -105,6 +105,7 @@ public class DBManager {
 			psmt.close(); // 우선 닫고.
 			
 			psmt = conn.prepareStatement(sql);
+			orderCount = 1; // 이거 커밋필요
 		}
 		}catch (Exception e) {
 			e.printStackTrace();
