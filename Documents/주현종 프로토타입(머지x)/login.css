@@ -48,7 +48,7 @@ header hr{
 
 
 
-main{height: 1000px;} /*임시 값*/ 
+main{height: 800px;} /*임시 값*/ 
 /*
 1. 호버시 색상  임시로 파란색으로 함
 2. inner 넓이는 임시로 1200px로함 (좌우 간격)
@@ -69,48 +69,35 @@ main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
 #main_line2{
     width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
 }
-main h4{margin-bottom: 30px;}
-#joinBox{width: 800px; height: 750px; border: 1px solid #111; }
 
-.text:first-child{margin-top: 70px;}
-.text{
-    margin-left: 100px; margin-right: 60px; width: 170px; 
-    margin-bottom: 40px; display: inline-block;}
-.textBox{display: inline-block;}
+
+#loginBox{width: 800px; height: 300px; border: 1px solid #111; margin-bottom: 50px;}
+#notLoginBox{width: 800px; height: 230px; border: 1px solid #111;}
+
+main h4{font-size: 18px; margin-left: 160px; margin-top: 30px; margin-bottom: 30px;}
+.margin1{margin-left: 160px;}
+
+#joinLink{
+    width: 150px; height: 50px; background-color: #29a4ff; 
+    text-align: center; line-height: 50px; margin-top: 40px;}
+#joinLink a{color: #fff;}
+#joinLink:hover{box-shadow: 5px 5px 5px rgba(0,0,0,0.3);} /*시험용인데 개구려서 다른데에 쓰거나 뺴버리자*/
 
 input[type=password]{
-    width: 160px; height: 23px;
-}
-
-input[type=email]{
-    width: 160px; height: 23px;
+    width: 200px; height: 30px;
 }
 
 input[type=text]{
-    width:160px; height: 23px;
-}
-.textBox_submit input{
-    width:120px;
-    height:40px;
-    float: right;
-    margin-right: 100px;
-    margin-top: 10px;
+    width:200px; height: 30px; margin-bottom: 15px;
 }
 
-#idCheck{margin-left: 40px; width: 90px; height: 25px;}
-#email2{margin-left: 10px; height: 23px;}
-#phone1{height: 23px;}
-#addr3{width: 300px; margin-top: 4px; margin-bottom: 4px;}
-#addr4{width: 300px;}
-#addr{float: left;}
-#check{margin-top: 50px;}
-#phone{float: left;}
-#email{float: left;}
+input[type=submit]{
+    width:200px; height: 60px; margin-bottom: 15px;
+}
 
-.agreeBox{display: inline-block;}
-.agreeText{display: inline-block; margin-bottom: 20px;}
-#ff{float: right; margin-right: 187px;}
-#ff2{float: right; margin-right: 75px;}
+
+
+
 
 
 
