@@ -74,8 +74,8 @@ main h4{margin-bottom: 30px;}
 #joinBox{width: 800px; height: 800px; border: 1px solid #111; }
 
 
-.text{margin-left: 60px; float: left;}
-
+.text{margin-left: 60px;  float: left;}
+.textBox
 
 input[type=text]{
     width:177px;
