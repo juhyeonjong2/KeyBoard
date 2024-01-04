@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>join</title>
+    <link rel="stylesheet" href="./join.css">
+</head>
+<body>
+    <header>
+        <div class="inner clearfix">
+            <h1 id="logo">
+                <a href="#"><img src="#" alt="top logo"></a>
+            </h1>
+
+            <nav id="nav">  
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">장바구니</a></li>
+                    <li><a href="#">주문조회</a></li>
+                </ul>
+            </nav>
+        </div> <!--inner-->
+
+
+        <div class="inner">
+            <ul id="category">
+                <li>
+                    <a href="#">FILCO 키보드</a>
+                    <ul class="hidden">
+                        <li><a href="#">FILCO 마제스티</a></li>
+                        <li><a href="#">FILCO 닌자</a></li>
+                        <li><a href="#">FILCO 컴버터블</a></li>
+                        <li><a href="#">FILCO MINILA</a></li>
+                        <li><a href="#">FILCO 카모플라쥬</a></li>
+                        <li><a href="#">FILCO 하쿠아</a></li>
+                        <li><a href="#">FILCO Stingray 슬림</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Mistel 키보드</a>
+                </li>
+                <li>
+                    <a href="#">Vortex 키보드</a>
+                </li>
+                <li>
+                    <a href="#">iKBC 키보드</a>
+                </li>
+                <li>
+                    <a href="#">DUCKY 키보드</a>
+                </li>
+                <li>
+                    <a href="#">LEOPOLD 키보드</a>
+                    <ul class="hidden">
+                        <li><a href="#">FC650NDS</a></li>
+                        <li><a href="#">FC660M</a></li>
+                        <li><a href="#">FC750R</a></li>
+                        <li><a href="#">FC900R</a></li>
+                        <li><a href="#">FC750R MX2A</a></li>
+                        <li><a href="#">FC900R MX2A</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">숫자 패드</a>
+                </li>
+                <li>
+                    <a href="#">정전용량 키보드</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <main>
+        <hr id="main_line">
+        <div class="inner_member clearfix">
+            <h3>회원가입</h3>
+            <hr id="main_line2">
+        </div> <!--inner_member-->
+
+        <div class="inner_member2 clearfix">
+            <h4>기본정보</h4>
+
+            <form name="frm" id="joinBox">
+				<div class="text">
+					<label for="id">아이디 :</label>
+				</div>
+				<div class="textBox">
+					<input type="text" name="id" >
+					<input type="button" id="idCheck" value="중복확인">
+				</div>
+                <br>
+				<div class="text">
+					<label for="password">비밀번호 :</label>
+				</div>
+				<div class="textBox">
+					<input type="password" name="password">
+				</div>
+                <br>
+				<div class="text">
+					<label for="passwordre">비밀번호 확인 :</label>
+				</div>
+                <div class="textBox">
+					<input type="password" name="passwordre">
+				</div>
+                <br>
+				<div class="text">
+					<label for="name">이름 :</label>
+				</div>
+				<div class="textBox">
+					<input type="text" name="name">
+				</div>
+                <br>
+				<div class="text">
+					<label for="email" id="email">이메일 :</label>
+				</div>
+				<div class="textBox" id="emailerror">
+					<input type="email" name="email" >
+                    <select name="email2" id="email2">
+						<option value="0">직접입력</option>
+						<option value="1">@naver.com</option>
+						<option value="2">@daum.net</option>
+						<option value="3">@gmail.com</option>
+						<option value="4">@nate.com</option>
+						<option value="5">@icloud.com</option>
+					</select>
+                    <br>
+                    <div class="agreeBox">
+                        <input type="checkbox" name="agree">
+                    </div>
+                    <div class="agreeText">
+                        <label for="check">메일수신에 동의</label>
+                    </div>
+				</div>
+                <br>
+				<div class="text">
+					<label for="phone" id="phone" >연락처 :</label>
+				</div>
+				<div class="textBox" id="phoneerror">
+					<select name="phone1" id="phone1">
+						<option value="010">010</option>
+						<option value="010">011</option>
+						<option value="010">016</option>
+					</select>&nbsp;
+					<input type="text" name="phone2" >&nbsp;
+					<input type="text" name="phone3" >
+                    <br>
+                    <div class="agreeBox">
+                        <input type="checkbox" name="agree" >
+                    </div>
+                    <div class="agreeText">
+                        <label for="check" >메일수신에 동의</label>
+                    </div>
+				</div>
+                <br>
+                <div class="text">
+					<label for="addr" id="addr">주소 :</label>
+				</div>
+                <div class="textBox">
+					<input type="text" name="addr2" placeholder="우편번호" ><br>
+                    <textarea name="addr3" id="addr3"></textarea>
+				</div>
+                <br>
+                <div class="text" id="check">
+					<label for="check">개인정보 수집 및 이용</label>
+				</div>
+                <div class="textBox">
+					<input type="checkbox" name="agree">동의
+				</div>
+                <br>
+				<div class="textBox_submit">
+					<label>
+						<input type="submit" value="회원가입">
+					</label>
+				</div>
+			</form> <!--joinBox-->
+
+        </div><!--inner_member2-->
+    </main>
+
+
+    <footer>
+        <hr>
+        <div class="inner clearfix">
+
+            <div class="inner" id="notice">
+                <a href="#">공지사항</a>
+            </div>
+
+            <div id="ft">
+                <p>업체명 :세상모든키보드 쇼핑몰 | 대표 :세모키 | 주소 : 전라북도 전주시 덕진구 백제대로 572
+                <span>사업자등록번호 : 000-00-00000 | 통신판매신고번호 : 2023-전주-0000</span>
+                개인정보관리책임자 : 세모키 | 이메일 : aaa_bbbbb@gmail.com</p>
+                <div id="f_copy">
+                    <p>Copyright 2024. 세모키. All rights reversed.</p>
+                </div>
+            </div> <!--ft-->
+    </div>
+    </footer>
+</body>
+</html>
