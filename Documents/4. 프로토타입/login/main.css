@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 *{
-    margin:0; padding:0; box-sizing: border-box;}
+    margin:0; padding:0; box-sizing: border-box;
+    }
 a{text-decoration:none ; color:#111;}
 ul, ol, dl{list-style-type: none; font-size:0;}
 
@@ -40,77 +41,15 @@ header hr{
 .hidden li:hover a{color: #29a4ff;}
 
 
-
-
-
-
-
-
-
-
-main{height: 1000px;} /*임시 값*/ 
-/*
-1. 호버시 색상  임시로 파란색으로 함
-2. inner 넓이는 임시로 1200px로함 (좌우 간격)
-3. 폰트 (기본) 
-*/ 
-
-.inner_member{
-    width: 1000px; margin: 0 auto;
-}
-.inner_member2{
-    width: 800px; margin: 0 auto;
-}
-
 #main_line{
     width: 1920px; height: 1px; background-color: #dfe0e2; border: 0; 
 }
-main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
-#main_line2{
-    width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
-}
-main h4{margin-bottom: 30px;}
-#joinBox{width: 800px; height: 750px; border: 1px solid #dfe0e2; }
-
-.text:first-child{margin-top: 70px;}
-.text{
-    margin-left: 100px; margin-right: 60px; width: 170px; 
-    margin-bottom: 40px; display: inline-block;}
-.textBox{display: inline-block;}
-
-input[type=password]{
-    width: 160px; height: 23px;
-}
-
-input[type=email]{
-    width: 160px; height: 23px;
-}
-
-input[type=text]{
-    width:160px; height: 23px;
-}
-.textBox_submit input{
-    width:120px;
-    height:40px;
-    float: right;
-    margin-right: 100px;
-    margin-top: 10px;
-}
-
-#idCheck{margin-left: 40px; width: 90px; height: 25px;}
-#email2{margin-left: 10px; height: 23px;}
-#phone1{height: 23px;}
-#addr3{width: 350px; margin-top: 4px; margin-bottom: 4px; height: 70px;}
-#addr{float: left;}
-#check{margin-top: 50px;}
-#phone{float: left;}
-#email{float: left;}
-
-.agreeBox{display: inline-block;}
-.agreeText{display: inline-block; margin-bottom: 20px;}
-#emailerror{float: right; margin-right: 187px;}
-#phoneerror{float: right; margin-right: 75px;}
-
+main{height: 800px;} /*임시 값*/ 
+/*
+   1. 호버시 색상  임시로 파란색으로 함
+   2. 페이지의 inner 넓이는 임시로 1200px로함 (좌우 간격)
+   3. 폰트 (기본) 
+*/ 
 
 
 

@@ -71,33 +71,33 @@ main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
 }
 
 
-#loginBox{width: 800px; height: 300px; border: 1px solid #111; margin-bottom: 50px;}
-#notLoginBox{width: 800px; height: 230px; border: 1px solid #111;}
+#loginBox{width: 800px; height: 300px; border: 1px solid #dfe0e2; margin-bottom: 50px;}
+#notLoginBox{width: 800px; height: 230px; border: 1px solid #dfe0e2;}
 
 main h4{font-size: 18px; margin-left: 160px; margin-top: 30px; margin-bottom: 30px;}
 .margin1{margin-left: 160px;}
 
 #joinLink{
-    width: 150px; height: 50px; background-color: #29a4ff; 
-    text-align: center; line-height: 50px; margin-top: 40px;}
+    width: 120px; height: 40px; background-color: #29a4ff; 
+    text-align: center; line-height: 40px; margin-top: 150px;}
 #joinLink a{color: #fff;}
-#joinLink:hover{box-shadow: 5px 5px 5px rgba(0,0,0,0.3);} /*시험용인데 개구려서 다른데에 쓰거나 뺴버리자*/
+/* #joinLink:hover{box-shadow: 5px 5px 5px rgba(0,0,0,0.3);} 시험용인데 개구려서 다른데에 쓰거나 뺴버리자*/
 
 input[type=password]{
-    width: 200px; height: 30px;
+    width: 200px; height: 30px; float: left;
 }
 
 input[type=text]{
     width:200px; height: 30px; margin-bottom: 15px;
 }
 
+.submit{float: right; margin-right: 150px;}
+
 input[type=submit]{
-    width:200px; height: 60px; margin-bottom: 15px;
+    width:170px; height: 75px; font-size: 16px; font-weight: 500;
 }
 
-
-
-
+.textBox{float: left;}
 
 
 

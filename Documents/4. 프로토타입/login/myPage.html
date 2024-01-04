@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="./login.css">
+    <title>myPage</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./myPage.css">
 </head>
 <body>
     <header>
@@ -75,52 +76,54 @@
     <main>
         <hr id="main_line">
         <div class="inner_member clearfix">
-            <h3>로그인</h3>
+            <h3>마이페이지</h3>
             <hr id="main_line2">
         </div> <!--inner_member-->
 
-        <div class="inner_member2 clearfix">
-            <form name="frm" id="loginBox">
-                <h4>회원로그인</h4>
-                <div class="textBox">
-                    <input type="text" name="id" class="margin1"><br>
-                    <input type="password" name="password" class="margin1">
-                </div>
-                <div class="submit">
-                    <input type="submit" value="로그인">
-                </div>
-                <div id="joinLink" class="margin1">
-                    <a href="./join.html">회원가입하기</a>
-                </div>
-            </form>
+        <div class="inner_member2 clearfix" id="myPageBorder">
+            <table id="myPageBox">
+                <colgroup>
+                    <col align="right" width="30%">
+                    <col>
+                </colgroup>
+                    <tbody>                         
+                        <tr>
+                            
+                            <tr>
+                                <th>이름 :</th>
+                                <td>이름</td>
+                            </tr> 
 
-            <form name="frm2" id="notLoginBox">
-                <h4>비회원 주문조회 하기</h4>
-                <div class="textBox">
-                    <input type="text" name="orderName" class="margin1"><br>
-                    <input type="password" name="orderNum" class="margin1">
+                            <tr>
+                                <th>이메일 :</th>
+                                <td>이메일</td>
+                            </tr>
+
+                            <tr>
+                                <th>연락처 :</th>
+                                <td>연락처</td>
+                            </tr>
+                            
+                            <tr>
+                                <th>주소 :</th>
+                                <td>우편 번호</td>
+                            </tr>
+                            
+                            <tr>
+                                <td></td>
+                                <td>상세 주소</td>
+                            </tr>                     
+                    </tbody>
+                </table>
+                <div id="myPageLink">
+                    <div class="myPageLinkSize"><a href="#">장바구니 보기</a></div>
+                    <div class="myPageLinkSize" id="myPageLinkmd"><a href="#">주문내역 보기</a></div>
+                    <div class="myPageLinkSize"><a href="#">회원 정보 수정</a></div>
                 </div>
-                <div class="submit">
-                    <input type="submit" value="확인">
-                </div>
-            </form>
+
+
         </div><!--inner_member2-->
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <footer>
