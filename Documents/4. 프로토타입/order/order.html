@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
     <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./cart.css">
+    <link rel="stylesheet" href="./order.css">
 </head>
 <body>
     <header>
@@ -80,7 +80,7 @@
     <main>
         <hr id="main_line">
         <div class="inner_member clearfix">
-            <h3>장바구니</h3>
+            <h3>주문서작성/결제</h3>
             <hr id="main_line2">
         </div> <!--inner_member-->
 
@@ -89,8 +89,7 @@
                 <!-- 테이블 -->
                 <table class="cart_table">
                     <colgroup>
-                            <col width="3%"> <!-- 체크 -->
-                            <col width="50%"> <!-- 이미지+제목 공간 -->
+                            <col width="53%"> <!-- 이미지+제목 공간 -->
                             <col width="13%"> <!-- 금액 -->
                             <col width="5%"> <!-- 수량 -->
                             <col width="13%"> <!-- 합계 -->
@@ -98,7 +97,6 @@
                     </colgroup>
                     <thead>
                         <tr class="cart_list_head">
-                            <th><input type="checkbox" name="cart_list_all"></th>
                             <th>상품명</th>
                             <th>금액</th>
                             <th>수량</th>
@@ -108,18 +106,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="td_chk"><input type="checkbox" name="product_no_1234"></td>
                             <td><a href="#">마제스터치 2 하쿠아 텐키레스 영문 넌클릭 - 갈축</a></td> <!-- 상품 디테일뷰 링크-->
                             <td>175,000원</td>
-                            <td><input type="number" value="1" ></td>
+                            <td class="td_amount" ><input type="number" value="1" ></td>
                             <td>175,000원</td>
                             <td class="td_delivery" rowspan="2">기본-금액별<br>배송비 0원<br>(택배)</td>
                         </tr>
                         <tr>
-                            <td class="td_chk"><input type="checkbox" name="product_num_4321"></td>
                             <td><a href="#"></a>레오폴드 FC750RBT MX2A 코랄 블루 영문 - 청축</a></td>
                             <td>175,000원</td>
-                            <td><input type="number" value="1" ></td>
+                            <td class="td_amount"><input type="number" value="1" ></td>
                             <td>175,000원</td>
                             <!-- <td>기본-금액별 배송비 0원(택배)</td> -->
                         </tr>
@@ -127,9 +123,8 @@
 
                 </table>
 
-                <div class="shop_go_link">
-                    <!-- 계속 쇼핑하기-->
-                    <a href="#"> <em>&lt;계속 쇼핑하기</em></a>
+                <div class="cart_go_link">
+                    <a href="#"> <em>&lt;장바구니 가기</em></a>
                 </div>
 
                 <div class="price_area">
