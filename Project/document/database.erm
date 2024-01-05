@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>135</x>
-	<y>0</y>
+	<x>330</x>
+	<y>68</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2024-01-03 09:33:00</creation_date>
-			<updated_date>2024-01-05 10:40:46</updated_date>
+			<updated_date>2024-01-05 13:08:56</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1234,7 +1234,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>44</word_id>
+					<word_id>45</word_id>
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1457,7 +1457,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>45</word_id>
+					<word_id>44</word_id>
 					<id>9</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1518,7 +1518,7 @@
 			<connections>
 				<relation>
 					<id>2</id>
-					<source>7</source>
+					<source>9</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1540,7 +1540,7 @@
 				</relation>
 				<relation>
 					<id>3</id>
-					<source>9</source>
+					<source>7</source>
 					<target>2</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1604,7 +1604,7 @@
 				<normal_column>
 					<id>11</id>
 					<referenced_column>49</referenced_column>
-					<relation>3</relation>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1638,7 +1638,7 @@
 				<normal_column>
 					<id>12</id>
 					<referenced_column>32</referenced_column>
-					<relation>2</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1764,7 +1764,7 @@
 			<connections>
 				<relation>
 					<id>4</id>
-					<source>7</source>
+					<source>8</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1786,7 +1786,7 @@
 				</relation>
 				<relation>
 					<id>5</id>
-					<source>8</source>
+					<source>7</source>
 					<target>3</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -1817,7 +1817,7 @@
 				<normal_column>
 					<id>15</id>
 					<referenced_column>39</referenced_column>
-					<relation>5</relation>
+					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1851,7 +1851,7 @@
 				<normal_column>
 					<id>16</id>
 					<referenced_column>32</referenced_column>
-					<relation>4</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2362,7 +2362,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>3</word_id>
+					<word_id>4</word_id>
 					<id>28</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2785,7 +2785,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>4</word_id>
+					<word_id>3</word_id>
 					<id>38</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -3210,7 +3210,7 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>order</physical_name>
+			<physical_name>orders</physical_name>
 			<logical_name>주문</logical_name>
 			<description></description>
 			<constraint></constraint>
