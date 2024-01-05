@@ -72,8 +72,8 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 		db.setString(mname);
 		db.setString(mphone); //db에는 mphone2가 없어서 여기서 더하자
 		db.setString(memail);
-		 db.setString(maddr);
-		 db.setString(mpw);
+		db.setString(maddr);
+		db.setString(mpw);
 		 int count = db.update();
 			if(count > 0 )
 			{
