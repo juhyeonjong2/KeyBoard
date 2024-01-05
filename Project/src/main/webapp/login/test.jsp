@@ -19,6 +19,7 @@
 		if(member != null){
 	%>
 		<h2><%=member.getMname() %> 님 환영합니다.</h2>
+		<a href="<%=request.getContextPath()%>">인덱스 홈페이지로 가기</a>
 	<%	
 		}else{
 	%>
