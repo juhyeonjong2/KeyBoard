@@ -18,12 +18,6 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 	String memail = request.getParameter("memail");
 	String maddr = request.getParameter("maddr"); 
 
-	System.out.println(mid);
-	System.out.println(mpw);
-	System.out.println(mname);
-	System.out.println(mphone);
-	System.out.println(memail);
-	System.out.println(maddr);
 	
 	/* Connection conn = null;
 	PreparedStatement psmt=null;
@@ -66,7 +60,7 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 	 if(db.connect())
 	{
 		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mpw,rdate)"
-					+" VALUES(?,?,?,?,?,?,now())";
+					+" VALUES(?,?,?,?,?,md5(?),now())";
 		db.prepare(sql);
 		db.setString(mid); 
 		db.setString(mname);
