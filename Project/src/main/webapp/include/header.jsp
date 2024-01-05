@@ -67,7 +67,7 @@
                 </li>
             </ul>
         </div>
-
+        <hr id="main_line">
 	</header>
 </body>
 </html>

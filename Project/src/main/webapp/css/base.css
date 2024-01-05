@@ -17,10 +17,6 @@ header{padding-top: 20px;}
 #nav li a{font-size: 14px; color: #666;}
 #nav li:hover a{color: #29a4ff;}
 
-header hr{
-    width: 1920px; height: 1px; background-color: #dfe0e2; 
-    margin-top: 30px; border: 0;}
-
 #category{width: 1200px; height: 70px;}
 #category > li{
     width: 150px; height: 74px; display: inline-block; text-align: center; 
