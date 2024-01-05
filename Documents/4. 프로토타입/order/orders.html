@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
     <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./order.css">
+    <link rel="stylesheet" href="./orders.css">
 </head>
 <body>
     <header>
@@ -72,10 +72,7 @@
             </ul>
         </div>
     </header>
-    <dl>
-        <dt>총 <strong id="totalItemsCnt">2</strong>개의 상품금액</dt>
-        <dd><strong id="totalItemPrice">350,000</strong>원</dd>
-    </dl>
+   
     
     <main>
         <hr id="main_line">
@@ -85,18 +82,18 @@
         </div> <!--inner_member-->
 
         <div class="content_box">
-            <form name="cart_form">
+            <form name="order_frm">
                 <!-- 테이블 -->
-                <table class="cart_table">
+                <table class="itemList">
                     <colgroup>
                             <col width="53%"> <!-- 이미지+제목 공간 -->
                             <col width="13%"> <!-- 금액 -->
-                            <col width="5%"> <!-- 수량 -->
+                            <col width="10%"> <!-- 수량 -->
                             <col width="13%"> <!-- 합계 -->
                             <col >           <!-- 배송비 -->
                     </colgroup>
                     <thead>
-                        <tr class="cart_list_head">
+                        <tr>
                             <th>상품명</th>
                             <th>금액</th>
                             <th>수량</th>
@@ -108,14 +105,14 @@
                         <tr>
                             <td><a href="#">마제스터치 2 하쿠아 텐키레스 영문 넌클릭 - 갈축</a></td> <!-- 상품 디테일뷰 링크-->
                             <td>175,000원</td>
-                            <td class="td_amount" ><input type="number" value="1" ></td>
+                            <td>1</td>
                             <td>175,000원</td>
                             <td class="td_delivery" rowspan="2">기본-금액별<br>배송비 0원<br>(택배)</td>
                         </tr>
                         <tr>
                             <td><a href="#"></a>레오폴드 FC750RBT MX2A 코랄 블루 영문 - 청축</a></td>
                             <td>175,000원</td>
-                            <td class="td_amount"><input type="number" value="1" ></td>
+                            <td>1</td>
                             <td>175,000원</td>
                             <!-- <td>기본-금액별 배송비 0원(택배)</td> -->
                         </tr>
@@ -147,10 +144,103 @@
                             합계 <br>
                             <strong id="totalPrice">0</strong>원
                         </div>
+                    </div>
+                </div>
 
+                <div class="agree_box">
+                    <!-- 비회원일 때 동의사항 출력-->
+                    <input type="checkbox" name="agree_all_chk"> 세상모든키보드 이용약관 및 비회원 주문에 대한 개인정보 수집 이용 동의를 확인하고 전체 동의합니다.
+                    <div class="agree_area">
+                        <h4>비회원 주문에 대한 개인정보 수집 이용 동의</h4>
+                        <div class="scroll_box">
+                            - 수집항목: 성명, 비밀번호, 이메일, 휴대폰번호, 주소, 전화번호 <br>
+                            - 수집/이용목적: 서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 불만처리 등 민원처리, 회원관리 등을 위한 목적<br>
+                            - 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.<br>
+                            단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.<br>
+                            그 밖의 사항은 (주) 000 개인정보처리방침을 준수합니다.
+                        </div>
+                        <div class="agree_chk_area">
+                            <input type="checkbox" name="agree_chk_1"> <strong>(필수)</strong> 비회원 개인정보 수집 이용에 대한 내용을 확인 하였으며 이에 동의 합니다.
+                        </div>
                     </div>
 
+                    <div class="agree_area">
+                        <h4>이용약관 동의</h4>
+                        <div class="scroll_box">
+                            제24조(재판권 및 준거법) <br>
+                            ① "몰"과 이용자간에 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자의 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.<br>
+                            ② "몰"과 이용자간에 제기된 전자상거래 소송에는 한국법을 적용합니다.<br>
+                            <br>
+                            부칙 <br>
+                            <br>
+                            1. 이 약관은 2020년 03월 15일부터 적용됩니다.
+                        </div>
+                        <div class="agree_chk_area">
+                            <input type="checkbox" name="agree_chk_2"> <strong>(필수)</strong>이용약관에 대한 내용을 확인 하였으며 이에 동의 합니다.
+                        </div>
+                    </div>
                 </div>
+
+                <div class="order_info">
+                    <!-- 주문자 정보 테이블 -->
+                    <div class="inner_member clearfix">
+                        <h4>주문자 정보</h4>
+                        <hr id="main_line2">
+                    </div> <!--inner_member-->
+                     
+                    <table class="info_table">
+                        <colgroup>
+                                <col width="15%"> <!-- 항목 -->
+                                <col width="85%"> <!-- 내용  -->
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td><span class="important">주문하시는 분</span></td>
+                                <td><input type="text" name="order_name" maxlength="20"></td>
+                            </tr>
+                            <tr>
+                                <td>전화번호</span></td>
+                                <td><input type="text" name="order_tell" maxlength="20"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="important">휴대폰 번호</span></span></td>
+                                <td><input type="text" name="order_phone" maxlength="20"></td>
+                            </tr>
+                            <tr>
+                                <td>이메일</td></span></td>
+                                <td>
+                                    <input type="email" name="order_email" maxlength="20">
+                                    <select name="order_email2" id="order_email2">
+                                        <option value="0">직접입력</option>
+                                        <option value="1">@naver.com</option>
+                                        <option value="2">@daum.net</option>
+                                        <option value="3">@gmail.com</option>
+                                        <option value="4">@nate.com</option>
+                                        <option value="5">@icloud.com</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <div class="shiping_info">
+
+                </div>
+
+                <div class="payment_info">
+
+                    <div class="payment_method">
+                        <!-- 무통장 입금시-->
+
+                    </div>
+                </div>
+
+              
+
+
+                
 
                 <div class="order_area">
                     <div class="order_left_area">

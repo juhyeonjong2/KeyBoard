@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+main{height: auto;}
+
 .inner_member{
     width: 1000px; 
     margin: 0 auto;
@@ -31,46 +33,40 @@ main h3{
 }
 
 /* 장바구니 목록 테이블 꾸미기 */
-.cart_table{
+.itemList{
     width:  1000px;
     border-top: 1px solid #d9dadb;
     border-collapse: collapse;
 }
 
-.cart_table thead tr {
+.itemList thead tr {
     background-color: #f7f7f7;
     color: #333;
   }
 
-.cart_table th, td {
+.itemList th, td {
     border-bottom: 1px solid #d9dadb;
     padding: 10px;
     text-align: center;
 }
 
-.cart_table th {
+.itemList th {
     
     padding: 9px 10px 10px;
 }
 
-.cart_table td {    
+.itemList td {    
     padding: 15px 10px 14px;
 }
 
-.cart_table td:not(.td_chk, .td_delivery) {
+.itemList td:not(.td_chk, .td_delivery) {
     border-right: 1px solid #d9dadb;
 }
 
-.cart_table input[type='number']{    
-    width: 4em;
-    text-align: center;
-}
-
 /* 쇼핑계속하기 */
-.shop_go_link {
+.cart_go_link {
     margin: 5px 0px 0px;
 }
-
 
 /* 금액 정보 꾸미기 */
 .price_area {
@@ -95,6 +91,52 @@ main h3{
     margin-left:auto;
 }
 
+/* 동의 영역*/
+
+.agree_box {
+    padding: 25px 0px;
+    margin: 20px 0px;
+}
+
+.agree_area {
+    border:  1px solid #d9dadb;
+    padding: 15px 0px;
+    margin: 20px 0px;
+    
+}
+
+.agree_area h4{
+    padding-left: 10px;
+}
+
+.agree_area .agree_chk_area{
+    padding-left: 10px;
+}
+.agree_area strong{
+    color: #8b283d;
+}
+
+.scroll_box {
+    border:  1px solid #d9dadb;
+    height :100px;
+    margin: 10px;
+    padding: 15px;
+    font-size : 1em;
+    overflow : auto;
+}
+
+/* 주문자정보 */
+.info_table {
+    width:  1000px;
+    border-top: 1px solid #d9dadb;
+    border-collapse: collapse;
+}
+
+
+
+
+
+
 /* 버튼 꾸미기*/
 
 .order_area {
@@ -108,39 +150,39 @@ main h3{
     margin-right: auto;
 } 
 
-.order_area .medium_btn{
+.medium_btn{
     padding: 5px 15px;
     font-size: 1em;
     text-align: center;
 }
 
-.order_area .large_btn{
+.large_btn{
     padding: 10px 20px;
     margin: 0px 0px 0px 6px;
     font-size: 1.5em;
     text-align: center;
 }
 
-.order_area .btn_white{
+.btn_white{
     color: #626262;
     background-color: #fff;
     border: 1px solid #333; 
 }
 
-.order_area .btn_red{
+.btn_red{
     color: #fff;
     background-color: #ab3e55;
     border: 1px solid #333; 
     
 } 
 
-.order_area .btn_red:hover{
+.btn_red:hover{
     color: #fff;
     background-color: #8b283d;
     cursor: pointer;
 } 
 
-.order_area .btn_white:hover{
+.btn_white:hover{
     color: #626262;
     background-color: #f7f7f7;
     cursor: pointer;
