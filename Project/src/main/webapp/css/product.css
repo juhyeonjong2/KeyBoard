@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+
+/* product_Add */
+
+table {
+    margin: 0 auto;
+}
+
+.tab1 {
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.tab1>tbody>tr>td {
+    padding: 5px;
+}
+
+.divA {
+    display: inline;
+    position: absolute;
+    left: 53%;
+    margin-top: 10px;
+}
+
+.divA >button { 
+    padding: 10px;
+}
+input[type="submit"] {
+	padding: 10px;	
+}
+
+
+/* product_delete */
+
+.del1 {
+    text-align: center;
+}
+
+.del1>tr {
+   height: 50px;
+}
+
+.butt1 {
+    border: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+.res {
+    display: inline;
+    position: absolute;
+    left: 70%;
+    margin-top: 10px;
+}
+.res > button {
+    padding: 10px;
+    border: none;
+    background: aliceblue;
+}
+/*
+	table {
+ 	   margin: 0 auto;
+	} 
+*/
+ 
+ 
+
+/* product_DetailView */
+
+.is{
+    height: 450px;
+    margin: 40px 0 350px 0;}
+
+.mImage{
+    border:1px solid lightgrey; 
+    width:500px; 
+    height:430px; 
+    float:left; 
+    margin-right:20px;
+    text-align: center;
+    display: block;
+    position: relative;
+}
+.mImage > img{ /*이미지 크기 및 위치값*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 270px;
+}
+.trs{
+    height:2.5rem;
+}
+
+.bDiv>button {
+    padding:20px;
+}
+
+.but1{
+    height: 18px;
+    width: 30px;
+}
+
+#but2 {
+    margin-right: 10px;
+    width: 130px;
+    border-color: grey;
+}
+
+.spa1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.is2>ul>li {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0 20px;
+}
+.is2>ul {
+    text-align: center;
+}
+
+.tab_content {
+    text-align: center;
+}
+
+input[type="radio"] {
+    display: none;   
+}
+
+input[type="radio"] + label {
+   display: inline-block;
+   padding: 20px;
+   background: white;
+   color: #999;
+   font-size: 20px;
+   cursor: pointer;
+   margin-bottom: 50px;
+}
+
+input[type="radio"]:checked + label {
+    background: white;
+    color:black;
+}
+
+.conbox {
+    margin: 0 auto;
+}
+
+
+/* product_ListView */
+
+.ul1 > li {
+    display: inline-block;
+    width: 20%;
+}
+
+.listA {
+    font-size: 14px;
+    margin: 10px 0;
+    width: 95%;
+}
+
+.listB {
+    font-size: 14px;
+    margin: 10px 0;
+    color: grey;
+}
+
+
+/* product_Modify */
+
+/*
+	table {
+    	margin: 0 auto;
+	} 
+*/
+
+
+.tab1 {
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.tab1>tbody>tr>td {
+    padding: 5px;
+}
+
+.divA {
+    display: inline;
+    position: absolute;
+    left: 53%;
+    margin-top: 10px;
+}
+
+.divA >button { 
+    padding: 10px;
+    border: none;
+    background: aliceblue;
+}

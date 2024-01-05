@@ -13,7 +13,8 @@
 	<%@ include file="/include/header.jsp"%>
 	
 	<main>
-			<h2>메인페이지</h2>
+		<hr id="main_line">
+		<h2>메인페이지</h2>
 	</main>
 	
 	<%@ include file="/include/footer.jsp"%>

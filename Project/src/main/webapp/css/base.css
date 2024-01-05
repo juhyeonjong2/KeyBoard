@@ -44,7 +44,12 @@ header hr{
 #main_line{
     width: 1920px; height: 1px; background-color: #dfe0e2; border: 0; 
 }
-main{height: 800px;} /*임시 값*/ 
+main{
+    height: 1200px;
+    margin: 0 auto;
+} /*임시 값*/ 
+
+
 /*
    1. 호버시 색상  임시로 파란색으로 함
    2. 페이지의 inner 넓이는 임시로 1200px로함 (좌우 간격)
