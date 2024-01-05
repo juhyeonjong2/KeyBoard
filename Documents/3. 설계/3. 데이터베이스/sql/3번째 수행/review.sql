@@ -1,6 +1,3 @@
-use allkeyboard;
-
-
 create table review
 (
  rno int unsigned not null primary key auto_increment comment  '댓글번호',
@@ -9,5 +6,5 @@ create table review
  mno int  unsigned not null comment '회원번호',
  foreign key(mno) references member(mno),
  pno int unsigned not null comment '상품번호',
- foreign key(pno) references member(pno)
+ foreign key(pno) references product(pno)
 );
