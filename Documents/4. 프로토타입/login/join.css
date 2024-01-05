@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+*{
+    margin:0; padding:0; box-sizing: border-box;}
+a{text-decoration:none ; color:#111;}
+ul, ol, dl{list-style-type: none; font-size:0;}
+
+.inner{width: 1200px; margin: 0 auto;}
+.clearfix::after{content: ''; display: block; clear: both;}
+
+header{padding-top: 20px;}
+#logo{width: 150px; height: 60px; float: left;}
+
+#nav{width: 320px; float: right; padding-top: 15px;}
+#nav li{display: inline-block; width: 80px; text-align: center;}
+#nav li a{font-size: 14px; color: #666;}
+#nav li:hover a{color: #29a4ff;}
+
+header hr{
+    width: 1920px; height: 1px; background-color: #dfe0e2; 
+    margin-top: 30px; border: 0;}
+
+#category{width: 1200px; height: 70px;}
+#category > li{
+    width: 150px; height: 74px; display: inline-block; text-align: center; 
+    line-height: 70px; position: relative;}
+#category > li > a{font-size: 16px; font-weight: bold;}
+#category > li::before{
+    content: '|'; width: 1.3px; height: 20px ; background-color: #999; 
+    position: absolute; left: 0; top: 50%; transform: translatey(-50%);}
+#category > li:last-child::after{
+    content: '|'; width: 1.3px; height: 20px ; background-color: #999;
+    position: absolute; right: 0; top: 50%; transform: translatey(-50%);}
+#category > li:hover .hidden{height: 530px; width: 150px;}
+.hidden{
+    position: absolute; background-color: rgba(0,0,0,0.8); 
+    height: 0 ;overflow: hidden; transition: all 0.4s; width: 150px;}
+.hidden a{font-size: 13px; color: #fff;}
+#category > li:hover > a{color: #29a4ff;}
+.hidden li:hover a{color: #29a4ff;}
+
+
+
+
+
+
+
+
+
+
+main{height: 1000px;} /*임시 값*/ 
+/*
+1. 호버시 색상  임시로 파란색으로 함
+2. inner 넓이는 임시로 1200px로함 (좌우 간격)
+3. 폰트 (기본) 
+*/ 
+
+.inner_member{
+    width: 1000px; margin: 0 auto;
+}
+.inner_member2{
+    width: 800px; margin: 0 auto;
+}
+
+#main_line{
+    width: 1920px; height: 1px; background-color: #dfe0e2; border: 0; 
+}
+main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
+#main_line2{
+    width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
+}
+main h4{margin-bottom: 30px;}
+#joinBox{width: 800px; height: 750px; border: 1px solid #dfe0e2; }
+
+.text:first-child{margin-top: 70px;}
+.text{
+    margin-left: 100px; margin-right: 60px; width: 170px; 
+    margin-bottom: 40px; display: inline-block;}
+.textBox{display: inline-block;}
+
+input[type=password]{
+    width: 160px; height: 23px;
+}
+
+input[type=email]{
+    width: 160px; height: 23px;
+}
+
+input[type=text]{
+    width:160px; height: 23px;
+}
+.textBox_submit input{
+    width:120px;
+    height:40px;
+    float: right;
+    margin-right: 100px;
+    margin-top: 10px;
+}
+
+#idCheck{margin-left: 40px; width: 90px; height: 25px;}
+#email2{margin-left: 10px; height: 23px;}
+#phone1{height: 23px;}
+#addr3{width: 350px; margin-top: 4px; margin-bottom: 4px; height: 70px;}
+#addr{float: left;}
+#check{margin-top: 50px;}
+#phone{float: left;}
+#email{float: left;}
+
+.agreeBox{display: inline-block;}
+.agreeText{display: inline-block; margin-bottom: 20px;}
+#emailerror{float: right; margin-right: 187px;}
+#phoneerror{float: right; margin-right: 75px;}
+
+
+
+
+
+
+
+footer hr{
+    width: 1920px; height: 1px; background-color: #dfe0e2;
+    margin-bottom: 30px; margin-top: 100px; border: 0; 
+}
+
+#notice a{font-size: 16px; font-weight: bold;}
+#notice{width: 120px; text-align: center; padding-bottom: 20px;}
+
+#ft span{display: block;}
+#ft p{line-height: 1.5; font-size: 14px; color: #666; text-align: center;}
+#f_copy{margin-top: 10px;}
+
+footer{margin-bottom: 30px;}
