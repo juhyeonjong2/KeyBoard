@@ -35,14 +35,13 @@ public class DBManager {
 	}
 	
 	public DBManager(String dbName, String id, String pw) {
-		this.host= "jdbc:mysql://localhost:3306/" + dbName;
+		this.host= "jdbc:mysql://127.0.0.1:3306/" + dbName;
 		this.host+= "?useUnicode=true";
 		this.host+= "&characterEncoding=utf-8";
 		this.host+= "&serverTimezone=UTC";
 		
 		this.userID = id;
 		this.userPW = pw;
-		
 	}
 	
 	// getter and setter
@@ -101,18 +100,17 @@ public class DBManager {
 		if(conn == null)
 			return null;
 		
-		try 
-		{
+		try {
+			// 널이 아닌경우 닫는다.
+			if(psmt != null) psmt.close(); 
 			
-			if(psmt != null) psmt.close();
-		 
 			psmt = conn.prepareStatement(sql);
 			orderCount = 1;
-		 
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+		
 		return this;
 	}
 	
@@ -159,10 +157,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setInt(int val) {
@@ -175,10 +174,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setString(String s) {
@@ -191,10 +191,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setTimestamp(java.sql.Timestamp ts) {
@@ -207,9 +208,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
-		orderCount++;
-		return this;
+		
+		return null;
 	}
 	
 	public int update()
@@ -221,7 +224,7 @@ public class DBManager {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return -1;
+		return 0;
 	}
 	
 	public boolean read()
