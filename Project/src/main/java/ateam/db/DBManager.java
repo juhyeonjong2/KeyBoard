@@ -26,12 +26,12 @@ public class DBManager {
 	// 생성자
 	public DBManager() {
 		
-		this("allkeyboard", "root", "ezen");
+		this("allkeyboard", "keytester", "1234");
 	}
 	
 	public DBManager(String dbName) {
 		
-		this(dbName, "tester", "1234");
+		this(dbName, "keytester", "1234");
 	}
 	
 	public DBManager(String dbName, String id, String pw) {
