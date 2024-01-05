@@ -3,7 +3,7 @@ use allkeyboard;
 
 create table member
 (
-	mno int unsigned not null primary key unique auto_increment comment '회원번호', 
+	mno int unsigned not null primary key auto_increment comment '회원번호', 
     mid varchar(255) not null comment '아이디', 
 	mname text not null comment '이름', 
     mphone varchar(13) not null comment '연락처',
