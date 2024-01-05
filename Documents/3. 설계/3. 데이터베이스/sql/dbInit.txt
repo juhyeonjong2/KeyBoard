@@ -1,9 +1,0 @@
-1. 데이터베이스를 먼저 만든다
-  -> 관리자로 접속 후 CREATE database allkeyboard;
-
-2. 해당 디비에 접속할 계정을 만들어야함 (keytester / 1234)
-  -> CREATE USER 'keytester'@'%' IDENTIFIED BY '1234'
-  -> GRANT ALL privileges on allkeyboard.*  'keytester'@'%';
-
-3. 테이블을 만든다
-   -> 각자~
