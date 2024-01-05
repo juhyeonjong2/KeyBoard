@@ -35,13 +35,14 @@ public class DBManager {
 	}
 	
 	public DBManager(String dbName, String id, String pw) {
-		this.host= "jdbc:mysql://127.0.0.1:3306/" + dbName;
+		this.host= "jdbc:mysql://localhost:3306/" + dbName;
 		this.host+= "?useUnicode=true";
 		this.host+= "&characterEncoding=utf-8";
 		this.host+= "&serverTimezone=UTC";
 		
 		this.userID = id;
 		this.userPW = pw;
+		
 	}
 	
 	// getter and setter
@@ -100,18 +101,18 @@ public class DBManager {
 		if(conn == null)
 			return null;
 		
-		try {
-		if(psmt != null) {
-			psmt.close(); // 우선 닫고.
+		try 
+		{
 			
+			if(psmt != null) psmt.close();
+		 
 			psmt = conn.prepareStatement(sql);
-			orderCount = 1; // 이거 커밋필요
-		}
+			orderCount = 1;
+		 
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		
 		return this;
 	}
 	
@@ -220,7 +221,7 @@ public class DBManager {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return -1;
 	}
 	
 	public boolean read()
