@@ -3,9 +3,9 @@ create table product
 	pno int unsigned not null primary key auto_increment comment '상품번호',
     pname text not null comment '상품명',
     price int not null comment '판매가',
-    brand int unsigned comment '브랜드',
+    brand varchar(20) unsigned comment '브랜드',
     description varchar(200) comment '상세설명',
-    inventory date comment '재고',
+    inventory int comment '재고',
     delyn char(1) comment '삭제유무'
 );
 
