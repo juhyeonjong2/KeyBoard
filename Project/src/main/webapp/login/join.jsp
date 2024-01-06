@@ -10,7 +10,127 @@
 <link href="<%=request.getContextPath()%>/css/join.css" type="text/css"
 	rel="stylesheet">
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
-<script></script> <!-- 중복검사용 제작해야함 -->
+<script>
+	function validation(){
+		let mid = document.frm.mid.value;
+		let mpw = document.frm.mpw.value;
+		let mpwre = document.frm.mpwre.value;
+		let mname = document.frm.mname.value;
+		let mphone = document.frm.mphone.value;
+		let mphone2 = document.frm.mphone2.value;
+		let memail = document.frm.memail.value;
+		let maddr = document.frm.maddr.value;
+		
+		let check = true;
+		if(mid == ""){
+			check = false;
+			document.frm.mid.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.mid.removeAttribute("style");
+		}
+		
+		
+		if(mpw == ""){
+			check = false;
+			document.frm.mpw.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.mpw.removeAttribute("style");
+		}
+		
+		
+		if(mpwre != mpw || mpwre == ""){
+			checkIdFlag = false;
+			document.frm.mpwre.style.border="1px solid red";
+		}else{
+			checkIdFlag = true;
+			document.frm.mpwre.removeAttribute("style");
+		}
+		
+		if(mname == ""){
+			check = false;
+			document.frm.mname.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.mname.removeAttribute("style");
+		}
+		
+		
+		if(mphone == ""){
+			check = false;
+			document.frm.mphone.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.mphone.removeAttribute("style");
+		}
+		
+		
+		if(mphone2 == ""){
+			check = false;
+			document.frm.mphone2.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.mphone2.removeAttribute("style");
+		}
+		
+		
+		if(memail == ""){
+			check = false;
+			document.frm.memail.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.memail.removeAttribute("style");
+		}
+		
+		
+		if(maddr == ""){
+			check = false;
+			document.frm.maddr.style.border="1px solid red";
+		}else{
+			check = true;
+			document.frm.maddr.removeAttribute("style");
+		}
+		
+		
+		if(check&&checkIdFlag){
+			document.frm.submit();
+		}else{
+			alert("아이디 중복검사, 비밀번호확인, 입력양식을 확인해주세요.");
+		}
+	}
+	
+	let checkIdFlag = false;
+	
+	function checkIdFn(){
+		
+		let id = document.frm.mid.value;
+		
+		$.ajax({
+			url : "checkid.jsp",
+			type : "post",
+			data : {mid : id},
+			success : function(data){
+				let result = data.trim();
+				if(result == 0){
+					checkIdFlag = true;
+					alert("사용가능한 아이디입니다.");
+				}else{
+					checkIdFlag = false;
+					alert("이미 존재하는 아이디입니다.");
+				}
+			},error:function(){
+				console.log("error");
+				checkIdFlag = false;
+			}
+		});
+		
+	}
+	
+	function resetFn(){
+		checkIdFlag = false;
+	}
+</script>
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
@@ -26,11 +146,11 @@
 
             <form name="frm" id="joinBox" action="joinOk.jsp" method="post" >
 				<div class="text">
-					<label for="id">아이디 :</label>
+					<label for="id" >아이디 :</label>
 				</div>
 				<div class="textBox">
-					<input type="text" name="mid" >
-					<input type="button" id="idCheck" value="중복확인">
+					<input type="text" name="mid" onblur="resetFn()" >
+					<input type="button" id="idCheck" value="중복확인" onclick="checkIdFn()">
 				</div>
                 <br>
 				<div class="text">
@@ -60,12 +180,11 @@
 				<div class="textBox" id="emailerror">
 					<input type="text" name="memail" >
                     <select name="memail2" id="email2">
-						<option value="0">직접입력</option>
-						<option value="1">@naver.com</option>
-						<option value="2">@daum.net</option>
-						<option value="3">@gmail.com</option>
-						<option value="4">@nate.com</option>
-						<option value="5">@icloud.com</option>
+						<option value="@naver.com">@naver.com</option>
+						<option value="@daum.net">@daum.net</option>
+						<option value="@gmail.com">@gmail.com</option>
+						<option value="@nate.com">@nate.com</option>
+						<option value="@icloud.com">@icloud.com</option>
 					</select>
                     <br>
                     <div class="agreeBox">
@@ -80,10 +199,10 @@
 					<label for="phone" id="phone" >연락처 :</label>
 				</div>
 				<div class="textBox" id="phoneerror">
-					<select name="phone1" id="phone1">
+					<select name="mphone1" id="phone1">
 						<option value="010">010</option>
-						<option value="010">011</option>
-						<option value="010">016</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
 					</select>&nbsp;
 					<input type="text" name="mphone" >&nbsp;
 					<input type="text" name="mphone2" >
@@ -112,7 +231,7 @@
                 <br>
 				<div class="textBox_submit">
 					<label>
-						<input type="submit" value="회원가입">
+						<input value="회원가입" type="button" onclick="validation();return false;">
 					</label>
 				</div>
 			</form> <!--joinBox-->

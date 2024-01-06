@@ -45,6 +45,9 @@
 			member.setMno(rs.getInt("mno"));
 			member.setMid(rs.getString("mid"));
 			member.setMname(rs.getString("mname"));
+			member.setMid(rs.getString("mid"));
+			member.setMname(rs.getString("mname"));
+			
 			
 			session.setAttribute("login",member); //프린트해보니 섹션은 들어감
 			}

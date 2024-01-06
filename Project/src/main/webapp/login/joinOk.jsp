@@ -13,9 +13,11 @@ request.setCharacterEncoding("UTF-8"); //인코딩
  	String mid = request.getParameter("mid");
 	String mpw = request.getParameter("mpw");
 	String mname = request.getParameter("mname");
+	String mphone1 = request.getParameter("mphone1");
 	String mphone = request.getParameter("mphone");
 	String mphone2 = request.getParameter("mphone2");
 	String memail = request.getParameter("memail");
+	String memail2 = request.getParameter("memail2");
 	String maddr = request.getParameter("maddr"); 
 
 	
@@ -64,8 +66,8 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 		db.prepare(sql);
 		db.setString(mid); 
 		db.setString(mname);
-		db.setString(mphone); //db에는 mphone2가 없어서 여기서 더하자
-		db.setString(memail);
+		db.setString(mphone1+"-"+mphone+"-"+mphone2);
+		db.setString(memail+memail2);
 		db.setString(maddr);
 		db.setString(mpw);
 		 int count = db.update();
