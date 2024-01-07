@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main</title>
     <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="./orders.css">
+    <link rel="stylesheet" href="./ordersMember.css">
 </head>
 <body>
     <header>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
 
-                <div class="agree_box">
+                <div class="agree_box" hidden>
                     <!-- 비회원일 때 동의사항 출력-->
                     <input type="checkbox" name="agree_all_chk"> 세상모든키보드 이용약관 및 비회원 주문에 대한 개인정보 수집 이용 동의를 확인하고 전체 동의합니다.
                     <div class="agree_area">
@@ -202,7 +202,7 @@
                         <tbody>
                             <tr>
                                 <td><span class="important">주문하시는 분</span></td>
-                                <td><input type="text" name="order_name" maxlength="20"></td>
+                                <td><input type="text" name="order_name" maxlength="20" value="김길동"></td>
                             </tr>
                             <tr>
                                 <td>전화번호</span></td>
@@ -210,12 +210,12 @@
                             </tr>
                             <tr>
                                 <td><span class="important">휴대폰 번호</span></td>
-                                <td><input type="text" name="order_phone" maxlength="20"></td>
+                                <td><input type="text" name="order_phone" maxlength="20" value="010-0000-0001"></td>
                             </tr>
                             <tr>
                                 <td><span class="important">이메일</span></td>
                                 <td>
-                                    <input type="email" name="order_email" maxlength="20">
+                                    <input type="email" name="order_email" maxlength="20" value="abc@ezen.com">
                                     <select name="order_email2" id="order_email2">
                                         <option value="0">직접입력</option>
                                         <option value="1">@naver.com</option>
@@ -246,8 +246,9 @@
                             <tr>
                                 <td>배송지 확인</td>
                                 <td>
-                                    <input type="radio" name="shiping_radio_chk" checked>직접 입력
-                                    <input type="radio" name="shiping_radio_chk">주문자 정보와 동일
+                                    <input type="radio" name="shiping_radio_chk" value="1">기본 배송지
+                                    <input type="radio" name="shiping_radio_chk" value="2" checked>직접 입력
+                                    <input type="radio" name="shiping_radio_chk" value="3">주문자 정보와 동일
                                 </td>
                             </tr>
                             <tr>

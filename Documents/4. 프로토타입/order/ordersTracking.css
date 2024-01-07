@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+main{height: auto;}
+
+.inner_member{
+    width: 1000px; 
+    margin: 10px auto;
+    padding: 5px 0px;
+}
+
+#main_line{
+    width: 1920px; 
+    height: 1px; 
+    background-color: 
+    #dfe0e2; border: 0; 
+}
+
+main h3{
+    padding-top: 60px; 
+    padding-bottom: 30px; 
+    font-size: 30px;
+}
+
+#main_line2{
+    width: 1000px; 
+    height: 1px; 
+    background-color: #dfe0e2; 
+    border: 0;  
+    margin-bottom: 0px;
+}
+
+.content_box {
+    width: 1000px; 
+    margin: 0 auto;
+}
+
+/* 강조 */
+.content_box span{
+    display: block;
+    margin:1px 3px 0px 0px;
+}
+
+.important::before{
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right:3px;
+    background-color: red;
+}
+
+strong{
+    color: #ab3e55 ;
+}
+
+
+/* 주문 검색 */
+
+.tracking_area{
+    border: 1px solid #d9dadb;
+    display:flex;
+    justify-content: flex-start;
+}
+
+.tracking_area div{
+    
+    text-align: right;  
+    margin: 10px 15px 10px;
+   
+}
+
+.tracking_area div:first-child{
+    margin-left:auto;
+}
+
+
+/* 주문목록 */
+.result_table{
+    width:  1000px;
+    border-top: 1px solid #d9dadb;
+    border-collapse: collapse;
+}
+
+.result_table thead tr {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+.result_table th, td {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: center;
+}
+
+.result_table th {
+    
+    padding: 9px 10px 10px;
+}
+
+.result_table td {    
+    padding: 15px 10px 14px;
+}
+
+
+
+
+
+
+
+/* 버튼 꾸미기*/
+
+.medium_btn{
+    padding: 5px 15px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.large_btn{
+    padding: 10px 20px;
+    margin: 0px 0px 0px 6px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn_white{
+    color: #626262;
+    background-color: #fff;
+    border: 1px solid #333; 
+}
+
+.btn_red{
+    color: #fff;
+    background-color: #ab3e55;
+    border: 1px solid #333; 
+    
+} 
+
+.btn_red:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+} 
+
+.btn_white:hover{
+    color: #626262;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
