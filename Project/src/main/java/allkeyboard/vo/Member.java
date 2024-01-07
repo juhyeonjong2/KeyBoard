@@ -12,7 +12,7 @@ public class Member {
 	private int mlevel;
 	private String delyn;
 	private String mphone2;
-	
+	private String token;
 	
 	public int getMno() {
 		return mno;
@@ -79,6 +79,12 @@ public class Member {
 	}
 	public void setMphone2(String mphone2) {
 		this.mphone2 = mphone2;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 	
