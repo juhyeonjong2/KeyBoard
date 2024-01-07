@@ -61,7 +61,7 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 
 	 if(db.connect())
 	{
-		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mpw,rdate)"
+		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mlevel,mpw,rdate)"
 					+" VALUES(?,?,?,?,?,md5(?),now())";
 		db.prepare(sql);
 		db.setString(mid); 
@@ -69,6 +69,7 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 		db.setString(mphone1+"-"+mphone+"-"+mphone2);
 		db.setString(memail+memail2);
 		db.setString(maddr);
+		db.setInt(1); // level 추가함. 기본적으로 가입시 회원이므로 1설정.
 		db.setString(mpw);
 		 int count = db.update();
 			if(count > 0 )
