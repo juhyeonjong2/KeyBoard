@@ -101,12 +101,11 @@ public class DBManager {
 			return null;
 		
 		try {
-		if(psmt != null) {
-			psmt.close(); // 우선 닫고.
+			// 널이 아닌경우 닫는다.
+			if(psmt != null) psmt.close(); 
 			
 			psmt = conn.prepareStatement(sql);
-			orderCount = 1; // 이거 커밋필요
-		}
+			orderCount = 1;
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -158,10 +157,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setInt(int val) {
@@ -174,10 +174,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setString(String s) {
@@ -190,10 +191,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
 		
-		orderCount++;
-		return this;
+		return null;
 	}
 	
 	public DBManager setTimestamp(java.sql.Timestamp ts) {
@@ -206,9 +208,11 @@ public class DBManager {
 				e.printStackTrace();
 				return null;
 			}
+			orderCount++;
+			return this;
 		}
-		orderCount++;
-		return this;
+		
+		return null;
 	}
 	
 	public int update()
