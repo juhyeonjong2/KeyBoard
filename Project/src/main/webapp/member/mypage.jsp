@@ -5,8 +5,9 @@
 <%
 	Member member = (Member)session.getAttribute("login");
 
-	String mnoParam = request.getParameter("mno");
+	String mnoParam = request.getParameter("mno"); //mno 받아오는 링크 작성해야해
 
+	System.out.println(mnoParam);
 	int mno=0;
 	
 	if(mnoParam != null && !mnoParam.equals("")){
@@ -54,6 +55,8 @@
 		if(psmt != null) psmt.close();
 		if(rs != null) rs.close();
 	}
+	System.out.println(member.getMno());
+	System.out.println(mno);
 	
 
 	if(member == null 
