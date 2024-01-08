@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="./cart.css">
+</head>
+<body>
+    <header>
+        <div class="inner clearfix">
+            <h1 id="logo">
+                <a href="#"><img src="#" alt="top logo"></a>
+            </h1>
+
+            <nav id="nav">  
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">장바구니</a></li>
+                    <li><a href="#">주문조회</a></li>
+                </ul>
+            </nav>
+        </div> <!--inner-->
+
+        <!-- <hr> -->
+
+        <div class="inner">
+            <ul id="category">
+                <li>
+                    <a href="#">FILCO 키보드</a>
+                    <ul class="hidden">
+                        <li><a href="#">FILCO 마제스티</a></li>
+                        <li><a href="#">FILCO 닌자</a></li>
+                        <li><a href="#">FILCO 컴버터블</a></li>
+                        <li><a href="#">FILCO MINILA</a></li>
+                        <li><a href="#">FILCO 카모플라쥬</a></li>
+                        <li><a href="#">FILCO 하쿠아</a></li>
+                        <li><a href="#">FILCO Stingray 슬림</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Mistel 키보드</a>
+                </li>
+                <li>
+                    <a href="#">Vortex 키보드</a>
+                </li>
+                <li>
+                    <a href="#">iKBC 키보드</a>
+                </li>
+                <li>
+                    <a href="#">DUCKY 키보드</a>
+                </li>
+                <li>
+                    <a href="#">LEOPOLD 키보드</a>
+                    <ul class="hidden">
+                        <li><a href="#">FC650NDS</a></li>
+                        <li><a href="#">FC660M</a></li>
+                        <li><a href="#">FC750R</a></li>
+                        <li><a href="#">FC900R</a></li>
+                        <li><a href="#">FC750R MX2A</a></li>
+                        <li><a href="#">FC900R MX2A</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">숫자 패드</a>
+                </li>
+                <li>
+                    <a href="#">정전용량 키보드</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+   
+    <main>
+        <hr id="main_line">
+        <div class="inner_member clearfix">
+            <h3>장바구니</h3>
+            <hr id="main_line2">
+        </div> <!--inner_member-->
+
+        <div class="content_box">
+            <form name="cart_form">
+                <!-- 테이블 -->
+                <table class="cart_table">
+                    <colgroup>
+                            <col width="3%"> <!-- 체크 -->
+                            <col width="50%"> <!-- 이미지+제목 공간 -->
+                            <col width="13%"> <!-- 금액 -->
+                            <col width="5%"> <!-- 수량 -->
+                            <col width="13%"> <!-- 합계 -->
+                            <col >           <!-- 배송비 -->
+                    </colgroup>
+                    <thead>
+                        <tr class="cart_list_head">
+                            <th><input type="checkbox" name="cart_list_all"></th>
+                            <th>상품명</th>
+                            <th>금액</th>
+                            <th>수량</th>
+                            <th>합계</th>
+                            <th>배송비</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="td_chk"><input type="checkbox" name="product_no_1234"></td>
+                            <td><a href="#">마제스터치 2 하쿠아 텐키레스 영문 넌클릭 - 갈축</a></td> <!-- 상품 디테일뷰 링크-->
+                            <td>175,000원</td>
+                            <td><input type="number" value="1" ></td>
+                            <td>175,000원</td>
+                            <td class="td_delivery" rowspan="2">기본-금액별<br>배송비 0원<br>(택배)</td>
+                        </tr>
+                        <tr>
+                            <td class="td_chk"><input type="checkbox" name="product_num_4321"></td>
+                            <td><a href="#"></a>레오폴드 FC750RBT MX2A 코랄 블루 영문 - 청축</a></td>
+                            <td>175,000원</td>
+                            <td><input type="number" value="1" ></td>
+                            <td>175,000원</td>
+                            <!-- <td>기본-금액별 배송비 0원(택배)</td> -->
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="shop_go_link">
+                    <!-- 계속 쇼핑하기-->
+                    <a href="#"> <em>&lt;계속 쇼핑하기</em></a>
+                </div>
+
+                <div class="price_area">
+                    <div class="price_sum_list">
+                        <div>
+                            총 <strong id="totalItemsCnt">2</strong>개의 상품금액 <br>
+                            <strong id="totalItemPrice">350,000</strong>원
+                        </div>
+                        <div>
+                            <!--<img src="#" alt="+">--> +
+                        </div>
+                        <div>
+                            배송비 <br>
+                            <strong id="delivery">0</strong>원
+                        </div>
+                        <div>
+                            <!--<img src="#" alt="+">--> =
+                        </div>
+                        <div>
+                            합계 <br>
+                            <strong id="totalPrice">0</strong>원
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="order_area">
+                    <div class="order_left_area">
+                        <button type="button" class="medium_btn btn_white" >선택 상품 삭제</button>
+                    </div>
+                    
+                    <div class="order_right_area">
+                        <button type="button" class="large_btn btn_white">선택 상품 구매</button>
+                        <button type="button" class="large_btn btn_red">전체 상품 구매</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+    
+
+    <footer>
+        <hr>
+        <div class="inner clearfix">
+
+            <div class="inner" id="notice">
+                <a href="#">공지사항</a>
+            </div>
+
+            <div id="ft">
+                <p>업체명 :세상모든키보드 쇼핑몰 | 대표 :세모키 | 주소 : 전라북도 전주시 덕진구 백제대로 572
+                <span>사업자등록번호 : 000-00-00000 | 통신판매신고번호 : 2023-전주-0000</span>
+                개인정보관리책임자 : 세모키 | 이메일 : aaa_bbbbb@gmail.com</p>
+                <div id="f_copy">
+                    <p>Copyright 2024. 세모키. All rights reversed.</p>
+                </div>
+            </div> <!--ft-->
+    </div>
+    </footer>
+</body>
+</html>

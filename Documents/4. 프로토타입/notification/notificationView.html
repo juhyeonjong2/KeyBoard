@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="./login.css">
+    <title>main</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="./notificationView.css">
 </head>
 <body>
     <header>
@@ -23,6 +24,7 @@
             </nav>
         </div> <!--inner-->
 
+        <!-- <hr> -->
 
         <div class="inner">
             <ul id="category">
@@ -70,57 +72,51 @@
             </ul>
         </div>
     </header>
-
-
+   
+    
     <main>
+        <hr id="main_line">
         <div class="inner_member clearfix">
-            <h3>로그인</h3>
-            <hr id="main_line2">
-        </div> <!--inner_member-->
+            <h3>공지사항</h3>
+            <!-- <hr class="main_line2"> -->
+        </div>
 
-        <div class="inner_member2 clearfix">
-            <form name="frm" id="loginBox">
-                <h4>회원로그인</h4>
-                <div class="textBox">
-                    <input type="text" name="id" class="margin1"><br>
-                    <input type="password" name="password" class="margin1">
-                </div>
-                <div class="submit">
-                    <input type="submit" value="로그인">
-                </div>
-                <div id="joinLink" class="margin1">
-                    <a href="./join.html">회원가입하기</a>
-                </div>
-            </form>
 
-            <form name="frm2" id="notLoginBox">
-                <h4>비회원 주문조회 하기</h4>
-                <div class="textBox">
-                    <input type="text" name="orderName" class="margin1"><br>
-                    <input type="password" name="orderNum" class="margin1">
+        <div class="content_box">
+
+            <div class="title_area">
+                <h4>레오폴드 MX2A 시리즈 예약 판매 안내</h4>
+            </div>
+
+            <div class="info_area">
+                <div class="writer"><strong>관리자</strong></div>
+                <div class="date">2024.01.01 12:45:31</div>
+                <div class="hit"><strong>조회수 </strong> 394</div>
+            </div>
+
+            <div class="content_area">
+                <div class="content">
+                    새로운 스위치와 내부 설계로 제작된 레오폴드 MX2A 예약판매가 시작될 예정입니다.  <br>
+                    상세한 내용은 아래를 참고하시길 바랍니다. 
                 </div>
-                <div class="submit">
-                    <input type="submit" value="확인">
+                <div class="image_area">
+                    <img src="./img/mx2a_event.jpg">
+                    <img src="./img/mx2a_event2.jpg">  <!-- 이렇게 두개를 넣을수 있게 할지는? 디비 구조상 안될듯? 일단 설계한데로 한개만 처리-->
                 </div>
-            </form>
-        </div><!--inner_member2-->
+            </div>
+        </div>
+
+        <div class="action_box">
+            <div>
+                <!-- 관리자일경우-->
+                <button type="button" class="small_btn btn_red">삭제</button>
+                <button type="button" class="small_btn btn_white">수정</button>
+                <!-- 기본-->
+                <button type="button" class="small_btn btn_white">목록</button>
+            </div>
+        </div>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     <footer>
         <hr>

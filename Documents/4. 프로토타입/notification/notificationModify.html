@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="./login.css">
+    <title>main</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="./notificationModify.css">
 </head>
 <body>
     <header>
@@ -23,6 +24,7 @@
             </nav>
         </div> <!--inner-->
 
+        <!-- <hr> -->
 
         <div class="inner">
             <ul id="category">
@@ -70,57 +72,49 @@
             </ul>
         </div>
     </header>
-
-
+   
+    
     <main>
+        <hr id="main_line">
         <div class="inner_member clearfix">
-            <h3>로그인</h3>
-            <hr id="main_line2">
-        </div> <!--inner_member-->
+            <h3>공지사항 수정</h3>
+            <hr class="main_line2">
+        </div>
 
-        <div class="inner_member2 clearfix">
-            <form name="frm" id="loginBox">
-                <h4>회원로그인</h4>
-                <div class="textBox">
-                    <input type="text" name="id" class="margin1"><br>
-                    <input type="password" name="password" class="margin1">
-                </div>
-                <div class="submit">
-                    <input type="submit" value="로그인">
-                </div>
-                <div id="joinLink" class="margin1">
-                    <a href="./join.html">회원가입하기</a>
-                </div>
-            </form>
+        <form name="notification_frm">
+            <div class="content_box">
+                <table class="info_table">
+                    <colgroup>
+                            <col width="15%"> <!-- 항목 -->
+                            <col width="85%"> <!-- 내용  -->
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>제목</td>
+                            <td><input type="text" name="noti_title" maxlength="200" value="레오폴드 MX2A 시리즈 예약 판매 안내"></td>
+                        </tr>
+                        <tr>
+                            <td>내용</td>
+                            <td><textarea name="noti_content" rows="10" cols="50">새로운 스위치와 내부 설계로 제작된 레오폴드 MX2A 예약판매가 시작될 예정입니다.&#10;상세한 내용은 아래를 참고하시길 바랍니다. </textarea></td>
+                        </tr>
+                        <tr>
+                            <td>이미지파일</td>
+                            <td><input type="file" name="noti_file" value="./img/mx2a_event"></td>
+                        </tr>
+                    </tbody>
 
-            <form name="frm2" id="notLoginBox">
-                <h4>비회원 주문조회 하기</h4>
-                <div class="textBox">
-                    <input type="text" name="orderName" class="margin1"><br>
-                    <input type="password" name="orderNum" class="margin1">
+                </table>
+            </div>
+
+            <div class="action_box">
+                <div>
+                    <button type="button" class="large_btn btn_white">취소</button>
+                    <button type="button" class="large_btn btn_red">수정</button>
                 </div>
-                <div class="submit">
-                    <input type="submit" value="확인">
-                </div>
-            </form>
-        </div><!--inner_member2-->
+            </div>
+        </form>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
     <footer>
         <hr>

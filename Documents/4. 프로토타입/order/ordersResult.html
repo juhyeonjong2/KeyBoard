@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>join</title>
-    <link rel="stylesheet" href="./join.css">
+    <title>main</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="./ordersResult.css">
 </head>
 <body>
     <header>
@@ -23,6 +24,7 @@
             </nav>
         </div> <!--inner-->
 
+        <!-- <hr> -->
 
         <div class="inner">
             <ul id="category">
@@ -70,114 +72,31 @@
             </ul>
         </div>
     </header>
-
-
+   
+    
     <main>
+        <hr id="main_line">
         <div class="inner_member clearfix">
-            <h3>회원가입</h3>
-            <hr id="main_line2">
+            <h3>구매 결과</h3>
+            <hr class="main_line2">
         </div> <!--inner_member-->
 
-        <div class="inner_member2 clearfix">
-            <h4>기본정보</h4>
+        <div class="content_box">
+            <form name="result_frm">
+                <div class="result_area">
+                    <div class="result_info">
+                        주문이 완료 되었습니다.<br>
+                        주문번호는 <strong id="order_no">XXXXX</strong> 입니다.
+                    </div>
+                    <div>
+                        <button type="button" class="large_btn btn_red" > 확인 </button>
+                    </div>
+                </div>
 
-            <form name="frm" id="joinBox">
-				<div class="text">
-					<label for="id">아이디 :</label>
-				</div>
-				<div class="textBox">
-					<input type="text" name="id" >
-					<input type="button" id="idCheck" value="중복확인">
-				</div>
-                <br>
-				<div class="text">
-					<label for="password">비밀번호 :</label>
-				</div>
-				<div class="textBox">
-					<input type="password" name="password">
-				</div>
-                <br>
-				<div class="text">
-					<label for="passwordre">비밀번호 확인 :</label>
-				</div>
-                <div class="textBox">
-					<input type="password" name="passwordre">
-				</div>
-                <br>
-				<div class="text">
-					<label for="name">이름 :</label>
-				</div>
-				<div class="textBox">
-					<input type="text" name="name">
-				</div>
-                <br>
-				<div class="text">
-					<label for="email" id="email">이메일 :</label>
-				</div>
-				<div class="textBox" id="emailerror">
-					<input type="email" name="email" >
-                    <select name="email2" id="email2">
-						<option value="0">직접입력</option>
-						<option value="1">@naver.com</option>
-						<option value="2">@daum.net</option>
-						<option value="3">@gmail.com</option>
-						<option value="4">@nate.com</option>
-						<option value="5">@icloud.com</option>
-					</select>
-                    <br>
-                    <div class="agreeBox">
-                        <input type="checkbox" name="agree">
-                    </div>
-                    <div class="agreeText">
-                        <label for="check">메일수신에 동의</label>
-                    </div>
-				</div>
-                <br>
-				<div class="text">
-					<label for="phone" id="phone" >연락처 :</label>
-				</div>
-				<div class="textBox" id="phoneerror">
-					<select name="phone1" id="phone1">
-						<option value="010">010</option>
-						<option value="010">011</option>
-						<option value="010">016</option>
-					</select>&nbsp;
-					<input type="text" name="phone2" >&nbsp;
-					<input type="text" name="phone3" >
-                    <br>
-                    <div class="agreeBox">
-                        <input type="checkbox" name="agree" >
-                    </div>
-                    <div class="agreeText">
-                        <label for="check" >메일수신에 동의</label>
-                    </div>
-				</div>
-                <br>
-                <div class="text">
-					<label for="addr" id="addr">주소 :</label>
-				</div>
-                <div class="textBox">
-					<input type="text" name="addr2" placeholder="우편번호" ><br>
-                    <textarea name="addr3" id="addr3"></textarea>
-				</div>
-                <br>
-                <div class="text" id="check">
-					<label for="check">개인정보 수집 및 이용</label>
-				</div>
-                <div class="textBox">
-					<input type="checkbox" name="agree">동의
-				</div>
-                <br>
-				<div class="textBox_submit">
-					<label>
-						<input type="submit" value="회원가입">
-					</label>
-				</div>
-			</form> <!--joinBox-->
-
-        </div><!--inner_member2-->
+            </form>
+        </div>
     </main>
-
+    
 
     <footer>
         <hr>

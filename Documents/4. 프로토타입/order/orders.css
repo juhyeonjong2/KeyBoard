@@ -1,0 +1,307 @@
+@charset "UTF-8";
+
+main{height: auto;}
+
+.inner_member{
+    width: 1000px; 
+    margin: 10px auto;
+    padding: 5px 0px;
+}
+
+#main_line{
+    width: 1920px; 
+    height: 1px; 
+    background-color: 
+    #dfe0e2; border: 0; 
+}
+
+main h3{
+    padding-top: 60px; 
+    padding-bottom: 30px; 
+    font-size: 30px;
+}
+
+#main_line2{
+    width: 1000px; 
+    height: 1px; 
+    background-color: #dfe0e2; 
+    border: 0;  
+    margin-bottom: 0px;
+}
+
+.content_box {
+    width: 1000px; 
+    margin: 0 auto;
+}
+
+/* 강조 */
+.content_box span{
+    display: block;
+    margin:1px 3px 0px 0px;
+}
+
+.important::before{
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right:3px;
+    background-color: red;
+}
+
+strong{
+    color: #ab3e55 ;
+}
+
+
+/* 장바구니 목록 테이블 꾸미기 */
+.itemList{
+    width:  1000px;
+    border-top: 1px solid #d9dadb;
+    border-collapse: collapse;
+}
+
+.itemList thead tr {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+.itemList th, td {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: center;
+}
+
+.itemList th {
+    
+    padding: 9px 10px 10px;
+}
+
+.itemList td {    
+    padding: 15px 10px 14px;
+}
+
+.itemList td:not(.td_chk, .td_delivery) {
+    border-right: 1px solid #d9dadb;
+}
+
+/* 장바구니 가기 */
+.cart_go_link {
+    margin: 5px 0px 0px;
+}
+
+/* 금액 정보 꾸미기 */
+.price_area {
+    border: 2px solid #d9dadb; 
+    margin:30px 0px 0px;
+    padding: 20px 40px 25px;
+}
+
+.price_sum_list{
+    display:flex;
+    justify-content: flex-start;
+} 
+
+.price_sum_list div{
+    
+    text-align: right;  
+    margin: 10px 15px 10px;
+   
+}
+
+.price_sum_list div:first-child{
+    margin-left:auto;
+}
+
+/* 동의 영역*/
+
+.agree_box {
+    padding: 25px 0px;
+    margin: 10px 0px;
+}
+
+.agree_area {
+    border:  1px solid #d9dadb;
+    padding: 15px 0px;
+    margin: 20px 0px;
+    
+}
+
+.agree_area h4{
+    padding-left: 10px;
+}
+
+.agree_area .agree_chk_area{
+    padding-left: 10px;
+}
+.agree_area strong{
+    color: #8b283d;
+}
+
+.scroll_box {
+    border:  1px solid #d9dadb;
+    height :100px;
+    margin: 10px;
+    padding: 15px;
+    font-size : 1em;
+    overflow : auto;
+}
+
+
+/* 정보 테이블 공통 */
+.info_table {
+    width:  1000px;
+    border-top: 2px solid #d9dadb;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+.info_table thead tr {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+.info_table th:nth-child(1), td:nth-child(1) {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: right;
+    background-color: #f7f7f7;
+}
+
+.info_table th:nth-child(2), td:nth-child(2) {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: left;
+}
+
+.info_table th {
+    
+    padding: 9px 10px 10px;
+}
+
+.info_table td {    
+    padding: 15px 10px 14px;
+}
+
+/*주문자 정보*/
+.order_info {
+    padding: 0px 0px 20px;
+}
+
+
+/*배송 정보*/
+.shiping_info {
+    padding: 0px 0px 20px;
+}
+
+/*결제 정보*/
+.payment_info{
+    padding: 0px 0px 20px;
+}
+
+
+/* 결제수단 선택/결제 */
+
+.payment_method_area_table{
+    width:  1000px;
+    border-top: 2px solid #d9dadb;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+.payment_method_area_table thead tr {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+.payment_method_area_table th:nth-child(1), td:nth-child(1) {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    
+    background-color: #f7f7f7;
+}
+
+.payment_method_area_table th:nth-child(2), td:nth-child(2) {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: left;
+}
+
+.payment_method_area_table th {
+    
+    padding: 9px 10px 10px;
+}
+
+.payment_method_area_table td {    
+    padding: 15px 10px 14px;
+}
+
+/* 최종 결제 */
+.order_area{
+    padding: 30px 0px 15px;
+    margin:30px 0px 0px;
+    text-align: center;
+}
+
+.order_area>div{
+    margin:20px 0px 0px 0px;
+}
+
+.order_sum_list{
+    margin:10px 0px 0px;
+    padding: 20px 0px 20px; 
+    display:flex;
+    justify-content:flex-start;
+    border: 2px solid #d9dadb; 
+}
+
+.order_sum_list div{
+    padding: 10px;
+    text-align: center;
+    
+}
+
+.order_sum_list .order_sum_list_first{
+    margin-left:auto;
+}
+
+
+/* 버튼 꾸미기*/
+
+.medium_btn{
+    padding: 5px 15px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.large_btn{
+    padding: 10px 20px;
+    margin: 0px 0px 0px 6px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn_white{
+    color: #626262;
+    background-color: #fff;
+    border: 1px solid #333; 
+}
+
+.btn_red{
+    color: #fff;
+    background-color: #ab3e55;
+    border: 1px solid #333; 
+    
+} 
+
+.btn_red:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+} 
+
+.btn_white:hover{
+    color: #626262;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
