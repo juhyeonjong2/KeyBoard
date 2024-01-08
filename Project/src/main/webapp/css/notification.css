@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+main{height: auto;}
+
+.inner_member{
+    width: 1000px; 
+    margin: 10px auto;
+    padding: 5px 0px;
+}
+
+#main_line{
+    width: 1920px; 
+    height: 1px; 
+    background-color: 
+    #dfe0e2; border: 0; 
+}
+
+main h3{
+    padding-top: 60px; 
+    padding-bottom: 30px; 
+    font-size: 30px;
+}
+
+#main_line2{
+    width: 1000px; 
+    height: 1px; 
+    background-color: #dfe0e2; 
+    border: 0;  
+    margin-bottom: 0px;
+}
+
+/* 텍스트 꾸미기*/
+.medium_text {
+    font-size: 1em;
+    text-align: center;
+    height: 2em;
+}
+
+
+/* 버튼 꾸미기*/
+.small_btn{
+    padding: 3px 10px;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.medium_btn{
+    padding: 5px 15px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.large_btn{
+    padding: 10px 20px;
+    margin: 0px 0px 0px 6px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn_white{
+    color: #626262;
+    background-color: #fff;
+    border: 1px solid #333; 
+}
+
+.btn_red{
+    color: #fff;
+    background-color: #ab3e55;
+    border: 1px solid #333; 
+    
+} 
+
+.btn_red:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+} 
+
+.btn_white:hover{
+    color: #626262;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.content_box {
+    width: 1000px; 
+    margin: 0 auto;
+}
+
+/* 공지 리스트 */
+.result_list{
+    width:  1000px;
+    border-top: 1px solid #dfe0e2;
+    border-collapse: collapse;
+ 
+}
+
+.result_list thead tr {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+.result_list th, td {
+    border-bottom: 1px solid #d9dadb;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 페이징 */
+.pagination{
+    height: 100px;
+    padding-top: 20px;
+}
+.pagination ul {
+    font-size:initial; /*main에서 변경한것 여기서만 되돌림*/
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li{
+    flex:center;
+    text-align: center;
+}
+
+.pagination li:nth-child(1){
+    margin-left: auto;
+}
+
+.pagination a{
+    font-size: 1em;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #9ea0a3;
+   
+}
+.pagination .active{
+    padding-top: 3px;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius:100%;
+    background-color: #ab3e55;
+    color: white;
+   
+}
+
+.pagination .align_right{
+    margin-left: auto;
+}
+
+
+
+/* 검색 박스 */
+.search_box{
+    text-align: center;
+    background-color: #f7f7f7;
+    color: #333;
+    height: 4em;
+    line-height: 4em;
+    border-bottom: 1px solid #d9dadb;
+    border-top: 1px solid #d9dadb;
+}
