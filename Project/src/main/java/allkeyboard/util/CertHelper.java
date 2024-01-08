@@ -84,6 +84,15 @@ public class CertHelper {
 		return level;
 	}
 	
+	public static boolean isAdmin(int mno, String token) {
+		Cert cert = CertHelper.getCert(mno, token);
+		if(cert != null) {
+			if(getLevel(cert) == 2) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	// token, mno는 그대로 두고 expiretime만 갱신한다.
 	public static boolean refreshToken(Cert cert) {
