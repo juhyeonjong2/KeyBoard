@@ -25,10 +25,10 @@
 		
 		int cnt = 1;
 		
+		
 		if(rs.next()){
 			cnt = rs.getInt("cnt");
 		}
-		
 		
 		 out.print(cnt);
 		 

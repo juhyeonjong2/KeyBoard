@@ -41,10 +41,10 @@
 		
 		
 		if(mpwre != mpw || mpwre == ""){
-			checkIdFlag = false;
+			check = false;
 			document.frm.mpwre.style.border="1px solid red";
 		}else{
-			checkIdFlag = true;
+			check = true;
 			document.frm.mpwre.removeAttribute("style");
 		}
 		
@@ -100,13 +100,13 @@
 		}
 	}
 	
-	let checkIdFlag = false;
+	let checkIdFlag = false; 
 	
 	function checkIdFn(){
 		
 		let id = document.frm.mid.value;
 		
-		$.ajax({
+		$.ajax({ 
 			url : "checkid.jsp",
 			type : "post",
 			data : {mid : id},
@@ -130,6 +130,7 @@
 	function resetFn(){
 		checkIdFlag = false;
 	}
+
 </script>
 </head>
 <body>

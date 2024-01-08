@@ -62,7 +62,7 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 	 if(db.connect())
 	{
 		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mlevel,mpw,rdate)"
-					+" VALUES(?,?,?,?,?,md5(?),now())";
+					+" VALUES(?,?,?,?,?,?,md5(?),now())";
 		db.prepare(sql);
 		db.setString(mid); 
 		db.setString(mname);
