@@ -96,7 +96,7 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link href="<%=request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/notification.css" type="text/css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/notification/list.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>

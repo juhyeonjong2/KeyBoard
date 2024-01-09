@@ -41,7 +41,7 @@ public class CertHelper {
 			 {
 				 if(db.getNext())
 				 {
-					System.out.println("getCert(int mno, String token)");
+						/* System.out.println("getCert(int mno, String token)"); */
 					cert = new Cert();
 					cert.setMno(db.getInt("mno"));
 					cert.setHash(db.getString("hash"));
@@ -73,7 +73,7 @@ public class CertHelper {
 				 {
 					 if(db.getNext())
 					 {
-						System.out.println("getlevel");
+						//System.out.println("getlevel");
 						level = db.getInt("level");
 					 }
 				 }
@@ -107,7 +107,7 @@ public class CertHelper {
 			String sql = "UPDATE cert SET expiretime=DATE_ADD(NOW(), INTERVAL 2 HOUR) WHERE mno=?";
 			if(db.prepare(sql).setInt(cert.getMno()).update() > 0)
 			{
-				System.out.println("refreshToken");
+				//System.out.println("refreshToken");
 				isSuccess = true;
 			}
 			db.disconnect();
@@ -131,9 +131,9 @@ public class CertHelper {
 			 {
 				 if(db.getNext())
 				 {
-					System.out.println("isExpiredTime");
+					//System.out.println("isExpiredTime");
 					int result = db.getInt("result");
-					System.out.println(result);
+					//System.out.println(result);
 					if(result > 0) {
 						isExpired = true;
 					}
@@ -175,7 +175,7 @@ public class CertHelper {
 			 {
 				 if(db.getNext())
 				 {
-					System.out.println("getCert(int mno)");
+					//System.out.println("getCert(int mno)");
 					cert = new Cert();
 					cert.setMno(db.getInt("mno"));
 					cert.setHash(db.getString("hash"));
@@ -198,7 +198,7 @@ public class CertHelper {
 			String sql = "UPDATE cert SET hash=?, expiretime=DATE_ADD(NOW(), INTERVAL 2 HOUR) WHERE mno=?";
 			if(db.prepare(sql).setString(hash).setInt(mno).update() > 0)
 			{
-				System.out.println("updateCert");
+				//System.out.println("updateCert");
 				isSuccess = true;
 			}
 			db.disconnect();
@@ -216,7 +216,7 @@ public class CertHelper {
 			
 			if(db.prepare(sql).setString(hash).setInt(mno).update() > 0)
 			{
-				System.out.println("insertCert");
+				//System.out.println("insertCert");
 				isSuccess = true;
 			}
 			db.disconnect();
