@@ -19,6 +19,8 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 	String memail = request.getParameter("memail");
 	String memail2 = request.getParameter("memail2");
 	String maddr = request.getParameter("maddr"); 
+	String allowemail = request.getParameter("allowemail");
+	String allowphone = request.getParameter("allowphone"); 
 
 	
 	/* Connection conn = null;
@@ -61,8 +63,9 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 
 	 if(db.connect())
 	{
-		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mlevel,mpw,rdate)"
-					+" VALUES(?,?,?,?,?,md5(?),now())";
+		String sql = "INSERT INTO member(mid,mname,mphone,memail,maddr,mlevel,allowemail,allowphone,mpw,rdate)"
+					+" VALUES(?,?,?,?,?,?,?,?,md5(?),now())";
+
 		db.prepare(sql);
 		db.setString(mid); 
 		db.setString(mname);
@@ -70,7 +73,21 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 		db.setString(memail+memail2);
 		db.setString(maddr);
 		db.setInt(1); // level 추가함. 기본적으로 가입시 회원이므로 1설정.
+		
+		if(allowemail == null){ //체크안되면 n 되면 value값인 y
+			db.setString("n");
+		}else{
+			db.setString(allowemail); 
+		}
+		if(allowphone == null){
+			db.setString("n");
+		}else{
+			db.setString(allowphone); 
+		}
+			
 		db.setString(mpw);
+		
+		
 		 int count = db.update();
 			if(count > 0 )
 			{
