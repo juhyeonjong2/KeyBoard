@@ -16,7 +16,7 @@
 		<h2 style="margin: 20px 0; text-align: center;">상품 등록</h2>
         <div>
             <form name="frm" action="./addOk.jsp" method="post" enctype="multipart/form-data">
-                <table class="tab1">
+                <table class="tab1"> 
                 	<input type="hidden" name="flag" value="i">
                     <tbody>
                         <tr>
