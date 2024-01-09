@@ -56,7 +56,6 @@
 		
 		if(db.prepare(sql).setString(noti.getNtitle()).setString(noti.getNcontent()).update() > 0)
 		{ // 업데이트 성공시 nno를 가져온다.
-			db.release();
 			
 			// 현재 삽입된 게시글의 기본키(bno)값을 조회하세요. 
 			sql = "select last_insert_id() as nno from notification"; // DB샘에 알려준 mysql전용방법
@@ -103,8 +102,6 @@
 		
 		for(NotificationAttach attach : fileList){
 		
-			db.release();
-			
 			db.prepare(sql)
 			  .setInt(attach.getNfidx())
 			  .setInt(attach.getNno())
