@@ -81,7 +81,6 @@
 		let check5 = true;
 		let check6 = true;
 		
-		console.log(mpwnow);
 		$.ajax({ 
 			url : "checkpw.jsp",
 			async : false,

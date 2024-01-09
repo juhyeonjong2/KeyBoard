@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+main{height: 500px;} 
+
+.inner_member{
+    width: 1000px; margin: 0 auto;
+}
+.inner_member2{
+    width: 800px; margin: 0 auto;
+}
+
+#main_line{
+    width: 1920px; height: 1px; background-color: #dfe0e2; border: 0; 
+}
+main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
+#main_line2{
+    width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
+}
+
+
+#deleteBox{width: 800px; height: 300px; border: 1px solid #dfe0e2; margin-bottom: 50px;}
+
+main h4{font-size: 18px; margin-left: 160px; margin-top: 30px; margin-bottom: 30px;}
+.margin1{margin-left: 160px;}
+
+#modifyLink{
+    width: 120px; height: 40px; background-color: #29a4ff; 
+    text-align: center; line-height: 40px; margin-top: 150px;}
+#modifyLink a{color: #fff;}
+/* #joinLink:hover{box-shadow: 5px 5px 5px rgba(0,0,0,0.3);} 시험용인데 개구려서 다른데에 쓰거나 뺴버리자*/
+
+input[type=password]{
+    width: 200px; height: 30px; float: left;
+}
+
+input[type=text]{
+    width:200px; height: 30px; margin-bottom: 15px;
+}
+
+.submit{float: right; margin-right: 150px;}
+
+#submitButton{
+    width:170px; height: 75px; font-size: 16px; font-weight: 500;
+}
+
+.textBox{float: left;}
