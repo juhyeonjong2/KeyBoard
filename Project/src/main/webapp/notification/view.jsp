@@ -24,8 +24,12 @@
 	}
 	
 	// 이미지파일 저장경로.
-	String saveDir = "image\\notification";
-	String saveDirectoryPath = application.getRealPath(saveDir);
+	String saveDir = "image/notification";
+	String saveDirectoryPath = application.getRealPath(saveDir); // 절대 경로 안쓰기위해 톰캣쪽에 저장됨. (디비 합치면 못씀.) 
+	// 아예 지정경로로 빼고싶으면 아래 참고  
+	//https://kimcoder.tistory.com/204
+	//https://byson.tistory.com/20
+	
 	
 	//1 DB에서 공지를 읽어옴
 	Notification noti = new Notification();
@@ -78,8 +82,6 @@
 			System.out.println(a.getNfno());
 		} */
 		
-		//https://claver-pickle.tistory.com/10
-			
 		
 %>
 	
@@ -122,10 +124,18 @@
                 
                 <%
                 	// 파일을 이어붙여보자
-                
+                	for(NotificationAttach a : attachList )
+                	{
+                		String path = saveDirectoryPath + "\\" + a.getRealFileName();
+                		System.out.println(path);
+                		System.out.println(request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName() );
+                		
+                		
+				%>
+                		 <img src="<%= request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName()%>" alt="<%= a.getForeignFileName() %>">        	
+				<%
+                	}
                 %>
-                    <img src="./img/mx2a_event.jpg">
-                    <img src="./img/mx2a_event2.jpg">  <!-- 이렇게 두개를 넣을수 있게 할지는? 디비 구조상 안될듯? 일단 설계한데로 한개만 처리-->
                 </div>
             </div>
         </div>

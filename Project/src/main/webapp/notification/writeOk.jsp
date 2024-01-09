@@ -16,8 +16,8 @@
 
 	// 함수로 빼서 동적 경로로 변경하자.
 	
-	String saveDir = "image\\notification";
-	String saveDirectoryPath = application.getRealPath(saveDir);
+	String saveDir = "image/notification";
+	String saveDirectoryPath = application.getRealPath(saveDir); // 절대 경로 안쓰기위해 톰캣쪽에 저장됨. (디비 합치면 못씀.) 
 	int sizeLimit = 100*1024*1024; // 100mb 
 	
 	MultipartRequest multi = new MultipartRequest(request, saveDirectoryPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
