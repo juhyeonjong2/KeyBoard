@@ -20,8 +20,21 @@
 		let mphone2 = document.frm.mphone2.value;
 		let memail = document.frm.memail.value;
 		let maddr = document.frm.maddr.value;
+		let allagree = document.frm.allagree.checked;
 		
-		let check = true;
+		
+		//여기도 하나로 설정하면 마지막만 트루가 나오면 트루가 되버리니까 이름 바꿔서 여러개 작성하자
+		let check = false;
+		let check1 = false;
+		let check2 = false;
+		let check3 = false;
+		let check4 = false;
+		let check5 = false;
+		let check6 = false;
+		let check7 = false;
+		let check8 = false;
+	
+		
 		if(mid == ""){
 			check = false;
 			document.frm.mid.style.border="1px solid red";
@@ -32,71 +45,78 @@
 		
 		
 		if(mpw == ""){
-			check = false;
+			check1 = false;
 			document.frm.mpw.style.border="1px solid red";
 		}else{
-			check = true;
+			check1 = true;
 			document.frm.mpw.removeAttribute("style");
 		}
 		
 		
 		if(mpwre != mpw || mpwre == ""){
-			check = false;
+			check2 = false;
 			document.frm.mpwre.style.border="1px solid red";
 		}else{
-			check = true;
+			check2 = true;
 			document.frm.mpwre.removeAttribute("style");
 		}
 		
 		if(mname == ""){
-			check = false;
+			check3 = false;
 			document.frm.mname.style.border="1px solid red";
 		}else{
-			check = true;
+			check3 = true;
 			document.frm.mname.removeAttribute("style");
 		}
 		
 		
 		if(mphone == ""){
-			check = false;
+			check4 = false;
 			document.frm.mphone.style.border="1px solid red";
 		}else{
-			check = true;
+			check4 = true;
 			document.frm.mphone.removeAttribute("style");
 		}
 		
 		
 		if(mphone2 == ""){
-			check = false;
+			check5 = false;
 			document.frm.mphone2.style.border="1px solid red";
 		}else{
-			check = true;
+			check5 = true;
 			document.frm.mphone2.removeAttribute("style");
 		}
 		
 		
 		if(memail == ""){
-			check = false;
+			check6 = false;
 			document.frm.memail.style.border="1px solid red";
 		}else{
-			check = true;
+			check6 = true;
 			document.frm.memail.removeAttribute("style");
 		}
 		
 		
 		if(maddr == ""){
-			check = false;
+			check7 = false;
 			document.frm.maddr.style.border="1px solid red";
 		}else{
-			check = true;
+			check7 = true;
 			document.frm.maddr.removeAttribute("style");
 		}
 		
+		if(allagree == false){ //체크 안하면 false 반환
+			check8 = false;
+		}else{
+			check8 = true;
+		}
 		
-		if(check&&checkIdFlag){
+		
+		
+		if(check&&check1&&check2&&check3&&check4&&check5&&check6&&check7&&check8&&checkIdFlag){
 			document.frm.submit();
 		}else{
-			alert("아이디 중복검사, 비밀번호확인, 입력양식을 확인해주세요.");
+			alert("아이디 중복검사, 비밀번호확인, 개인정보 수집 및 이용동의, 입력양식을 확인해주세요.");
 		}
 	}
 	
@@ -189,7 +209,7 @@
 					</select>
                     <br>
                     <div class="agreeBox">
-                        <input type="checkbox" name="agree">
+                        <input type="checkbox" name="allowemail" value="y">
                     </div>
                     <div class="agreeText">
                         <label for="check">메일수신에 동의</label>
@@ -209,7 +229,7 @@
 					<input type="text" name="mphone2" >
                     <br>
                     <div class="agreeBox">
-                        <input type="checkbox" name="agree" >
+                        <input type="checkbox" name="allowphone" value="y">
                     </div>
                     <div class="agreeText">
                         <label for="check" >메일수신에 동의</label>
@@ -227,7 +247,7 @@
 					<label for="check">개인정보 수집 및 이용</label>
 				</div>
                 <div class="textBox">
-					<input type="checkbox" name="agree">동의
+					<input type="checkbox" name="allagree" value="y">동의
 				</div>
                 <br>
 				<div class="textBox_submit">

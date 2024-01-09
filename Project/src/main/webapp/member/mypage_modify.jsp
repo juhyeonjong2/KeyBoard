@@ -200,7 +200,7 @@
 					</select>
                     <br>
                     <div class="agreeBox">
-                        <input type="checkbox" name="agree">
+                        <input type="checkbox" name="allowemail" value="y">
                     </div>
                     <div class="agreeText">
                         <label for="check">메일수신에 동의</label>
@@ -220,7 +220,7 @@
 					<input type="text" name="mphone3"  value="<%=mphone2%>">
                     <br>
                     <div class="agreeBox">
-                        <input type="checkbox" name="agree" >
+                        <input type="checkbox" name="allowphone" value="y">
                     </div>
                     <div class="agreeText">
                         <label for="check" >메일수신에 동의</label>

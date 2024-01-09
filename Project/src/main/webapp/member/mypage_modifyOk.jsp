@@ -21,7 +21,9 @@
 	String mphone3 = request.getParameter("mphone3");
 	String memail = request.getParameter("memail");
 	String memail2 = request.getParameter("memail2");
-	String maddr = request.getParameter("maddr"); 
+	String maddr = request.getParameter("maddr");
+	String allowemail = request.getParameter("allowemail"); 
+	String allowphone = request.getParameter("allowphone"); 
  
  	DBManager db = new DBManager(); 
 
@@ -31,9 +33,11 @@
 				   + " SET memail = ? "
 				   + " , mphone = ? "
 				   + " , mname = ? "
-				   + " , maddr = ? ";
+				   + " , maddr = ? "
+		 		   + " , allowemail = ? "
+		 		   + " , allowphone = ? ";
 					
-		 			if(mpw != null && !mpw.equals("")){
+		 			if(mpw != null && !mpw.equals("")){ //비번확인이 null이거나 빈 문자열이면 구문 실행 안함
 		 				sql +=" , mpw = md5(?) ";
 		 			}
 				   sql += " WHERE mno = ? ";
@@ -43,13 +47,25 @@
 						db.setString(mphone1+"-"+mphone2+"-"+mphone3);
 						db.setString(mname);
 						db.setString(maddr);
+						
+						if(allowemail == null){ //email수신동의 체크 안하면 n 하면 y
+							db.setString("n");
+						}else{
+							db.setString(allowemail);
+						}
+						
+						if(allowphone == null){ //phone수신동의 체크 안하면 n 하면 y
+							db.setString("n");
+						}else{
+							db.setString(allowphone);
+						}
+											
 						if(mpw != null && !mpw.equals("")){
 			 				db.setString(mpw);
 			 			}
 						db.setInt(mno2);
 						int count =   db.update();
 			
-		
 		if(count > 0 ){
 			%>
 				<script>
