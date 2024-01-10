@@ -5,6 +5,7 @@
 <%@ page import="ateam.db.DBManager" %>
 
 <%
+	request.setCharacterEncoding("UTF-8");
 	Member member = (Member)session.getAttribute("login"); // 관리자 검사를위한 세션 들고오기.
 	String method = request.getMethod();
 

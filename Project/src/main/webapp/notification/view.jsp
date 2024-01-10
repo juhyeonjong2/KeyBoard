@@ -83,7 +83,7 @@
 		
 	
 		// 파일 정보를 가져온다.
-		sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx " 
+		sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx, nfhash " 
 			     + "FROM notificationAttach "
 			     + "WHERE nno=?";
 		
@@ -96,6 +96,7 @@
 				attach.setForeignFileName(db.getString("nforeignname"));
 				attach.setRdate(db.getString("rdate"));
 				attach.setNfidx(db.getInt("nfidx"));
+				attach.setNfhash(db.getString("nfhash"));
 				attachList.add(attach);
 			}
 		}
@@ -169,11 +170,6 @@
                 	// 파일을 이어붙여보자
                 	for(NotificationAttach a : attachList )
                 	{
-                		//String path = saveDirectoryPath + "\\" + a.getRealFileName();
-                		//System.out.println(path);
-                		//System.out.println(request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName() );
-                		
-                		
 				%>
                 		 <img src="<%= request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName()%>" alt="<%= a.getForeignFileName() %>">        	
 				<%

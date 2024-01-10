@@ -9,7 +9,7 @@
 <%@ page import="allkeyboard.vo.Notification" %>
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="ateam.db.DBManager" %>
-
+<%@ page import="ateam.util.FileChecker" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -72,7 +72,7 @@
 		
 		// 2. 저장된 파일을 정보를 생성한다.
 		List<NotificationAttach> fileList = new ArrayList<NotificationAttach>();
-		 
+
 		// 순서가 지켜지지 않음. 소트 필요.
 		Enumeration files = multi.getFileNames();
 		while(files.hasMoreElements()) {
@@ -92,13 +92,22 @@
 			attach.setNno(noti.getNno()); // 공지글 외래키
 			attach.setRealFileName(multi.getFilesystemName(nameAttr)); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
 			attach.setForeignFileName(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 */
+			
+			// 파일 해시생성
+			try{
+				//System.out.println(saveDirectoryPath+"\\" + attach.getRealFileName());
+				attach.setNfhash(FileChecker.getMD5Checksum(saveDirectoryPath+"\\" + attach.getRealFileName()));
+			}catch(Exception e){
+				e.printStackTrace();
+				attach.setNfhash(""); // 오류시 해시는 공백으로채움.
+			}
 			fileList.add(attach);
 		} 
 		
 		// 3. 파일 정보를 DB에 입력한다.
 		
-		sql = "INSERT INTO notificationAttach(nfidx, nno, nfrealname, nforeignname, rdate) "
-			+ " VALUES(?, ?, ?, ?, now())";
+		sql = "INSERT INTO notificationAttach(nfidx, nno, nfrealname, nforeignname, nfhash, rdate) "
+			+ " VALUES(?, ?, ?, ?, ?, now())";
 		
 		for(NotificationAttach attach : fileList){
 		
@@ -107,6 +116,7 @@
 			  .setInt(attach.getNno())
 			  .setString(attach.getRealFileName())
 			  .setString(attach.getForeignFileName())
+			  .setString(attach.getNfhash())
 			  .update();
 		}
 		

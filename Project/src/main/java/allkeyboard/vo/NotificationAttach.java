@@ -7,6 +7,8 @@ public class NotificationAttach {
 	private String realFileName;    // 서버에 저장된 파일명
 	private String foreignFileName; // 외부에서 온(클라에서) 파일명 
 	private String rdate;
+	private String nfhash; // 검증해시
+	
 	public int getNfno() {
 		return nfno;
 	}
@@ -21,6 +23,12 @@ public class NotificationAttach {
 	}
 	public int getNno() {
 		return nno;
+	}
+	public String getNfhash() {
+		return nfhash;
+	}
+	public void setNfhash(String nfhash) {
+		this.nfhash = nfhash;
 	}
 	public void setNno(int nno) {
 		this.nno = nno;
