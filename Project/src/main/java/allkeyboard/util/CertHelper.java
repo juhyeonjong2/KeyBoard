@@ -86,12 +86,35 @@ public class CertHelper {
 	
 	public static boolean isAdmin(int mno, String token) {
 		Cert cert = CertHelper.getCert(mno, token);
-		if(cert != null) {
-			if(getLevel(cert) == 2) {
-				return true;
+		if(cert != null) 
+		{
+			try 
+			{
+				// admin검사는 유효시간 검증도 함께한다.
+				if(getLevel(cert) == 2 && !isExpiredTime(cert)) 
+				{
+					return true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false; // 오류이므로 만료처리
 			}
 		}
 		return false;
+	}
+	
+	public static boolean isExpired(int mno, String token) {
+		Cert cert = CertHelper.getCert(mno, token);
+		if(cert != null) {
+			try {
+				return isExpiredTime(cert);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return true; // 오류이므로 만료처리
+			}
+		}
+		return true;
 	}
 	
 	// token, mno는 그대로 두고 expiretime만 갱신한다.
