@@ -70,14 +70,15 @@ input[type="submit"] {
 
 .is{
     height: 450px;
-    margin: 40px 0 350px 0;}
+    margin: 40px 0 350px 0px;   
+}
 
 .mImage{
     border:1px solid lightgrey; 
     width:500px; 
     height:430px; 
     float:left; 
-    margin-right:20px;
+    margin-right:10px;
     text-align: center;
     display: block;
     position: relative;
@@ -124,8 +125,41 @@ input[type="submit"] {
 }
 
 .tab_content {
-    text-align: center;
+	padding: 30px;
 }
+
+.tab_content > ul {
+	font-size: initial;
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+    align-items: center;
+	
+	max-width: 900px;
+	width: 100%
+}
+
+.tab_content > ul > li {
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 5px;
+	border: 1px solid #efefef;
+	font-size: 15px;
+	coursor: pointer;
+	
+	-webkit-transition: background-color 0.3s linear;
+    -moz-transition: background-color 0.3s linear;
+    -ms-transition: background-color 0.3s linear;
+    -o-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+
+.tab_content> ul> li:hover {
+    background-color: #f6f6f6;
+}
+
+
 
 input[type="radio"] {
     display: none;   
@@ -144,10 +178,6 @@ input[type="radio"] + label {
 input[type="radio"]:checked + label {
     background: white;
     color:black;
-}
-
-.conbox {
-    margin: 0 auto;
 }
 
 
@@ -196,7 +226,7 @@ input[type="radio"]:checked + label {
     margin-top: 10px;
 }
 
-.divA >button { 
+.divA > button { 
     padding: 10px;
     border: none;
     background: aliceblue;
