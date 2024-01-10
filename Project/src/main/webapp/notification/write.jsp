@@ -6,8 +6,10 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	Member member = (Member)session.getAttribute("login"); // 관리자 검사를위한 세션 들고오기.
-	// 어드민이 아니면 원래 있던 공지사항으로 보냄
-	if(member == null || !CertHelper.isAdmin(member.getMno(), member.getToken()) )
+	
+	
+	// 어드민이 아니면 원래 있던 공지사항으로 보냄 (memeber가 null인경우 로그인하지 않음. 로그인 유효시간 경과되면 로그인해제)
+	if(member == null || !CertHelper.isAdmin(member.getMno(), member.getToken()))
 	{
 %>
 		<script>
@@ -15,8 +17,10 @@
 			location.href='list.jsp';
 		</script>
 <%
-	}
+	} else {
 %>
+		
+
 
 
 <!DOCTYPE html>
@@ -121,7 +125,7 @@
 
             <div class="action_box">
                 <div>
-                    <button type="button" class="large_btn btn_white">취소</button>
+                    <button type="button" class="large_btn btn_white" onclick="location.href='list.jsp'">취소</button>
                     <button type="submit" class="large_btn btn_red">등록</button>
                 </div>
             </div>
@@ -131,3 +135,7 @@
 	<%@ include file="/include/footer.jsp"%>
 </body>
 </html>
+
+<%		
+	}
+%>
