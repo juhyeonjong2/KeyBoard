@@ -10,7 +10,7 @@
         <div class="inner clearfix">
 
             <div class="inner" id="notice">
-                <a href="#">공지사항</a>
+                <a href="<%=request.getContextPath()%>/notification/list.jsp">공지사항</a>
             </div>
 
             <div id="ft">
