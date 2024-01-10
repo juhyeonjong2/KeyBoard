@@ -69,19 +69,18 @@
 
 	<main>
  		<hr id="main_line">
-        <div class="is">
+        <div class="is"> <!-- 이미지 파일 -->
             <div class="mImage"> 
-                <img src="./keyboard1.jpg"> 
+                <img src="../image/product/keyboard1.jpg"> 
             </div>
-            
-            <div style="width: 680px; float:right">
+            <div style="width: 680px; float:right"> <!-- 상품 정보 -->
                 <div>
                     <div style="height:35px; font-size:21px;">
                         <strong>임시이름</strong>
                     </div>
                     <hr style="color:skyblue; width:570px;">
                     <div>
-                        <table>
+                        <table class="tab2">
                             <tbody>
                                 <tr class="trs">
                                     <td width="95px">
@@ -125,10 +124,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                    <table style="border-collapse: collapse; background-color:aliceblue; height:65px">
+                    <table class="tab3" style="border-collapse: collapse; background-color:aliceblue; height:65px"> <!-- 가격 정보 -->
                         <tbody>
                             <tr>
-                                <td style="width:380px;">
+                                <td style="width:390px;">
                                     <strong>레오폴드 FC750RBT MX2A코랄 블루 영문</strong>
                                 </td>
                                 <td width="100px">
@@ -163,8 +162,8 @@
         	</div>
         </div>
         
-        
-        <div>
+        <!-- 상세정보 하단부분 -->
+        <div style="text-align: center"> 
             <div class="tab_content">
                 <ul>
                 	<li><a href="#detail">상세정보</a></li>
@@ -175,9 +174,10 @@
             </div>
             <div id="detail">
                 <h3 style="margin-bottom: 30px;" id="list1">상품 상세 정보</h3>
-                <div class="conbox con1">
+                <div class="imgBox">
                     <p align="center">
                         <img src="#">
+                        임시 상품 상세 정보
                     </p>
                     <p align="center">
                         <img src="#">
@@ -194,9 +194,9 @@
             </div>
          	<div id="delivery">
                 <h3 style="margin-bottom: 30px;">배송안내</h3>
-                <font>
-                임시 배송안내 페이지
-				</font>
+                <p>
+                임시 배송 안내
+                </p>
             </div>
             
             <div class="tab_content">
@@ -209,9 +209,9 @@
             </div>
                <div id="exchange">
                 	<h3 style="margin-bottom: 30px;"> 교환 및 반품 안내</h3>
-                	<font>
-               		 임시 교환 및 반품 안내 페이지
-            		</font>
+                	<p>
+                	임시 교환 및 반품 안내
+                	</p>
                </div>
             <div class="tab_content">
                  <ul>
@@ -223,6 +223,9 @@
             </div>
             <div id="qna">
                 <h3 style="margin-bottom: 30px;">상품 후기</h3>
+                <p>
+                임시 상품 후기
+                </p>
             </div>
      	</div>
 	</main>
