@@ -79,6 +79,7 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 		}else{
 			db.setString(allowemail); 
 		}
+		
 		if(allowphone == null){
 			db.setString("n");
 		}else{
@@ -87,8 +88,8 @@ request.setCharacterEncoding("UTF-8"); //인코딩
 			
 		db.setString(mpw);
 		
-		
 		 int count = db.update();
+					
 			if(count > 0 )
 			{
 				%>

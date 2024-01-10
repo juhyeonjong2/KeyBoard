@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>로그인</title>
 <link href="<%=request.getContextPath()%>/css/base.css" type="text/css"
 	rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/login.css" type="text/css"
@@ -26,7 +26,7 @@
                     <input type="password" name="mpw" class="margin1">
                 </div>
                 <div class="submit">
-                    <input type="submit" value="로그인">
+                    <input type="submit" value="로그인" >
                 </div>
                 <div id="joinLink" class="margin1">
                     <a href="#">회원가입하기</a><!-- 링크넣기 -->

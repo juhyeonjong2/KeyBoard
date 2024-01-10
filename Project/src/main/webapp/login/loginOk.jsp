@@ -21,13 +21,12 @@
 					+"      ,mno   " 
 				 	+"  FROM member"
 					+" WHERE mid=? "
-				 	+"   AND mpw= md5(?)";
+				 	+"   AND mpw= md5(?) AND (delyn is null or delyn = 'N') ";
 		 
 		 if( db.prepare(sql).setString(mid).setString(mpw).read())
 		 {
 			 if(db.getNext())
 			 {
-				System.out.println(1);
 				member = new Member();
 				
 				member.setMno(db.getInt("mno"));
