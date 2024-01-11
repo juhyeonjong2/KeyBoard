@@ -2,9 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ page import="ateam.db.DBManager" %>
 <%@ page import="allkeyboard.vo.product" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="allkeyboard.vo.productAttach" %>
+<%@ page import="allkeyboard.util.CertHelper" %>
+<%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+
+
+
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -18,19 +26,27 @@
 										,"UTF-8"
 										, new DefaultFileRenamePolicy());
 
+	Member member = (Member)session.getAttribute("login"); 
+	
+	String method = request.getMethod();
+	// get방식이거나 로그인되지 않았거나 관리자가 아닐때 이전페이지로 돌아가기
+	if(method.equals("GET") || member == null || !CertHelper.isAdmin(member.getMno(), member.getToken())){
+		response.sendRedirect("listView.jsp");
+	}
 
 
+	
+	
 	String pname = multi.getParameter("pname");
 	String price = multi.getParameter("price");
 	String brand = multi.getParameter("brand");
 	String inventory = multi.getParameter("inventory");
-	String description = multi.getOriginalFileName("description");
-	String description2 = multi.getFilesystemName("description");
+	String description = multi.getParameter("description");
 	String flag = multi.getParameter("flag");
 	String pfno = multi.getOriginalFileName("pfno");
 	String pfno2 = multi.getFilesystemName("pfno");
 	//File file = request.getFile("description");
-
+ 
 
 	Integer price2;
 	Integer inventory2;
@@ -52,10 +68,8 @@
 	System.out.println(brand);
 	System.out.println(inventory);
 	System.out.println(description);
-	System.out.println(description2);
 	System.out.println(flag);
-	System.out.println(pfno);
-	System.out.println(pfno2);
+	
 		
 
 	DBManager db = new DBManager(); 
@@ -63,14 +77,16 @@
 	
 	 if(db.connect())
 	{
-		String sql = "INSERT INTO product(pname,price,brand,inventory) "
+		String sql = "INSERT INTO product(pname,price,brand,inventory,description) "
 					+" VALUES(?,?,?,?) ";
+		
 		db.prepare(sql);
 		
 		db.setString(pname);
 		db.setString(price); 
 		db.setString(brand);
 		db.setString(inventory);
+		db.setString(description);
 		
 		int count = db.update();
 			if(count>0) {

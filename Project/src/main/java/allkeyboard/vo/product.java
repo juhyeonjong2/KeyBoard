@@ -10,18 +10,13 @@ public class product {
 	private int inventory;
 	private char delyn;
 	
-	private int pfno;
-	private String pfrealname;
-	private String pforeigname;
-	private String rdate;
 	
 	public product() {
 		super();
 	}
 	
 	
-	public product(int pno, String pname, int price, String brand, int inventory) {
-		this.pno = pno;
+	public product(String pname, int price, String brand, int inventory) {
 		this.pname = pname;
 		this.price = price;
 		this.brand = brand;
@@ -82,38 +77,6 @@ public class product {
 
 	public void setDelyn(char delyn) {
 		this.delyn = delyn;
-	}
-
-	public int getPfno() {
-		return pfno;
-	}
-
-	public void setPfno(int pfno) {
-		this.pfno = pfno;
-	}
-
-	public String getPfrealname() {
-		return pfrealname;
-	}
-
-	public void setPfrealname(String pfrealname) {
-		this.pfrealname = pfrealname;
-	}
-
-	public String getPforeigname() {
-		return pforeigname;
-	}
-
-	public void setPforeigname(String pforeigname) {
-		this.pforeigname = pforeigname;
-	}
-
-	public String getRdate() {
-		return rdate;
-	}
-
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
 	}
 	
 }
