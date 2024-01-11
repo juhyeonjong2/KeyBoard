@@ -26,6 +26,7 @@
 		<h3>mno = <%=member.getMno()%></h3>
 		<a href="<%=request.getContextPath()%>">인덱스 홈페이지로 가기</a>
 		<a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=member.getMno()%>">마이페이지 홈페이지로 가기</a>
+		<a href="<%=request.getContextPath()%>/product/detail.jsp">상품 상세페이지로 가기</a>
 	<%	
 	
 		/*  mno를 가지고 cer를 가져오고. cert 객체를 가지고 isExpiredTime을 검사한다*/

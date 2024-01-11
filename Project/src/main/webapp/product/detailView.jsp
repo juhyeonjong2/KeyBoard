@@ -5,6 +5,7 @@
 <%@ page import="java.util.*" %>
 <%
 request.setCharacterEncoding("UTF-8");
+Member member = (Member)session.getAttribute("login");
 	
 	String pnoParam = request.getParameter("pno");
 	
@@ -19,6 +20,7 @@ request.setCharacterEncoding("UTF-8");
 	Product product = new Product();
 	/*List<ProductAttach> attachList = new ArrayList<ProductAttach>();*/
 	
+	List<Review> rlist = new ArrayList<Review>(); //리뷰 목록 리뷰 클래스 11111111111111111111111111111111111111111111111
 	DBManager db = new DBManager();
 	
 	
@@ -68,6 +70,7 @@ request.setCharacterEncoding("UTF-8");
 <title>Insert title here</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
 <script>
 	function calFn(type, ths) {
 		const resultE = document.getElementById("result");
@@ -81,6 +84,38 @@ request.setCharacterEncoding("UTF-8");
 	
 	resultE.innerText = number;
 }	
+	
+	
+	// 후기 파트11111111111111111111111111111111111111111111111111111111111111111111111111111111111
+	
+	function reviewInsertFn(){ //이부분 1차 처리
+		let loginMember = '<%=member%>';
+		
+		if(loginMember != 'null'){
+			let params = $("form[name=reviewfrm]").serialize();
+			console.log(params);
+			$.ajax({
+				url : "reviewWriteOk.jsp",
+				type:"post",
+				data: params,
+				success:function(data){
+					if(data.trim() != "FAIL"){
+						$(".reviewArea").prepend(data.trim());
+					}
+				},error:function(){
+					console.log("error");
+				}
+			});
+		}else{
+			alert("로그인후에 처리하세요");
+		}
+		
+		$("input[name=rnote]").val(""); //동작 후 후기칸에 적은 글 삭제
+	}
+	
+	
+	//후기 파트111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+	
 </script>
 </head>
 <body>
@@ -208,13 +243,25 @@ request.setCharacterEncoding("UTF-8");
                 	<li><a href="#qna">상품 후기</a></li>
                 </ul>
             </div>
-            <div id="qna">
-                <h3 style="margin-bottom: 30px;">상품 후기</h3>
-                <p>
-                임시 상품 후기
-                </p>
-            </div>
+            <div id="qna"><!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+            
+                <div class="inner_member2 clearfix">
+                <form name="reviewfrm" id="reviewBox">
+                    <textarea id="textarea" name="rnote"></textarea>
+                    <input type="button" id="submitBt" value="후기 작성하기" onclick="reviewInsertFn()">
+                </form>
+			<div>
+                <div id="idBox">임시아이디</div>
+                <textarea class="reviewarea">임시내용</textarea> <!--내용 들어갈 자리-->
+                <div id="review_modifyBox">
+                    <button class="reviewBt">수정</button> <!--로그인한 사람 아니면 안보이게-->
+                    <button class="reviewBt">삭제</button>
+                </div>
+			</div>
+    </div><!--inner_member2--> 		
+            </div> <!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
      	</div>
+     		<%@ include file="/include/footer.jsp"%>
 	</main>
 </body>
 </html>
