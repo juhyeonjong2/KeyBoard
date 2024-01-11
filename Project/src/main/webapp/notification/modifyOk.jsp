@@ -57,15 +57,25 @@
 	Enumeration files = multi.getFileNames();
 	while(files.hasMoreElements()) {
 		String nameAttr = (String)files.nextElement();
+		String realFileName = multi.getFilesystemName(nameAttr);
+		String originalFileName = multi.getOriginalFileName(nameAttr);
 		String numberString =  nameAttr.replace("notiFile_",""); // 공백처리함.
 		NotificationAttach attach = new NotificationAttach();
 		attach.setNfidx(Integer.parseInt(numberString) - 1);// 1부터 시작하므로 -1함.
 		attach.setNno(noti.getNno()); // 공지글 외래키
-		attach.setRealFileName(multi.getFilesystemName(nameAttr)); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
-		attach.setForeignFileName(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 
+		attach.setRealFileName(realFileName); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
+		attach.setForeignFileName(originalFileName); // 클라이언트에서 올린 파일명
+		
+		/* System.out.println("--------------------------------------");
+		System.out.println("nameAttr:" + nameAttr != null ? nameAttr : "null") ;
+		System.out.println("numberString:" +numberString != null ? numberString : "null") ;
+		System.out.println("setNfidx:" + attach.getNfidx() !=null ? attach.getNfidx() : "null") ;
+		System.out.println("setNno:" + attach.getNno() != null ? attach.getNno() : "null") ;
+		System.out.println("setRealFileName:" + attach.getRealFileName() != null ? attach.getRealFileName() : "null") ;
+		System.out.println("setForeignFileName:" + attach.getForeignFileName() != null ? attach.getForeignFileName() : "null") ; */
 		modifyFiles.put(attach.getNfidx(),attach);
 	} 
-	
+
 	//3. DB에서 해당 공지의 파일정보를 불러옴.
 	boolean isSuccess = false;
 	HashMap<Integer, NotificationAttach> savedFiles = new HashMap<Integer, NotificationAttach>();
@@ -104,6 +114,7 @@
 			 .setInt(noti.getNno())
 			 .update()>0)
 		{
+			System.out.println("update1-true");
 			isSuccess = true;	
 		}
 		
@@ -136,6 +147,7 @@
 						  .setInt(attach.getNfidx())
 						  .update() == 0  ) // 업데이트가 실패한경우 실패처리.
 					{
+						System.out.println("update2-1 false");
 						isSuccess = false;
 					}
 					
@@ -156,13 +168,18 @@
 						  .setString(attach.getForeignFileName())
 						  .update() == 0  ) // 인서트가 실패한경우 실패처리.
 					{
+						System.out.println("update1-2 false");
 						isSuccess = false;
 					}
 					
 				}
 				
 			}
-		
+			
+			System.out.println(modifyFiles.size());
+			System.out.println(savedFiles.size());
+			System.out.println(fileCount);
+			
 			// 4-3. 삭제된 번호가 있다면 해당 데이터 제거.
 			// ex) 예전에 4개 등록했다가 3개로 변경한 경우. 추가 삭제 (반대의 경우 필요 없음)
 			// 저장된 데이터가 더 많음.
@@ -191,6 +208,7 @@
 							  .setInt(attach.getNfidx())
 							  .update() == 0  ) // 업데이트가 실패한경우 실패처리.
 						{
+							System.out.println("update3-false");
 							isSuccess = false;
 						}
 						else { // 성공의 경우						

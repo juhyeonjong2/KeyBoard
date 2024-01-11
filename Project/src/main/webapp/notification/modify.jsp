@@ -271,8 +271,10 @@
                             	<div id="imageList">
                             	<% 
                             	int max = attachList.size();
-                            	 for(int i=0; i<max;i++)
-                            	 {
+                            	if(max != 0)
+                            	{
+                            	  for(int i=0; i<max;i++)
+                            	  {
                             		 
                             	%>
 	                            	<div>
@@ -289,6 +291,17 @@
 	                            	</div>
 	                            <% 	
 	                            	}
+                            	}
+                            	else {
+                            		// 아무것도 없다면 빈 입력파일 넣기.
+                            	%>
+                            		<div>
+	                            	<input type="file" class="input_file" name="notiFile_1">
+	                            	<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
+	                            	<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>
+	                            	</div>
+	                            <%
+                            	}
                             	%>
                             	</div>
                             </td>
