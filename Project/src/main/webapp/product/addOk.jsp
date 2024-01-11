@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ateam.db.DBManager" %>
-<%@ page import="allkeyboard.vo.product" %>
-<%@ page import="allkeyboard.vo.productAttach" %>
+<%@ page import="allkeyboard.vo.Product" %>
+<%@ page import="allkeyboard.vo.ProductAttach" %>
 <%@ page import="allkeyboard.util.CertHelper" %>
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>

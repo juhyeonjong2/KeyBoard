@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "allkeyboard.vo.product" %>
+<%@ page import = "allkeyboard.vo.Product" %>
 <%@ page import = "ateam.db.DBManager" %>
 <!DOCTYPE html>
 <html>

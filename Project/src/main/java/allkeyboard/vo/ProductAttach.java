@@ -1,6 +1,6 @@
 package allkeyboard.vo;
 
-public class productAttach {
+public class ProductAttach {
 
 	private int pfno;
 	private int pfidx; // 파일 관리 번호 0 - 썸네일 1-5 상세설명 이미지;
@@ -10,7 +10,7 @@ public class productAttach {
 	private String rdate;
 	
 	
-	public productAttach() {
+	public ProductAttach() {
 		super();
 	}
 	
