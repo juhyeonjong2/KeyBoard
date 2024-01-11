@@ -13,4 +13,6 @@ ALTER TABLE notificationattach ADD COLUMN nfidx int unsigned NOT NULL comment '�
 ALTER TABLE productattach ADD COLUMN pfidx int unsigned NOT NULL comment '관리번호';
 
 # 공지 이미지 파일에 검증용 해시 부여
-ALTER TABLE notificationattach ADD COLUMN nfhash char(32) NOT NULL comment '검증해시';
+#ALTER TABLE notificationattach ADD COLUMN nfhash char(32) NOT NULL comment '검증해시';
+# 공지 이미지 파일에 검증용 해시 제거
+ALTER TABLE notificationattach DROP COLUMN nfhash;

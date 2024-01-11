@@ -61,7 +61,7 @@
 		
 	
 		// 파일 정보를 가져온다.
-		sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx, nfhash " 
+		sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx " 
 			     + "FROM notificationAttach "
 			     + "WHERE nno=?";
 		
@@ -74,7 +74,6 @@
 				attach.setForeignFileName(db.getString("nforeignname"));
 				attach.setRdate(db.getString("rdate"));
 				attach.setNfidx(db.getInt("nfidx"));
-				attach.setNfhash(db.getString("nfhash"));
 				attachList.add(attach);
 			}
 		}
@@ -87,12 +86,7 @@
 		
 		
 		db.disconnect();
-	}
-	
-	
-		
-		
-		
+	}	
 %>
 <!DOCTYPE html>
 <html>

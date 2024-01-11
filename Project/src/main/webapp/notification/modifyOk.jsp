@@ -63,16 +63,6 @@
 		attach.setNno(noti.getNno()); // 공지글 외래키
 		attach.setRealFileName(multi.getFilesystemName(nameAttr)); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
 		attach.setForeignFileName(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 
-
-		// 파일 해시생성
-		try{
-			//System.out.println(saveDirectoryPath+"\\" + attach.getRealFileName());
-			attach.setNfhash(FileUtil.getMD5Checksum(saveDirectoryPath+"\\" + attach.getRealFileName()));
-		}catch(Exception e){
-			e.printStackTrace();
-			attach.setNfhash(""); // 오류시 해시는 공백으로채움.
-		}
-		
 		modifyFiles.put(attach.getNfidx(),attach);
 	} 
 	
@@ -81,9 +71,10 @@
 	HashMap<Integer, NotificationAttach> savedFiles = new HashMap<Integer, NotificationAttach>();
 	DBManager db = new DBManager();
 	
-	if(db.connect()){
+	if(db.connect())
+	{
 		
-		String sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx, nfhash " 
+		String sql = "SELECT nfno, nno, nfrealname, nforeignname, rdate, nfidx " 
 			     + "FROM notificationAttach "
 			     + "WHERE nno=?";
 		
@@ -96,7 +87,6 @@
 				attach.setForeignFileName(db.getString("nforeignname"));
 				attach.setRdate(db.getString("rdate"));
 				attach.setNfidx(db.getInt("nfidx"));
-				attach.setNfhash(db.getString("nfhash"));
 				savedFiles.put(attach.getNfidx(),attach);
 			}
 		}
@@ -136,13 +126,12 @@
 				{
 					// 업데이트하기.
 					sql = "UPDATE notificationAttach "
-					    + " SET nfrealname=?, nforeignname=?, rdate=now(), nfhash=?"
+					    + " SET nfrealname=?, nforeignname=?, rdate=now() "
 					    + " WHERE nno=? AND nfidx=? ";
 					
 					if( db.prepare(sql)
 						  .setString(attach.getRealFileName())
 						  .setString(attach.getForeignFileName())
-						  .setString(attach.getNfhash())
 						  .setInt(attach.getNno())
 						  .setInt(attach.getNfidx())
 						  .update() == 0  ) // 업데이트가 실패한경우 실패처리.
@@ -157,15 +146,14 @@
 				else {
 					// 없는 파일이라면 (INSERT)
 					
-					sql = "INSERT INTO notificationAttach(nfidx, nno, nfrealname, nforeignname, nfhash, rdate) "
-						+ " VALUES(?, ?, ?, ?, ?, now())";
+					sql = "INSERT INTO notificationAttach(nfidx, nno, nfrealname, nforeignname, rdate) "
+						+ " VALUES(?, ?, ?, ?, now())";
 
 					if( db.prepare(sql)
 						  .setInt(attach.getNfidx())
 						  .setInt(attach.getNno())	
 						  .setString(attach.getRealFileName())
 						  .setString(attach.getForeignFileName())
-						  .setString(attach.getNfhash())
 						  .update() == 0  ) // 인서트가 실패한경우 실패처리.
 					{
 						isSuccess = false;
@@ -174,10 +162,7 @@
 				}
 				
 			}
-			
-			System.out.println(fileCount);
-			System.out.println(savedFiles.size());
-			
+		
 			// 4-3. 삭제된 번호가 있다면 해당 데이터 제거.
 			// ex) 예전에 4개 등록했다가 3개로 변경한 경우. 추가 삭제 (반대의 경우 필요 없음)
 			// 저장된 데이터가 더 많음.
@@ -230,6 +215,8 @@
 				}
 			}
 		}
+		
+		db.disconnect();
 	}
 
 %>
