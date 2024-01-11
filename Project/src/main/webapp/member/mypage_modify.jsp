@@ -230,21 +230,21 @@
 					<label for="password">현재 비밀번호 :</label>
 				</div>
 				<div class="textBox">
-					<input type="password" name="mpwnow" >
+					<input type="password" name="mpwnow" maxlength="10">
 				</div>
                 <br>
 				<div class="text">
 					<label for="password">비밀번호 변경:</label>
 				</div>
 				<div class="textBox">
-					<input type="password" name="mpwre">
+					<input type="password" name="mpwre" maxlength="10">
 				</div>
                 <br>
                 <div class="text">
 					<label for="password">비밀번호 변경 확인:</label>
 				</div>
 				<div class="textBox">
-					<input type="password" name="mpw">
+					<input type="password" name="mpw" maxlength="10">
 				</div>
                 <br>
                 <div class="text">

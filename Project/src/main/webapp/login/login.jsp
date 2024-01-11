@@ -9,6 +9,12 @@
 	rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/login.css" type="text/css"
 	rel="stylesheet">
+	
+	<script>
+			function handleOnInput(e){
+				  e.value = e.value.replace(/[^A-Za-z]/ig, '')
+				}
+	</script>
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
@@ -22,7 +28,7 @@
             <form name="frm" id="loginBox" action="loginOk.jsp" method="post">
                 <h4>회원로그인</h4>
                 <div class="textBox">
-                    <input type="text" name="mid" class="margin1"><br>
+                    <input type="text" name="mid" class="margin1" oninput="handleOnInput(this)"><br>
                     <input type="password" name="mpw" class="margin1">
                 </div>
                 <div class="submit">

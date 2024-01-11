@@ -32,6 +32,10 @@ input[type=email]{
 input[type=text]{
     width:160px; height: 23px;
 }
+
+input[type=number]{
+    width:160px; height: 23px;
+}
 .textBox_submit input{
     width:120px;
     height:40px;

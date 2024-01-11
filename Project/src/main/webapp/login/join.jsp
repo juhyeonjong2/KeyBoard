@@ -150,6 +150,10 @@
 	function resetFn(){
 		checkIdFlag = false;
 	}
+								// 이름 이메일 비번, 연락처 등등도 하면서 같이 검사 하자
+	function handleOnInput(e){ //영어가 아니면 글씨가 안쳐지게 (클라이언트에서는 수정이 가능하니 joinOk에서 한글 들오면 킥하게 구현)
+		  e.value = e.value.replace(/[^A-Za-z0-9]/ig, '')
+		}
 
 </script>
 </head>
@@ -170,7 +174,7 @@
 					<label for="id" >아이디 :</label>
 				</div>
 				<div class="textBox">
-					<input type="text" name="mid" onblur="resetFn()" >
+					<input type="text" name="mid" onblur="resetFn()" oninput="handleOnInput(this)">
 					<input type="button" id="idCheck" value="중복확인" onclick="checkIdFn()">
 				</div>
                 <br>
@@ -178,14 +182,14 @@
 					<label for="password">비밀번호 :</label>
 				</div>
 				<div class="textBox">
-					<input type="password" name="mpw">
+					<input type="password" name="mpw" maxlength="10">
 				</div>
                 <br>
 				<div class="text">
-					<label for="passwordre">비밀번호 확인 :</label>
+					<label for="passwordre" >비밀번호 확인 :</label>
 				</div>
                 <div class="textBox">
-					<input type="password" name="mpwre">
+					<input type="password" name="mpwre" maxlength="10">
 				</div>
                 <br>
 				<div class="text">
@@ -199,7 +203,7 @@
 					<label for="email" id="email">이메일 :</label>
 				</div>
 				<div class="textBox" id="emailerror">
-					<input type="text" name="memail" >
+					<input type="text" name="memail" style='ime-mode:disabled'>
                     <select name="memail2" id="email2">
 						<option value="@naver.com">@naver.com</option>
 						<option value="@daum.net">@daum.net</option>
@@ -225,8 +229,11 @@
 						<option value="011">011</option>
 						<option value="016">016</option>
 					</select>&nbsp;
-					<input type="text" name="mphone" >&nbsp;
-					<input type="text" name="mphone2" >
+					<input type="text" name="mphone" maxlength="4" minlength="4"
+					oninput="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+					
+					<input type="text" name="mphone2" maxlength="4" minlength="4"
+					oninput="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                     <br>
                     <div class="agreeBox">
                         <input type="checkbox" name="allowphone" value="y">
