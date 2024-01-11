@@ -1,6 +1,6 @@
 package allkeyboard.vo;
 
-public class product {
+public class Product {
 	
 	private int pno;
 	private String pname;
@@ -11,12 +11,12 @@ public class product {
 	private char delyn;
 	
 	
-	public product() {
+	public Product() {
 		super();
 	}
 	
 	
-	public product(String pname, int price, String brand, int inventory) {
+	public Product(String pname, int price, String brand, int inventory) {
 		this.pname = pname;
 		this.price = price;
 		this.brand = brand;

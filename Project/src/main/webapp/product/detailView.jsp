@@ -36,12 +36,12 @@ request.setCharacterEncoding("UTF-8");
 			}
 		}
 		
-		/*
+		
 		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
 		+ " FROM productAttach "
 		+ "WHERE pno = ?";
 		
-		
+		/*
 		if(db.prepare(sql).setInt(product.getPno()).read()){
 			while(db.getNext()){
 			productAttach attach = new productAttach();
