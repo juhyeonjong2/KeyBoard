@@ -4,20 +4,24 @@
 <%@ page import="allkeyboard.vo.*" %>
 <%@ page import="java.util.*" %>
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 	
 	String pnoParam = request.getParameter("pno");
 	
-	int pno=0;
+	int pno= 1; /* 임시로 1로 값 지정 */
 	if(pnoParam != null  && !pnoParam.equals("")){
 		pno = Integer.parseInt(pnoParam);
 	}
 	
-	String directory = "D:/EzenTeamProjectFirst/Project/src/main/webapp/image/product";
 	
-	product product = new product();
-	List<productAttach> attachList = new ArrayList<productAttach>();
+	/*String directory = "D:/EzenTeamProjectFirst/Project/src/main/webapp/image/product";*/
+	
+	Product product = new Product();
+	/*List<ProductAttach> attachList = new ArrayList<ProductAttach>();*/
+	
 	DBManager db = new DBManager();
+	
+	
 	if(db.connect()) {
 		
 		String sql = "SELECT pno, pname, price, brand, inventory FROM product WHERE pno=? AND delyn='n'";
@@ -32,21 +36,22 @@
 			}
 		}
 		
-		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
-				+ " FROM productAttach "
-				+ "WHERE pno = ?";
-		
 		/*
+		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
+		+ " FROM productAttach "
+		+ "WHERE pno = ?";
+		
+		
 		if(db.prepare(sql).setInt(product.getPno()).read()){
 			while(db.getNext()){
-				productAttach attach = new productAttach();
-				attach.setPfno(db.getInt("nfno"));
-				attach.setPno(db.getInt("nno"));
-				attach.setRealFileName(db.getString("pfrealname"));
-				attach.setForeignFileName(db.getString("pforeignname"));
-				attach.setRdate(db.getString("rdate"));
-				attach.setPfidx(db.getInt("pfidx"));
-				attachList.add(attach);
+			productAttach attach = new productAttach();
+			attach.setPfno(db.getInt("nfno"));
+			attach.setPno(db.getInt("nno"));
+			attach.setRealFileName(db.getString("pfrealname"));
+			attach.setForeignFileName(db.getString("pforeignname"));
+			attach.setRdate(db.getString("rdate"));
+			attach.setPfidx(db.getInt("pfidx"));
+			attachList.add(attach);
 			}
 		}
 		
@@ -63,6 +68,20 @@
 <title>Insert title here</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
+<script>
+	function calFn(type, ths) {
+		const resultE = document.getElementById("result");
+	let number = resultE.innerText;
+	
+	if(type == 'p') {
+		number = parseInt(number) +1;
+	} else if(type == 'm') {
+		number = parseInt(number) -1;
+	}
+	
+	resultE.innerText = number;
+}	
+</script>
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
@@ -75,8 +94,8 @@
             </div>
             <div style="width: 680px; float:right"> <!-- 상품 정보 -->
                 <div>
-                    <div style="height:35px; font-size:21px;">
-                        <strong>임시이름</strong>
+                    <div style="height:45px; font-size:21px;">
+                        <strong><%= product.getPname() %></strong>
                     </div>
                     <hr style="color:skyblue; width:570px;">
                     <div>
@@ -87,7 +106,7 @@
                                         <strong>판매가</strong>
                                     </td>
                                     <td>
-                                        
+                                        <%= product.getPrice() %>
                                     </td>
                                 </tr>
                                 <tr class="trs">
@@ -95,7 +114,7 @@
                                         <strong>배송비</strong>
                                     </td>
                                     <td>
-                                        2,500원 / 주문시 결제(선결제)
+                                        2,500원 / 주문시 결제(선결제) / 결제금액 20만원 이상 0원
                                     </td>
                                 </tr>
                                 <tr class="trs">
@@ -103,7 +122,7 @@
                                         <strong>상품코드</strong>
                                     </td>
                                     <td>
-                                        99999
+                                        <%= product.getPno() %>
                                     </td>
                                 </tr>
                                 <tr class="trs">
@@ -111,7 +130,7 @@
                                         <strong>브랜드</strong>
                                     </td>
                                     <td>
-                                        LEOFOLD
+                                        <%= product.getBrand() %>
                                     </td>
                                 </tr>
                                 <tr class="trs">
@@ -119,24 +138,24 @@
                                         <strong>상품재고</strong>
                                     </td>
                                     <td>
-                                        40개
+                                        <%= product.getInventory() %>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                    <table class="tab3" style="border-collapse: collapse; background-color:aliceblue; height:65px"> <!-- 가격 정보 -->
+                    <table class="tab3" style="border-collapse: collapse; background-color:aliceblue; height:65px; margin-top:10px;"> <!-- 가격 정보 -->
                         <tbody>
                             <tr>
                                 <td style="width:390px;">
-                                    <strong>레오폴드 FC750RBT MX2A코랄 블루 영문</strong>
+                                    <strong><%= product.getPname() %></strong>
                                 </td>
                                 <td width="100px">
                                     <span>
                                         <span>
-                                            <input type="text" value="1" style="width: 50px; height:36px; text-align:center; float: left;">
+                                            <div id="result">1</div>
                                             <span class="spa1">
-                                                <button class="but1" type="button" title="증가">∧</button>
-                                                <button class="but1" type="button" title="감소">∨</button>
+                                                <button class="but1" type="button" title="증가" onclick="calFn('p', this);">∧</button>
+                                                <button class="but2" type="button" title="감소" onclick="calFn('m', this);">∨</button>
                                             </span>
                                         </span>
                                     </span>
@@ -151,10 +170,10 @@
                    </div>
                    
                 	<div class="bDiv" style="float:right; margin: 15px 100px 0 0;">
-                   		<button id="but2" style="margin-right: 10px; background-color: white;">
+                   		<button id="butt2" style="margin-right: 10px; background-color: white;">
                    	     	장바구니
                   	  	</button>
-                   	 	<button id="but2" style="width: 200px;">
+                   	 	<button id="butt2" style="width: 200px;">
                   	     	바로구매
                     	</button>
                 	</div>
@@ -167,8 +186,6 @@
             <div class="tab_content">
                 <ul>
                 	<li><a href="#detail">상세정보</a></li>
-                	<li><a href="#delivery">배송안내</a></li>
-                	<li><a href="#exchange">교환 및 반품 안내</a></li>
                 	<li><a href="#qna">상품 후기</a></li>
                 </ul>
             </div>
@@ -184,40 +201,10 @@
                     </p>
                 </div>
             </div>
-            <div class="tab_content">
-                <ul>
-                	<li><a href="#detail">상세정보</a></li>
-                	<li><a href="#delivery">배송안내</a></li>
-                	<li><a href="#exchange">교환 및 반품 안내</a></li>
-                	<li><a href="#qna">상품 후기</a></li>
-                </ul>
-            </div>
-         	<div id="delivery">
-                <h3 style="margin-bottom: 30px;">배송안내</h3>
-                <p>
-                임시 배송 안내
-                </p>
-            </div>
-            
-            <div class="tab_content">
-                <ul>
-                	<li><a href="#detail">상세정보</a></li>
-                	<li><a href="#delivery">배송안내</a></li>
-                	<li><a href="#exchange">교환 및 반품 안내</a></li>
-                	<li><a href="#qna">상품 후기</a></li>
-                </ul>
-            </div>
-               <div id="exchange">
-                	<h3 style="margin-bottom: 30px;"> 교환 및 반품 안내</h3>
-                	<p>
-                	임시 교환 및 반품 안내
-                	</p>
-               </div>
+           
             <div class="tab_content">
                  <ul>
                 	<li><a href="#detail">상세정보</a></li>
-                	<li><a href="#delivery">배송안내</a></li>
-                	<li><a href="#exchange">교환 및 반품 안내</a></li>
                 	<li><a href="#qna">상품 후기</a></li>
                 </ul>
             </div>
