@@ -33,8 +33,6 @@
 		response.addCookie(cookie);
 	}
 	
-	System.out.println(isNnoCookie);
-	
 	// admin 체크
 	boolean isAdmin = false; 
 	if(member != null){

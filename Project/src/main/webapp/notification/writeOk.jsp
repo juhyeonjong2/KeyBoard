@@ -9,7 +9,7 @@
 <%@ page import="allkeyboard.vo.Notification" %>
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="ateam.db.DBManager" %>
-<%@ page import="ateam.util.FileChecker" %>
+<%@ page import="ateam.util.FileUtil" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -96,7 +96,7 @@
 			// 파일 해시생성
 			try{
 				//System.out.println(saveDirectoryPath+"\\" + attach.getRealFileName());
-				attach.setNfhash(FileChecker.getMD5Checksum(saveDirectoryPath+"\\" + attach.getRealFileName()));
+				attach.setNfhash(FileUtil.getMD5Checksum(saveDirectoryPath+"\\" + attach.getRealFileName()));
 			}catch(Exception e){
 				e.printStackTrace();
 				attach.setNfhash(""); // 오류시 해시는 공백으로채움.

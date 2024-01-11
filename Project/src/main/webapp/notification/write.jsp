@@ -73,7 +73,7 @@
 		
 		$("#imageList div input[type=file]").each(function (index, item)
 			{
-				$(item).attr("class", "notiFile_" + (index+1) );
+				$(item).attr("name", "notiFile_" + (index+1) );
 			}
 		);
 		

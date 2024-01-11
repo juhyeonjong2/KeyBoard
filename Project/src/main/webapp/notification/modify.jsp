@@ -104,6 +104,15 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
 
+	function refreshAddButton() {
+		//혹시 모르니 모든 추가 버튼 삭제 class="img_Add" 제거 (모든 "추가"버튼 제거)
+		$("#imageList .img_add").remove();
+		
+		// 마지막에 "추가" 버튼 다시 추가 
+		$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+		
+	}
+
 	function addImage(){
 		
 		// 추가 버튼은 맨 아래 자식에만 존재해야 함.
@@ -117,7 +126,7 @@
 		let html = '<div>';
 		html += ' <input type="file" class="input_file" name="notiFile_' + (childCnt +1) + '">';
 		html += ' <Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>';
-		html += ' <Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)">수정</Button>';
+		//html += ' <Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)">수정</Button>'; // 새로 추가한 친구들은 수정이 아니라 버튼이 없음
 		html += ' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>';
 		html += '</div>';
 			
@@ -136,52 +145,66 @@
 		let name = parent.children("input").attr("name");
 		let value = parent.children("input").attr("value");
 		
-		let html ='<input type="file" class="input_file" name="'+ name + 'value="'+ value +'">'; 
-		parent.children("input[type=text]").before(html); // 삭제할 INPUT의 앞에넣기
-		parent.children("input[type=text]").remove(); // 그리고 그 INPUT을 삭제
+		let html ='<input type="file" class="input_file" name="'+ name + '" value="'+ value +'">'; 
+		parent.children(".input_txt").before(html); // 삭제할 INPUT의 앞에넣기
+		parent.children(".input_txt").remove(); // 그리고 그 INPUT을 삭제
 		parent.children(".img_remove").remove(); //기존 버튼제거
 		parent.children(".img_modify").remove(); //기존 버튼제거
 		
 		
 		// 완료/취소 버튼 추가.
 		html = ' <Button type="button" class="img_modify_sub small_btn btn_red" onclick="modifyImageCancel(this)" >취소</Button> '; 
-		html+= ' <Button type="button" class="img_modify_Sub small_btn btn_white" onclick="modifyImageOk(this)" >완료</Button> ';
-		parent.children("input[type=file]").after(html);
-		
-	
-		
-		<%-- 
-		<input type="text" class="input_txt" name="notifile_<%=i+1%>" readonly value="<%=attachList.get(i).getForeignFileName()%>">
-    	<input type="text" class="input_file" name="notifile_<%=i+1%>" readonly value="<%=attachList.get(i).getForeignFileName()%>">
-    	
-    	<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
-    	<Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)" >수정</Button>
-    	
-    	<Button type="button" class="img_modify_sub small_btn btn_red" onclick="modifyImageCancel(this)" >취소</Button>
-    	<Button type="button" class="img_modify_Sub small_btn btn_red" onclick="modifyImageOk(this)" >수정</Button>
-    	
-    	
-    	<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>
-    	
-    	 --%>
-		
-		<%-- 
-		<input type="text" class="input_sub" name="notifile_<%=i+1%>" readonly value="<%=attachList.get(i).getForeignFileName()%>">
-    	
-    	<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
-    	<Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)" hidden>수정</Button>
-    	
-    	<Button type="button" class="img_modify_sub small_btn btn_red" onclick="modifyImageCancel(this)" >취소</Button>
-    	<Button type="button" class="img_modify_Sub small_btn btn_red" onclick="modifyImageOk(this)" >수정</Button>
- --%>    	
-    	
-    	
+		html+= ' <Button type="button" class="img_modify_sub small_btn btn_white" onclick="modifyImageOk(this)" >완료</Button> ';
+		parent.children(".input_file").after(html);
 		
 	}
 	
-	function modifImageOK(o){
+	function modifyImageOk(o){
+		// 해당라인의 부모 div를 찾고
+		// input을 찾은다음에 name을 가져온다. 해당값을 저장해둠
+		let parent = $(o).parent("div");
+		
+		//수정용 버튼들 삭제
+		parent.children(".img_modify_sub").each(function (index, item){
+			console.log("remove: " + index);
+			$(item).remove();});
+		
+		// 원래 버튼들 추가. (완료라면 수정은 다시 못함.)                      	
+		let html = ' <Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button> ';
+		parent.children(".input_file").after(html);
+		
+		refreshAddButton();
+	}
+	
+	function modifyImageCancel(o){
+		// 취소한경우 input=text로 바꾸고 원래 있떤 value를 넣어줘야한다.
+		
+		// 해당라인의 부모 div를 찾고
+		// input을 찾은다음에 name을 가져온다. 해당값을 저장해둠
+		let parent = $(o).parent("div");
+		let name = parent.children("input").attr("name");
+		let value = parent.children("input").attr("value");
+		
+		let html ='<input type="text" class="input_txt" name="'+ name + '" readonly value="'+ value +'">'; 
+		parent.children(".input_file").before(html); // 삭제할 INPUT의 앞에넣기
+		parent.children(".input_file").remove(); // 그리고 그 INPUT을 삭제
+		
+		//수정용 버튼들 삭제
+		parent.children(".img_modify_sub").each(function (index, item){
+			console.log("remove: " + index);
+			$(item).remove();});
+		
+		
+		// 원래 버튼들 추가.                        	
+		html = ' <Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button> '; 
+		html+= ' <Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)">수정</Button> ';
+		parent.children(".input_txt").after(html);
+		
+		refreshAddButton();
 		
 	}
+	
+	
 	
 	
 	function removeImage(o){
@@ -189,20 +212,32 @@
 		// 자신을 삭제
 		$(o).parent().remove(); // 부모 div를 삭제해서 항목을 삭제함.
 		
-		// class="img_Add" 제거 (모든 "추가"버튼 제거)
-		$("#imageList .img_add").remove();
 		
 		// 모든 자식리스트를 돌면서 input="file"의 번호를 순차부여
 		let childCnt = $("#imageList").children().length;
 		
-		$("#imageList div input[type=file]").each(function (index, item)
+		$("#imageList div input").each(function (index, item)
 			{
-				$(item).attr("class", "notiFile_" + (index+1) );
+				$(item).attr("name", "notiFile_" + (index+1) );
 			}
 		);
 		
-		// 마지막에 "추가" 버튼 추가 
-		$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+		// 추가 버튼을 모두 삭제하고 맨아래에 다시 추가.
+		refreshAddButton();
+		
+		// 모든 input이 삭제되었을때 처리 안되어있음.
+	}
+	
+	function modify(o){
+		// Input이 몇개인지 기록해서 보낸다.
+		let childCnt = $("#imageList").children().length;
+		$("#fileCount").attr("value", childCnt);
+		
+		console.log($("#fileCount").attr("value"));
+		
+		
+		
+		document.notification_frm.submit();
 	}
 </script>
 </head>
@@ -217,6 +252,8 @@
         </div>
 
         <form name="notification_frm" action="modifyOk.jsp" method="post"  enctype="multipart/form-data">
+        	<input type="hidden" name="nno" value="<%=nno%>">
+        	<input type="hidden" name="fileCount" id="fileCount" value="0">
             <div class="content_box">
                 <table class="info_table">
                     <colgroup>
@@ -245,7 +282,7 @@
                             		 
                             	%>
 	                            	<div>
-	                            	<input type="text" class="input_txt" name="notifile_<%=i+1%>" readonly value="<%=attachList.get(i).getForeignFileName()%>">
+	                            	<input type="text" class="input_txt" name="notiFile_<%=i+1%>" readonly value="<%=attachList.get(i).getForeignFileName()%>">
 	                            	<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
 	                            	<Button type="button" class="img_modify small_btn btn_red" onclick="modifyImage(this)" >수정</Button>
 	                            	<%
@@ -269,8 +306,8 @@
 
             <div class="action_box">
                 <div>
-                    <button type="button" class="large_btn btn_white" onclick="location.href='list.jsp'">취소</button>
-                    <button type="submit" class="large_btn btn_red">수정</button>
+                    <button type="button" class="large_btn btn_white" onclick="location.href='view.jsp?nno=<%=nno%>'">취소</button>
+                    <button type="button" class="large_btn btn_red" onclick="modify(this)">수정</button>
                 </div>
             </div>
         </form>
