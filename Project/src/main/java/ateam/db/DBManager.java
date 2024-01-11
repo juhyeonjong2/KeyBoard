@@ -101,8 +101,7 @@ public class DBManager {
 			return null;
 		
 		try {
-			// 널이 아닌경우 닫는다.
-			if(psmt != null) psmt.close(); 
+			release(); // rs, state 모두 초기화.
 			
 			psmt = conn.prepareStatement(sql);
 			orderCount = 1;

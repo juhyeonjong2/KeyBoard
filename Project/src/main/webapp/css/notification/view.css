@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+main{height: auto;}
+
+.inner_member{
+    width: 1000px; 
+    margin: 10px auto;
+    padding: 5px 0px;
+}
+
+#main_line{
+    width: 1920px; 
+    height: 1px; 
+    background-color: 
+    #dfe0e2; border: 0; 
+}
+
+main h3{
+    padding-top: 60px; 
+    padding-bottom: 30px; 
+    font-size: 30px;
+}
+
+#main_line2{
+    width: 1000px; 
+    height: 1px; 
+    background-color: #dfe0e2; 
+    border: 0;  
+    margin-bottom: 0px;
+}
+
+/* 텍스트 꾸미기*/
+.medium_text {
+    font-size: 1em;
+    text-align: center;
+    height: 2em;
+}
+
+
+/* 버튼 꾸미기*/
+.small_btn{
+    padding: 3px 10px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.medium_btn{
+    padding: 5px 15px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.large_btn{
+    padding: 10px 20px;
+    margin: 0px 0px 0px 6px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn_white{
+    color: #626262;
+    background-color: #fff;
+    border: 1px solid #333; 
+}
+
+.btn_red{
+    color: #fff;
+    background-color: #ab3e55;
+    border: 1px solid #333; 
+    
+} 
+
+.btn_red:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+} 
+
+.btn_white:hover{
+    color: #626262;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.content_box {
+    width: 1000px; 
+    margin: 0 auto;
+
+    border-bottom: 2px solid #b1b0b0;
+}
+
+.title_area {
+    border-bottom: 2px solid #b1b0b0;
+    border-top: 2px solid #b1b0b0;
+    background-color: #dfe0e2;
+    text-align: center;
+    font-size: 2em;
+    
+}
+
+.info_area{
+    display: flex;
+    justify-content:flex-start;
+    border-bottom: 1px solid #b1b0b0;
+    margin: 5px 0px;
+    padding: 5px;
+}
+.info_area div{
+    margin: 0px 0px;
+}
+
+.info_area .writer{
+    border-right: 1px solid #b1b0b0;
+    padding-right: 5px;
+}
+
+.info_area .date{
+    border-left: 1px solid #b1b0b0;
+    padding-left: 5px;
+}
+
+.info_area .hit{
+    margin-left: auto;
+}
+
+
+.content_area {
+    padding: 20px;
+    
+}
+
+.content_area .content{
+    padding: 20px 0px;
+    
+}
+
+.action_box {
+    width: 1000px; 
+    margin: 0 auto;
+}
+
+.action_box div{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.action_box button{
+    margin: 2px;
+}
