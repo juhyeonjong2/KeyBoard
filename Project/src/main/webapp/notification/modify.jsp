@@ -164,7 +164,6 @@
 		
 		//수정용 버튼들 삭제
 		parent.children(".img_modify_sub").each(function (index, item){
-			console.log("remove: " + index);
 			$(item).remove();});
 		
 		// 원래 버튼들 추가. (완료라면 수정은 다시 못함.)                      	
@@ -189,7 +188,6 @@
 		
 		//수정용 버튼들 삭제
 		parent.children(".img_modify_sub").each(function (index, item){
-			console.log("remove: " + index);
 			$(item).remove();});
 		
 		
@@ -266,13 +264,10 @@
 					    return false; // break;
 					}
 					
-					console.log(imgFile);
 					
 					if(imgFile != "" && imgFile != null) 
 					{
 						fileSize = $(item)[0].files[0].size;
-						console.log(typeof(fileSize));
-						console.log(typeof(maxSize));
 					    if(!imgFile.match(fileForm)) 
 					    {
 					    	alert("이미지 파일만 업로드 가능");
@@ -375,7 +370,6 @@
             </div>
         </form>
     </main>
-	
 	<%@ include file="/include/footer.jsp"%>
 </body>
 </html>
