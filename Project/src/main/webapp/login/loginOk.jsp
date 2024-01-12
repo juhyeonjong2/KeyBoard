@@ -21,7 +21,7 @@
 					+"      ,mno   " 
 				 	+"  FROM member"
 					+" WHERE mid=? "
-				 	+"   AND mpw= md5(?) AND (delyn is null or delyn = 'N') ";
+				 	+"   AND mpw= md5(?) AND (delyn is null or delyn = 'n') ";
 		 
 		 if( db.prepare(sql).setString(mid).setString(mpw).read())
 		 {

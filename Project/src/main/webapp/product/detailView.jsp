@@ -71,6 +71,7 @@ Member member = (Member)session.getAttribute("login");
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
+<script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
 	function calFn(type, ths) {
 		const resultE = document.getElementById("result");
@@ -87,17 +88,18 @@ Member member = (Member)session.getAttribute("login");
 	
 	
 	// 후기 파트11111111111111111111111111111111111111111111111111111111111111111111111111111111111
-	
-	function reviewInsertFn(){ //이부분 1차 처리
+	// 버튼을 로그인 안하면 안보이게
+	function insertReviewFn(){ //이부분 1차 처리
 		let loginMember = '<%=member%>';
-		
+		let product = <%=pno%>;
+		console.log(product);
 		if(loginMember != 'null'){
 			let params = $("form[name=reviewfrm]").serialize();
 			console.log(params);
 			$.ajax({
 				url : "reviewWriteOk.jsp",
 				type:"post",
-				data: params,
+				data: {params : params , product : product},
 				success:function(data){
 					if(data.trim() != "FAIL"){
 						$(".reviewArea").prepend(data.trim());
@@ -248,14 +250,16 @@ Member member = (Member)session.getAttribute("login");
                 <div class="inner_member2 clearfix">
                 <form name="reviewfrm" id="reviewBox">
                     <textarea id="textarea" name="rnote"></textarea>
-                    <input type="button" id="submitBt" value="후기 작성하기" onclick="reviewInsertFn()">
+                    <input type="button" id="submitBt" value="후기 작성하기" onclick="insertReviewFn()">
                 </form>
-			<div>
-                <div id="idBox">임시아이디</div>
-                <textarea class="reviewarea">임시내용</textarea> <!--내용 들어갈 자리-->
+                
+                
+                <div class="reviewRow">
+                <div id="idBox"><%=member.getMname()%></div>
+                <textarea class="reviewarea"><%=review.getRnote()%></textarea> 
                 <div id="review_modifyBox">
-                    <button class="reviewBt">수정</button> <!--로그인한 사람 아니면 안보이게-->
-                    <button class="reviewBt">삭제</button>
+                    <button class="reviewBt" onclick="modifyFn(this,<%=rno%>)">수정</button> 
+                    <button class="reviewBt" onclick="replyDelFn(<%=rno%>,this)">삭제</button>
                 </div>
 			</div>
     </div><!--inner_member2--> 		
