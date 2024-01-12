@@ -42,6 +42,12 @@
 	System.out.println(application.getRealPath("/storage"));
 	 */
 	 
+	 /*
+	  	ws comment - 제목이나 내용 비었을때 서버 처리 필요. 
+	 
+	 */
+	 
+	 
 	 boolean isSuccess = false;
 	 Notification noti = new Notification();
 	 noti.setNtitle(multi.getParameter("ntitle"));

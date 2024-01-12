@@ -45,6 +45,11 @@
 		else response.sendRedirect("list.jsp");// 파라메터없는경우 리스트로.
 	}
 	
+	 /*
+  	ws comment - 제목이나 내용 비었을때 서버 처리 필요. 
+ 
+ 	*/
+	
 	
 	// 1. 넘어온 공지 정보 설정
 	Notification noti = new Notification();
@@ -53,28 +58,33 @@
  	noti.setNcontent(multi.getParameter("ncontent"));
 	
 	// 2. 넘어온 파일을 hashMap에 넣음.
+	boolean isError = false;
 	HashMap<Integer, NotificationAttach> modifyFiles = new HashMap<Integer, NotificationAttach>();
 	Enumeration files = multi.getFileNames();
 	while(files.hasMoreElements()) {
 		String nameAttr = (String)files.nextElement();
 		String realFileName = multi.getFilesystemName(nameAttr);
 		String originalFileName = multi.getOriginalFileName(nameAttr);
+		
+		// realFileName, originalFileName 둘중 한개라도 null인경우 어떤방식으로든 파일을 선택안하고 넘긴것이므로 수정 실패 처리.
+		if(realFileName == null || originalFileName == null){
+			
+			isError = true;
+			break;
+		}
+		
 		String numberString =  nameAttr.replace("notiFile_",""); // 공백처리함.
 		NotificationAttach attach = new NotificationAttach();
 		attach.setNfidx(Integer.parseInt(numberString) - 1);// 1부터 시작하므로 -1함.
 		attach.setNno(noti.getNno()); // 공지글 외래키
 		attach.setRealFileName(realFileName); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
 		attach.setForeignFileName(originalFileName); // 클라이언트에서 올린 파일명
-		
-		/* System.out.println("--------------------------------------");
-		System.out.println("nameAttr:" + nameAttr != null ? nameAttr : "null") ;
-		System.out.println("numberString:" +numberString != null ? numberString : "null") ;
-		System.out.println("setNfidx:" + attach.getNfidx() !=null ? attach.getNfidx() : "null") ;
-		System.out.println("setNno:" + attach.getNno() != null ? attach.getNno() : "null") ;
-		System.out.println("setRealFileName:" + attach.getRealFileName() != null ? attach.getRealFileName() : "null") ;
-		System.out.println("setForeignFileName:" + attach.getForeignFileName() != null ? attach.getForeignFileName() : "null") ; */
 		modifyFiles.put(attach.getNfidx(),attach);
 	} 
+	
+	if(isError){
+		response.sendRedirect("list.jsp");// 리스트로 보내버림.
+	}
 
 	//3. DB에서 해당 공지의 파일정보를 불러옴.
 	boolean isSuccess = false;
@@ -114,7 +124,6 @@
 			 .setInt(noti.getNno())
 			 .update()>0)
 		{
-			System.out.println("update1-true");
 			isSuccess = true;	
 		}
 		
@@ -147,7 +156,6 @@
 						  .setInt(attach.getNfidx())
 						  .update() == 0  ) // 업데이트가 실패한경우 실패처리.
 					{
-						System.out.println("update2-1 false");
 						isSuccess = false;
 					}
 					
@@ -167,22 +175,17 @@
 						  .setString(attach.getRealFileName())
 						  .setString(attach.getForeignFileName())
 						  .update() == 0  ) // 인서트가 실패한경우 실패처리.
-					{
-						System.out.println("update1-2 false");
+					{	
 						isSuccess = false;
 					}
 					
 				}
 				
 			}
-			
-			System.out.println(modifyFiles.size());
-			System.out.println(savedFiles.size());
-			System.out.println(fileCount);
-			
+		
 			// 4-3. 삭제된 번호가 있다면 해당 데이터 제거.
 			// ex) 예전에 4개 등록했다가 3개로 변경한 경우. 추가 삭제 (반대의 경우 필요 없음)
-			// 저장된 데이터가 더 많음.
+			// DB에 저장된 데이터가 더 많음.
 			if(savedFiles.size() > fileCount)
 			{
 				List<Integer> list = new ArrayList<>(savedFiles.keySet());
@@ -208,12 +211,12 @@
 							  .setInt(attach.getNfidx())
 							  .update() == 0  ) // 업데이트가 실패한경우 실패처리.
 						{
-							System.out.println("update3-false");
 							isSuccess = false;
 						}
-						else { // 성공의 경우						
-						// 파일 삭제 목록에 넣음.
-						removalFileList.add(attach);
+						else // 성공의 경우 
+						{ 						
+							// 파일 삭제 목록에 넣음.
+							removalFileList.add(attach);
 						}
 					}
 				} 

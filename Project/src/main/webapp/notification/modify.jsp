@@ -103,18 +103,20 @@
 		$("#imageList .img_add").remove();
 		
 		// 마지막에 "추가" 버튼 다시 추가 
-		$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+		let childCnt = $("#imageList").children().length;
+		if(childCnt != 0){ // 자식이 하나라도 있으면 마지막 자식에 추가
+			$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+		}else { // 자식이 하나도 없으면 imageList에 자식으로 추가
+			$("#imageList").append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+		}
 		
 	}
 
 	function addImage(){
 		
+	
 		// 추가 버튼은 맨 아래 자식에만 존재해야 함.
 		let childCnt = $("#imageList").children().length;
-		
-		
-		// class="img_Add" 제거
-		$("#imageList .img_add").remove();
 		
 		// 추가 버튼을 포함하여 맨 아래에 추가
 		let html = '<div>';
@@ -125,6 +127,8 @@
 		html += '</div>';
 			
 		$("#imageList").append(html);   
+		
+		refreshAddButton();	
 		
 		
 	}
@@ -219,19 +223,75 @@
 		// 추가 버튼을 모두 삭제하고 맨아래에 다시 추가.
 		refreshAddButton();
 		
-		// 모든 input이 삭제되었을때 처리 안되어있음.
 	}
 	
 	function modify(o){
+		
+	
+		// 	제목 내용이 비어있지 않은지 확인.
+		if( $("#ntitle").val() == "" ||$("#ntitle").val() == null)
+		{
+			alert("제목 없음");
+			return false;
+		}
+		
+		if( $("#ncontent").val() == "" ||$("#ncontent").val() == null)
+		{
+			alert("내용 없음");
+			return false;
+		}
+		
 		// Input이 몇개인지 기록해서 보낸다.
-		let childCnt = $("#imageList").children().length;
+		let childCnt = $("#imageList div input").length;
 		$("#fileCount").attr("value", childCnt);
 		
-		console.log($("#fileCount").attr("value"));
 		
+		// 파일이 있다면 첨부되어 있지 않은지 확인.
+		let fileForm = /(.*?)\.(jpg|jpeg|png)$/; // 이미지 파일만
+		let maxSize = 20 * 1024 * 1024; // 파일사이즈 제한 (20MB)
+		let fileSize;
+		let isError =  false;
 		
+		$("#imageList div input[type=file]").each(
+				function (index, item)
+				{
+					let imgFile = $(item).val();
+					
+					
+					if(imgFile == "" || imgFile== null) 
+					{
+						alert("첨부파일은 필수!");
+						item.focus();
+						isError = true;
+					    return false; // break;
+					}
+					
+					console.log(imgFile);
+					
+					if(imgFile != "" && imgFile != null) 
+					{
+						fileSize = $(item)[0].files[0].size;
+						console.log(typeof(fileSize));
+						console.log(typeof(maxSize));
+					    if(!imgFile.match(fileForm)) 
+					    {
+					    	alert("이미지 파일만 업로드 가능");
+					    	isError = true;
+							return false; // break;
+					    } else if(parseInt(fileSize) >= parseInt(maxSize)) 
+					    {
+					    	alert("파일 사이즈는 20MB까지 가능");
+					    	isError = true;
+							return false; // break;
+					    }
+					}
+				}
+			);
 		
-		document.notification_frm.submit();
+		if(isError){
+			return false;
+		} 
+		return true;
 	}
 </script>
 </head>
@@ -257,11 +317,11 @@
                     <tbody>
                         <tr>
                             <td>제목</td>
-                            <td><input type="text" name="ntitle" maxlength="200" value="<%=noti.getNtitle()%>"></td>
+                            <td><input id="ntitle" type="text" name="ntitle" maxlength="200" value="<%=noti.getNtitle()%>"></td>
                         </tr>
                         <tr>
                             <td>내용</td>
-                            <td><textarea name="ncontent" rows="10" cols="50"><%=noti.getNcontent()%></textarea></td>
+                            <td><textarea id="ncontent" name="ncontent" rows="10" cols="50"><%=noti.getNcontent()%></textarea></td>
                         </tr>
                         <tr>
                             <td>이미지파일</td>
@@ -293,13 +353,9 @@
 	                            	}
                             	}
                             	else {
-                            		// 아무것도 없다면 빈 입력파일 넣기.
+                            		// 아무것도 없다면 추가 버튼 넣어두기.
                             	%>
-                            		<div>
-	                            	<input type="file" class="input_file" name="notiFile_1">
-	                            	<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
-	                            	<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>
-	                            	</div>
+                            		<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>
 	                            <%
                             	}
                             	%>
@@ -314,7 +370,7 @@
             <div class="action_box">
                 <div>
                     <button type="button" class="large_btn btn_white" onclick="location.href='view.jsp?nno=<%=nno%>'">취소</button>
-                    <button type="button" class="large_btn btn_red" onclick="modify(this)">수정</button>
+                    <button type="submit" class="large_btn btn_red" onclick="return modify(this)">수정</button>
                 </div>
             </div>
         </form>
