@@ -27,7 +27,6 @@
 		 {
 			 if(db.getNext())
 			 {
-				System.out.println(1);
 				member = new Member();
 				
 				member.setMno(db.getInt("mno"));
