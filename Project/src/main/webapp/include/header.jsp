@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
                     <li><a href="<%=request.getContextPath()%>/login/join.jsp">회원가입</a></li>
-                    <li><a href="#">장바구니</a></li>
+                    <li><a href="<%=request.getContextPath()%>/order/cart.jsp">장바구니</a></li>
                     <li><a href="#">주문조회</a></li>
                 </ul>
             </nav>
