@@ -9,7 +9,7 @@ Member member = (Member)session.getAttribute("login");
 	
 	String pnoParam = request.getParameter("pno");
 	
-	int pno= 1; /* 임시로 1로 값 지정 */
+	int pno= 1; /* 임시로 1로 값 지정 */ //아래 작업으로 인해 널값으로 바뀌는 듯함
 	if(pnoParam != null  && !pnoParam.equals("")){
 		pno = Integer.parseInt(pnoParam);
 	}
@@ -86,37 +86,6 @@ Member member = (Member)session.getAttribute("login");
 	resultE.innerText = number;
 }	
 	
-	
-	// 후기 파트11111111111111111111111111111111111111111111111111111111111111111111111111111111111
-	// 버튼을 로그인 안하면 안보이게
-	function insertReviewFn(){ //이부분 1차 처리
-		let loginMember = '<%=member%>';
-		let product = <%=pno%>;
-		console.log(product);
-		if(loginMember != 'null'){
-			let params = $("form[name=reviewfrm]").serialize();
-			console.log(params);
-			$.ajax({
-				url : "reviewWriteOk.jsp",
-				type:"post",
-				data: {params : params , product : product},
-				success:function(data){
-					if(data.trim() != "FAIL"){
-						$(".reviewArea").prepend(data.trim());
-					}
-				},error:function(){
-					console.log("error");
-				}
-			});
-		}else{
-			alert("로그인후에 처리하세요");
-		}
-		
-		$("input[name=rnote]").val(""); //동작 후 후기칸에 적은 글 삭제
-	}
-	
-	
-	//후기 파트111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 	
 </script>
 </head>
@@ -246,22 +215,31 @@ Member member = (Member)session.getAttribute("login");
                 </ul>
             </div>
             <div id="qna"><!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-            
+<%
+            	if(member != null){ //로그인 된 경우만 이게 보이도록
+%>
                 <div class="inner_member2 clearfix">
-                <form name="reviewfrm" id="reviewBox">
+                <form name="reviewfrm" id="reviewBox" action="reviewWriteOk.jsp?pno=<%=pno %>" method="post">
                     <textarea id="textarea" name="rnote"></textarea>
-                    <input type="button" id="submitBt" value="후기 작성하기" onclick="insertReviewFn()">
+                    <input type="submit" id="submitBt" value="후기 작성하기">
                 </form>
-                
-                
-                <div class="reviewRow">
-                <div id="idBox"><%=member.getMname()%></div>
-                <textarea class="reviewarea"><%=review.getRnote()%></textarea> 
-                <div id="review_modifyBox">
-                    <button class="reviewBt" onclick="modifyFn(this,<%=rno%>)">수정</button> 
-                    <button class="reviewBt" onclick="replyDelFn(<%=rno%>,this)">삭제</button>
-                </div>
-			</div>
+<%
+            	}
+%> 
+ 		<div class="reviewRow">
+<%
+		for(Review review : rlist){
+%>
+			<div id="idBox"><%=review.getMno()%>+번 유저</div> 
+	                <span class="reviewarea"><%=review.getRnote()%></span> 
+	                <div id="review_modifyBox">
+		                <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>)">수정</button> 
+		                <button class="reviewBt" onclick="replyDelFn(<%=review.getRno()%>,this)">삭제</button>
+	                </div>			
+<%
+		}
+%>
+		</div>
     </div><!--inner_member2--> 		
             </div> <!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
      	</div>
