@@ -39,9 +39,9 @@ Member member = (Member)session.getAttribute("login");
 		}
 		
 		
-		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
+/* 		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx " // 후기파트 구문사용을 위해 미완성인 sql구문을 잠시 주석처리했습니다.
 		+ " FROM productAttach "
-		+ "WHERE pno = ?";
+		+ "WHERE pno = ?"; */
 		
 		/*
 		if(db.prepare(sql).setInt(product.getPno()).read()){
@@ -61,6 +61,33 @@ Member member = (Member)session.getAttribute("login");
 			return a.getPfidx() - b.getPfidx();
 		});
 	*/
+	
+	// 후기 파트 ////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 후기의 정보들을 가져온다 (m.mname은 받아오려면 db수정 필요 할듯하다)
+	sql = " select r.rno, r.pno, m.mname, m.mno, r.rnote "
+			+ "   from review r "
+			+ " inner join member m "
+			+ "     on r.mno = m.mno "
+			+ "  where r.pno = ? ";
+	
+	 if( db.prepare(sql).setInt(1).read()) //상품번호는 일단 1로 나중에 수정 필요
+	 {
+		while(db.getNext()){
+			Review review = new Review();
+			review.setRno(db.getInt("rno"));
+			review.setPno(db.getInt("pno"));
+			review.setMno(db.getInt("mno"));
+			review.setRnote(db.getString("rnote"));
+				
+			rlist.add(review);
+			}
+	 }
+	 
+	
+	
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -70,7 +97,7 @@ Member member = (Member)session.getAttribute("login");
 <title>Insert title here</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
-<link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/review1.css" type="text/css" rel="stylesheet">
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
 	function calFn(type, ths) {
@@ -85,7 +112,6 @@ Member member = (Member)session.getAttribute("login");
 	
 	resultE.innerText = number;
 }	
-	
 	
 </script>
 </head>
@@ -220,22 +246,25 @@ Member member = (Member)session.getAttribute("login");
 %>
                 <div class="inner_member2 clearfix">
                 <form name="reviewfrm" id="reviewBox" action="reviewWriteOk.jsp?pno=<%=pno %>" method="post">
-                    <textarea id="textarea" name="rnote"></textarea>
+                    <textarea id="textarea" name="rnote" maxlength = "100"></textarea>
                     <input type="submit" id="submitBt" value="후기 작성하기">
                 </form>
 <%
             	}
 %> 
- 		<div class="reviewRow">
+ 		<div class="reviewRow inner_member2 clearfix">
 <%
 		for(Review review : rlist){
+			
 %>
-			<div id="idBox"><%=review.getMno()%>+번 유저</div> 
-	                <span class="reviewarea"><%=review.getRnote()%></span> 
-	                <div id="review_modifyBox">
-		                <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>)">수정</button> 
-		                <button class="reviewBt" onclick="replyDelFn(<%=review.getRno()%>,this)">삭제</button>
-	                </div>			
+			<div class="reviewBox2">
+				<div id="idBox"><%=review.getMno()%>번 유저</div> 
+		            <span class="reviewarea"><%=review.getRnote()%></span> 
+		            <div id="review_modifyBox">
+			            <button class="reviewBt" onclick="location.href='review_modifyOk.jsp?rno=<%=review.getRno()%>'">수정</button> 
+			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=review.getRno()%>'">삭제</button>
+		       		</div>
+	        </div>			
 <%
 		}
 %>
