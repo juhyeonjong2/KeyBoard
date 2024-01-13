@@ -4,6 +4,7 @@
 <%@ page import="ateam.db.DBManager" %>
 <%
 	request.setCharacterEncoding("UTF-8"); //인코딩
+	Member member = (Member)session.getAttribute("login");	
 	
 	String mnoParam = request.getParameter("mno");
 
@@ -11,6 +12,17 @@
 	
 	if(mnoParam != null && !mnoParam.equals("")){
 		mno = Integer.parseInt(mnoParam);
+	}
+	
+	if(member == null 
+			|| (!member.getMid().equals("admin") 
+					&& member.getMno()!= mno)){
+	%>
+		<script>
+			alert("로그인 후 이용해 주세요.");
+			location.href="<%=request.getContextPath()%>/login/test.jsp";
+		</script>
+	<%	
 	}
 	
 	int mno2 = 0;
@@ -258,7 +270,7 @@
 						<input type="button" value="회원정보 수정" onclick="validation();return false;">
 				</div>
 				<div id="deleteBt">
-					<a href="<%=request.getContextPath()%>/member/mypage_delete.jsp">회원탈퇴</a>
+					<a href="<%=request.getContextPath()%>/member/mypage_delete.jsp?mno=<%=member.getMno()%>">회원탈퇴</a>
 				</div>
 				<input type="hidden" name="mno" value="<%=mno2%>">
 			</form> <!--joinBox-->

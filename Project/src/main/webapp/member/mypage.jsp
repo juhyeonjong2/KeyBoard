@@ -5,6 +5,7 @@
 <%
 	Member member = (Member)session.getAttribute("login");
 
+
 	String mnoParam = request.getParameter("mno"); //mno 받아오는 링크 작성해야해
 
 	System.out.println(mnoParam);
@@ -55,8 +56,6 @@
 		if(psmt != null) psmt.close();
 		if(rs != null) rs.close();
 	}
-	System.out.println(member.getMno());
-	System.out.println(mno);
 	
 
 	if(member == null 
@@ -64,14 +63,11 @@
 					&& member.getMno()!= mno)){
 	%>
 		<script>
-			alert("잘못된 접근입니다.");
+			alert("로그인 후 이용해 주세요.");
 			location.href="<%=request.getContextPath()%>/login/test.jsp";
 		</script>
 	<%	
 	}
-	System.out.println(mno);
-	System.out.println(member.getMno());
-	System.out.println(mnoParam);
 %>    
     
     
