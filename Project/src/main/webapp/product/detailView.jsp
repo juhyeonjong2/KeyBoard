@@ -97,7 +97,7 @@ Member member = (Member)session.getAttribute("login");
 <title>Insert title here</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
-<link href="<%= request.getContextPath()%>/css/review1.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
 	function calFn(type, ths) {
@@ -112,7 +112,88 @@ Member member = (Member)session.getAttribute("login");
 	
 	resultE.innerText = number;
 }	
+ 		//후기///////////////////////////////////////////////////////////////////////////////////////
+ 		
+	let isModify = false;
 	
+	function modifyFn(obj, rno, mno){
+			if(!isModify){
+				let value = $(obj).parent().prev("span").text().trim();
+				console.log(value);
+				
+				let html = "<textarea name='rnote' id='textarea'  maxlength='100'>"+value+"</textarea>";
+				html += "<input type='hidden' name='rno' value='"+rno+"'>";
+				html += "<input type='hidden' name='oldRnote' value='"+value+"'>";
+				html += "<input type='hidden' name='mno' value='"+mno+"'>";
+				
+				$(obj).parent().prev("span").html(html);
+				
+				html = "<button onclick='saveFn(this)' class='reviewBt2'>저장</button>"
+					 +"<button onclick='cancleFn(this)' class='reviewBt'>취소</button>";
+				
+				$(obj).parent().html(html);
+				
+				isModify = true;
+			}else{
+				alert("수정중인 댓글을 저장하세요.");
+			}
+	}
+	
+	function saveFn(obj){
+		isModify = false;
+		
+		let value = $(obj).parent().prev("span")
+						.find("textarea[name=rnote]").val();
+		let rno = $(obj).parent().prev("span")
+						.find("input[name=rno]").val();
+		let originalValue = $(obj).parent().prev("span")
+								.find("input[name=oldRnote]").val();
+		let mno = $(obj).parent().prev("span")
+								.find("input[name=mno]").val();
+
+		$.ajax({
+			url : "reviewModifyOk.jsp",
+			tyep : "post",
+			data : {rnote : value, rno : rno, mno : mno},
+			success : function(data){
+				if(data.trim() == 'SUCCESS'){
+					$(obj).parent().prev("span").text(value);
+					let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
+					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
+					$(obj).parent().html(html);							
+				}else{
+					$(obj).parent().prev("span").text(originalValue);
+					let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
+					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
+					$(obj).parent().html(html);		
+				}
+			},error:function(){
+				console.log("error");
+			}
+		});
+		
+	}
+	
+	function cancleFn(obj){
+		let originalValue = $(obj).parent().prev("span").find("input[name=oldRnote]").val();
+		console.log(originalValue);
+
+		let rno = $(obj).parent().prev("span").find("input[name=rno]").val();
+		
+		$(obj).parent().prev("span").text(originalValue);
+		
+		let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+		
+		let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
+		html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
+		
+		$(obj).parent().html(html);
+		
+		isModify = false;
+		
+	}
 </script>
 </head>
 <body>
@@ -260,10 +341,10 @@ Member member = (Member)session.getAttribute("login");
 			<div class="reviewBox2">
 				<div id="idBox"><%=review.getMno()%>번 유저</div> 
 		            <span class="reviewarea"><%=review.getRnote()%></span> 
-		            <div id="review_modifyBox">
-			            <button class="reviewBt" onclick="location.href='review_modifyOk.jsp?rno=<%=review.getRno()%>'">수정</button> 
-			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=review.getRno()%>'">삭제</button>
-		       		</div>
+		            <span id="review_modifyBox">
+			            <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>,<%=review.getMno()%>)">수정</button> 
+			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=review.getRno()%>'">삭제</button>		            		            
+		       		</span>
 	        </div>			
 <%
 		}
