@@ -9,7 +9,7 @@ main{height: 800px;} /*임시 값*/
     width: 800px; margin: 0 auto;
 }
 
-main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
+h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
 #main_line2{
     width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
 }
@@ -18,7 +18,7 @@ main h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
 #loginBox{width: 800px; height: 300px; border: 1px solid #dfe0e2; margin-bottom: 50px;}
 #notLoginBox{width: 800px; height: 230px; border: 1px solid #dfe0e2;}
 
-main h4{font-size: 18px; margin-left: 160px; margin-top: 30px; margin-bottom: 30px;}
+h4{font-size: 18px; margin-left: 160px; margin-top: 30px; margin-bottom: 30px;}
 .margin1{margin-left: 160px;}
 
 #joinLink{
