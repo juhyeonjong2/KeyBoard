@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="allkeyboard.vo.Member" %>
+<%
+	Member member1 = (Member)session.getAttribute("login"); //인덱스에 합쳐지는 헤드가 인덱스와 겹쳐서 이름 바꿔준다.
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +17,19 @@
 
             <nav id="nav">  
                 <ul>
-                    <li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
+<%
+			if(member1 != null){
+%>
+                    <li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
+                    <li><a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=member1.getMno()%>">마이페이지</a></li>
+<%	
+			}else{
+%>
+					<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a></li>
                     <li><a href="<%=request.getContextPath()%>/login/join.jsp">회원가입</a></li>
+<%
+			}
+%>
                     <li><a href="#">장바구니</a></li>
                     <li><a href="#">주문조회</a></li>
                 </ul>
