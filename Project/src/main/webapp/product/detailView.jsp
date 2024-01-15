@@ -83,9 +83,7 @@ Member member = (Member)session.getAttribute("login");
 			rlist.add(review);
 			}
 	 }
-	 
-	
-	
+	 	
 	
 	
 %>
@@ -116,7 +114,7 @@ Member member = (Member)session.getAttribute("login");
  		
 	let isModify = false;
 	
-	function modifyFn(obj, rno, mno){
+	function modifyFn(obj, rno){
 			if(!isModify){
 				let value = $(obj).parent().prev("span").text().trim();
 				console.log(value);
@@ -124,7 +122,6 @@ Member member = (Member)session.getAttribute("login");
 				let html = "<textarea name='rnote' id='textarea'  maxlength='100'>"+value+"</textarea>";
 				html += "<input type='hidden' name='rno' value='"+rno+"'>";
 				html += "<input type='hidden' name='oldRnote' value='"+value+"'>";
-				html += "<input type='hidden' name='mno' value='"+mno+"'>";
 				
 				$(obj).parent().prev("span").html(html);
 				
@@ -148,13 +145,11 @@ Member member = (Member)session.getAttribute("login");
 						.find("input[name=rno]").val();
 		let originalValue = $(obj).parent().prev("span")
 								.find("input[name=oldRnote]").val();
-		let mno = $(obj).parent().prev("span")
-								.find("input[name=mno]").val();
 
 		$.ajax({
 			url : "reviewModifyOk.jsp",
 			tyep : "post",
-			data : {rnote : value, rno : rno, mno : mno},
+			data : {rnote : value, rno : rno},
 			success : function(data){
 				if(data.trim() == 'SUCCESS'){
 					$(obj).parent().prev("span").text(value);
@@ -167,7 +162,8 @@ Member member = (Member)session.getAttribute("login");
 					let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
 					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
-					$(obj).parent().html(html);		
+					$(obj).parent().html(html);
+					alert("권한이 없습니다.");
 				}
 			},error:function(){
 				console.log("error");
@@ -342,7 +338,7 @@ Member member = (Member)session.getAttribute("login");
 				<div id="idBox"><%=review.getMno()%>번 유저</div> 
 		            <span class="reviewarea"><%=review.getRnote()%></span> 
 		            <span id="review_modifyBox">
-			            <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>,<%=review.getMno()%>)">수정</button> 
+			            <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>)">수정</button> 
 			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=review.getRno()%>'">삭제</button>		            		            
 		       		</span>
 	        </div>			
