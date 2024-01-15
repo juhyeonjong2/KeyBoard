@@ -19,3 +19,45 @@
 .reviewBox2{margin-bottom: 100px;}
 
 .reviewBt2{width: 47px; height: 30px; margin-top: 20px; margin-right:6px}
+
+/* 페이징 */
+.pagination{
+    height: 100px;
+    padding-top: 20px;
+}
+.pagination ul {
+    font-size:initial; /*main에서 변경한것 여기서만 되돌림*/
+    list-style-type: none;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li{
+    flex:center;
+    text-align: center;
+}
+
+
+.pagination a{
+    font-size: 1em;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #9ea0a3;
+   
+}
+.pagination .active{
+    padding-top: 3px;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius:100%;
+    background-color: #ab3e55;
+    color: white;
+   
+}
+
+.pagination .align_right{
+    margin-left: auto;
+}

@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ateam.db.DBManager" %>
+<%@ page import="allkeyboard.vo.PagingVO" %>
 <%@ page import="allkeyboard.vo.*" %>
 <%@ page import="java.util.*" %>
 <%
-request.setCharacterEncoding("UTF-8");
-Member member = (Member)session.getAttribute("login");
+	request.setCharacterEncoding("UTF-8");
+	Member member = (Member)session.getAttribute("login");
+	String nowPageParam = request.getParameter("nowPage"); // 페이지 번호
 	
 	String pnoParam = request.getParameter("pno");
 	
@@ -83,8 +85,38 @@ Member member = (Member)session.getAttribute("login");
 			rlist.add(review);
 			}
 	 }
+	 	// 후기 페이징
 	 	
-	
+		int nowPage = 1;
+		if(nowPageParam != null && !nowPageParam.equals("")){
+			nowPage = Integer.parseInt(nowPageParam);
+		} 
+	 PagingVO pagingVO = null;
+			// 게시물의 개수를 읽어와서 페이징VO를 작성한다.
+			sql = "SELECT count(*) as cnt FROM review";
+			
+			db.prepare(sql);
+			
+			if(db.read())
+			{
+				int totalCnt = 0;
+				if(db.getNext()){
+					totalCnt = db.getInt("cnt");
+				}
+				pagingVO = new PagingVO(nowPage, totalCnt, 5); 
+			}
+			
+			db.release();
+			
+			// 공지 데이터를 가져온다.
+			sql = "SELECT * FROM review";
+			sql += " LIMIT ?, ?";// 페이징
+			
+			db.prepare(sql);
+			db.setInt(pagingVO.getStart()-1)
+			  .setInt(pagingVO.getPerPage());
+			if(db.read())
+			{
 	
 %>
 
@@ -331,21 +363,65 @@ Member member = (Member)session.getAttribute("login");
 %> 
  		<div class="reviewRow inner_member2 clearfix">
 <%
-		for(Review review : rlist){
-			
+                	while(db.getNext()){
+                		int mno = db.getInt("mno");
+                		String rnote = db.getString("rnote");
+                		int rno = db.getInt("rno");
 %>
 			<div class="reviewBox2">
-				<div id="idBox"><%=review.getMno()%>번 유저</div> 
-		            <span class="reviewarea"><%=review.getRnote()%></span> 
+				<div id="idBox"><%=mno%>번 유저</div> 
+		            <span class="reviewarea"><%=rnote%></span> 
 		            <span id="review_modifyBox">
-			            <button class="reviewBt" onclick="modifyFn(this,<%=review.getRno()%>)">수정</button> 
-			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=review.getRno()%>'">삭제</button>		            		            
+			            <button class="reviewBt" onclick="modifyFn(this,<%=rno%>)">수정</button> 
+			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=rno%>'">삭제</button>		            		            
 		       		</span>
 	        </div>			
 <%
-		}
+                	} // while(db.getNext()){
+				} // if(db.prepare(sql).read())
 %>
 		</div>
+		
+		<div class="pagination">
+            <ul>
+<%
+				// 시작페이지가 보여질 페이지보다 큰경우 (11페이지 넘어가면 이전이 뜬다는 뜻 10까지만 보이게 해뒀으니까) 
+				if(pagingVO.getStartPage() > pagingVO.getCntPage())
+				{
+%>
+						<li class="prev"><a href="detailView.jsp?nowPage=<%= pagingVO.getStartPage()-1%>">이전</a></li>
+<%
+		 			}
+%>
+     
+<%
+                for(int i= pagingVO.getStartPage(); i<= pagingVO.getEndPage(); i++) {
+					// 현제 페이지인경우 class="active" 주고 링크 X				
+					if(nowPage == i) {	
+%>
+		 			<li class="active"><%=i%></li>
+<%
+		 			} else { //현재 페이지가 아닌경우 링크로 값을 보내줌
+%>
+ 							<li><a href="detailView.jsp?nowPage=<%=i%>"><%=i%></a></li>
+<%
+			 			}
+					}
+%>
+
+<%
+				//다음페이지
+				//보여지는 페이지의 마지막부분이 전체페이지 끝보다 보다 작을경우 예) 보여지는페이지 마지막=10 전체페이지의 끝=15 이경우 다음페이지 보여줌 
+				if(pagingVO.getEndPage() < pagingVO.getLastPage()){
+%>
+						<li class="next"><a href="detailView.jsp?nowPage=<%= pagingVO.getEndPage()+1 %>">다음</a></li>
+<%
+		 			}
+%>
+                
+	           </ul>     
+            </div>
+            
     </div><!--inner_member2--> 		
             </div> <!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
      	</div>
