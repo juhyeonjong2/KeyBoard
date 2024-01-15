@@ -4,17 +4,8 @@ public class BuyItem {
 	
 	private int pno;
 	private int price;
-	
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
 	private int quantity;
-	
-	
+
 	public BuyItem()
 	{
 		
@@ -28,9 +19,19 @@ public class BuyItem {
 	public int getPno() {
 		return pno;
 	}
+	
 	public void setPno(int pno) {
 		this.pno = pno;
+	}	
+	
+	public int getPrice() {
+		return price;
 	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
