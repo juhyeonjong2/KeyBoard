@@ -104,8 +104,8 @@ input[type="submit"] {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    /* width: 270px; */
+    /* width: 100%; */
+    width: 270px;
 }
 
 #result {
@@ -269,3 +269,26 @@ input[type="radio"]:checked + label {
     background: aliceblue;
 }
 
+
+
+.btn_red:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+} 
+
+.btn_white:hover{
+    color: #fff;
+    background-color: #8b283d;
+    cursor: pointer;
+}
+
+.divA > button:hover{ 
+    background-color: #8b283d;
+     color: #fff;
+}
+
+.divA > button:hover .btn_white{ 
+    background-color: #8b283d;
+     color: #fff;
+}
