@@ -2,6 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "allkeyboard.vo.Product" %>
 <%@ page import = "ateam.db.DBManager" %>
+<%@ page import="java.util.ArrayList"%>
+<%
+	try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+	
+		while(rs.next()) {
+		Product product = new Product();
+			product.setPname(rs.getString("pname"));
+			product.setPrice(rs.getString("price"));
+			product.setBrand(rs.getString("brand"));
+			product.setPno(rs.getInt("pno");
+			product.setInventory(rs.getString("inventory"));
+			product.setPfrealname(rs.getFilesystemName(""));
+			product.setPforeignname(rs.getOriginalFileName(""));
+		//리스트에 추가
+		list.add(product);
+		
+		product = new Product();
+		List<Product> list = product.getAllpname();
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +35,7 @@
 <body>
 <%@ include file="/include/header.jsp"%>
  <hr id="main_line">
+ <%--
 	<div class="is">
     	<section>
 	<div>
@@ -25,9 +48,42 @@
 		</div>
 	</div>
 	
+--%>
+<%--
+	<main>
+	<div class="listDiv">
+		<div class="container">
+			<h1 class="display=3">상품 목록</h1>
+		</div>
+	</div>
+	<%
+		ArrayList<Product> listProducts = ();
+	%>
 	
+	<div class=container>
+		<div class="row" align="center">
+			<%
+				for(int i = 0; i < listProducts.size(); i++){
+					Product product = listProducts.get(i);
+			%>
+			<div class="col-md-4">
+				<p><%=product.getPfidx() %></p>
+				<p><%=product.getPname() %></p>
+				<p><%=product.getPrice() %>원</p>
+				
+				<p> <a href="./product.jsp?id=<%=product.getProductId()%>"
+				class="btn btn-secondary" role="button">상세 정보 &raquo;</a>
+				
+			</div>
+			<%
+				}
+			%>
+		</div>
+		<hr>
+	</div>
 	
-	
+	</main>
+	 --%>
 			<!--  
                 <h2 style="height: 100px;">LEOPOLD 키보드</h2>
                 <div>
@@ -110,7 +166,7 @@
                </li>
                 </ul>
                 -->
-        </div>
+       <!--  </div> -->
 <%@ include file="/include/footer.jsp"%>
 </body>
 </html>

@@ -102,7 +102,7 @@
                 </table>
                 
             	<div class="divA">
-                	<input type="submit" value="등록">
+            		<button type="submit">등록</button>
                 	<button><a href="./delete.jsp">취소</a></button>
             	</div>
            	</form>

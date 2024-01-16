@@ -36,7 +36,7 @@
 	{
 		
 		// 게시물의 개수를 읽어와서 페이징VO를 작성한다.
-		String sql = "SELECT count(*) as cnt FROM notification WHERE delyn='N'";
+		String sql = "SELECT count(*) as cnt FROM notification WHERE delyn='n'";
 		// 검색 조건추가
 		if(searchType != null){
 			if(searchType.equals("title")){
@@ -66,7 +66,7 @@
 		// 공지 데이터를 가져온다.
 		// ws comment - 회원 외래키가 필요 없을줄 알았는데 미래를 생각하면 관리자 mno를 기록했어야 함. 현 프로젝트에는 필요 없으니 그대로 진행함. 
 		//              회원 외래키가 없어서 작성자 이름으로 검색 불가.
-		sql = "SELECT nno, ntitle, ncontent, rdate, nhit FROM notification WHERE delyn='N'";
+		sql = "SELECT nno, ntitle, ncontent, rdate, nhit FROM notification WHERE delyn='n'";
 		// 옵션들
 		if(searchType != null){
 			if(searchType.equals("title")){
@@ -75,6 +75,7 @@
 				sql += " AND ncontent LIKE CONCAT('%',?,'%') ";
 			}
 		}
+		sql += " ORDER BY nno DESC";  // 역순정렬
 		sql += " LIMIT ?, ?";// 페이징
 		
 		db.prepare(sql);

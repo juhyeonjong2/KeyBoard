@@ -229,11 +229,13 @@
 
 	<main>
  		<hr id="main_line">
-        <div class="is"> <!-- 이미지 파일 -->
+ 		<!-- 이미지 파일 -->
+        <div class="is"> 
             <div class="mImage"> 
-                <img src="../image/product/keyboard1.jpg"> 
+                <img src="../image/product/keyboard1.jpg"> <!-- 임시로 이미지 지정 -->
             </div>
-            <div style="width: 680px; float:right"> <!-- 상품 정보 -->
+            <!-- 상품 정보 -->
+            <div style="width: 680px; float:right"> 
                 <div>
                     <div style="height:45px; font-size:21px;">
                         <strong><%= product.getPname() %></strong>
