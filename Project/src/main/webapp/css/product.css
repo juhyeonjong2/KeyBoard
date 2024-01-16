@@ -1,6 +1,20 @@
 @charset "UTF-8";
 
 
+.inner_member{
+    width: 1000px; margin: 0 auto;
+}
+.inner_member2{
+    width: 800px; margin: 0 auto;
+}
+h3{padding-top: 60px; padding-bottom: 30px; font-size: 30px;}
+#main_line2{
+    width: 1000px; height: 1px; background-color: #dfe0e2; border: 0;  margin-bottom: 50px;
+}
+h4{margin-bottom: 30px;}
+
+
+
 /* product_Add */
 
 table {

@@ -57,12 +57,15 @@
 	<%@ include file="/include/header.jsp"%>
 	
 	<main>
-		<hr id="main_line">
-		<h2 style="margin: 20px 0; text-align: center;">상품 등록</h2>
-        <div>
-            <form name="frm" action="./addOk.jsp" method="post" enctype="multipart/form-data">
+		<div class="inner_member clearfix">
+            <h3>상품 등록</h3>
+            <hr id="main_line2">
+        </div> <!--inner_member-->
+        
+        <div class="inner_member2 clearfix">
+            <form name="frm" action="addOk.jsp" method="post" enctype="multipart/form-data">
                 <table class="tab1"> 
-                	<input type="hidden" name="flag" value="i">
+                	<input type="hidden" name="flag" value="i"> 
                     <tbody>
                         <tr>
                             <th>상품명</th>
@@ -70,7 +73,7 @@
                         </tr>
                         <tr>
                             <th>판매가</th>
-                            <td><input type="text" name="price" placeholder="금액만 표기"></td>
+                            <td><input type="text" name="price" placeholder="금액만 표기" oninput="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></td>
                         </tr>
                         <tr>
                             <th>브랜드</th>
@@ -78,34 +81,34 @@
                         </tr>
                         <tr>
                             <th>재고수량</th>
-                            <td><input type="text" placeholder="수량만 표기" name="inventory"></td>
+                            <td><input type="text" placeholder="수량만 표기" name="inventory" oninput="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></td>
                         </tr>
                         <tr>
                             <th>상세설명</th>
                             <td>
-                                <textarea rows=5px cols=22px></textarea>
+                                <textarea rows=5px cols=22px name="description"></textarea>
                             </td>
                         </tr>
-                        <tr>
+                        <tr> <!-- 이미지부분만 있는 곳 -->
                             <th>이미지</th>
                             <td>
                             	<div id="imageList">
                             		<div>
-                                		<input type="file" name="productFile_1"> <!-- name에 어떤 것을 지정해야될지 모르겟음 -->
+                                		<input type="file" name="uploadimg"> 
                                 		<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
 	                            		<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>                            	
 	                            	</div>
-                            	</div>
+                            	</div> 
                             </td>
-                        </tr>
+                        </tr> <!-- 이미지부분만 있는 곳 -->
                     </tbody>
                 </table>
                 
-            	<div class="divA">
+            	<div class="divA"> <!-- 등록과 취소만 적힌 곳 -->
             		<button type="submit">등록</button>
                 	<button><a href="./delete.jsp">취소</a></button>
-            	</div>
-           	</form>
+            	</div> <!-- 등록과 취소만 적힌 곳 -->
+           	</form> <!-- 전체 폼태그 끝 -->
         </div>
 	</main>
 	
