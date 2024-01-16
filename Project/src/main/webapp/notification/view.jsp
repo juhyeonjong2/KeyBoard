@@ -17,9 +17,26 @@
 	}
 	
 	
+	// 조회수 처리용 쿠키
+	boolean isNnoCookie = false;
+	Cookie[] cookies = request.getCookies();
+	for(Cookie tempCookie : cookies){
+		if(tempCookie.getName().equals("notification"+nno)){
+			isNnoCookie = true;
+			break;
+		}
+	}
+	
+	if(!isNnoCookie){
+		Cookie cookie = new Cookie("notification"+nno,"ok");
+		cookie.setMaxAge(60*60*24); //하루
+		response.addCookie(cookie);
+	}
+	
 	// admin 체크
 	boolean isAdmin = false; 
 	if(member != null){
+		// 어드민이고 로그인유효시간 경과가 아닌경우.
 		isAdmin = CertHelper.isAdmin(member.getMno(), member.getToken());
 	}
 	
@@ -37,7 +54,19 @@
 	DBManager db = new DBManager();
 	if(db.connect()){
 		
-		String sql = "SELECT nno, ntitle, ncontent, rdate, nhit FROM notification WHERE nno=? AND delyn='n'";
+		String sql = "";
+		
+		if(!isNnoCookie){
+			// 조회수 처리
+			sql = "UPDATE notification " 
+				    + "	  SET nhit = nhit+1"
+				    + " WHERE nno = ? ";
+			
+			db.prepare(sql).setInt(nno).update();
+		}
+		
+		// 공지 가져오기
+		sql = "SELECT nno, ntitle, ncontent, rdate, nhit FROM notification WHERE nno=? AND delyn='n'";
 		
 		if(db.prepare(sql).setInt(nno).read())
 		{
@@ -76,7 +105,9 @@
 		});
 		
 		// 확인용
+		
 		/* for(NotificationAttach a : attachList ){
+			
 			System.out.println("----------"+ a.getNfidx() +"--------------");
 			System.out.println(a.getRealFileName());
 			System.out.println(a.getNfno());
@@ -92,6 +123,16 @@
 <title>공지사항</title>
 <link href="<%=request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/notification/view.css" type="text/css" rel="stylesheet">
+
+<script>
+	function delFn(){
+		let isDel = confirm("정말 삭제하시겠습니까?");
+		 
+		if(isDel){
+			document.frm.submit();
+		}
+	}
+</script>
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
@@ -126,11 +167,6 @@
                 	// 파일을 이어붙여보자
                 	for(NotificationAttach a : attachList )
                 	{
-                		String path = saveDirectoryPath + "\\" + a.getRealFileName();
-                		System.out.println(path);
-                		System.out.println(request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName() );
-                		
-                		
 				%>
                 		 <img src="<%= request.getContextPath() +"/" + saveDir + "/" + a.getRealFileName()%>" alt="<%= a.getForeignFileName() %>">        	
 				<%
@@ -145,14 +181,18 @@
             	<%
             		if(isAdmin){ 	//<!-- 관리자일경우-->
                 %>
-                <button type="button" class="small_btn btn_red">삭제</button>
-                <button type="button" class="small_btn btn_white">수정</button>
+                
+                <button type="button" class="small_btn btn_red" onclick="delFn()">삭제</button>
+                <button type="button" class="small_btn btn_white" onclick="location.href='modify.jsp?nno=<%=noti.getNno()%>'">수정</button>
                 <%
             		}
             	%>                
                 <!-- 기본-->
-                <button type="button" class="small_btn btn_white">목록</button>
+                <button type="button" class="small_btn btn_white" onclick="location.href='list.jsp';">목록</button>
             </div>
+            <form name="frm" action="delete.jsp" method="post">
+				<input type="hidden" name="nno" value="<%=noti.getNno()%>">
+			</form>
         </div>
     </main>
 	

@@ -9,7 +9,7 @@
 <%@ page import="allkeyboard.vo.Notification" %>
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="ateam.db.DBManager" %>
-
+<%@ page import="ateam.util.FileUtil" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -42,6 +42,12 @@
 	System.out.println(application.getRealPath("/storage"));
 	 */
 	 
+	 /*
+	  	ws comment - 제목이나 내용 비었을때 서버 처리 필요. 
+	 
+	 */
+	 
+	 
 	 boolean isSuccess = false;
 	 Notification noti = new Notification();
 	 noti.setNtitle(multi.getParameter("ntitle"));
@@ -72,7 +78,7 @@
 		
 		// 2. 저장된 파일을 정보를 생성한다.
 		List<NotificationAttach> fileList = new ArrayList<NotificationAttach>();
-		 
+
 		// 순서가 지켜지지 않음. 소트 필요.
 		Enumeration files = multi.getFileNames();
 		while(files.hasMoreElements()) {
