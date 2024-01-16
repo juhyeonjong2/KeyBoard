@@ -239,28 +239,53 @@ request.setCharacterEncoding("UTF-8");
 				"paramList" : JSON.stringify(selectedItemList)
 		}
 			
+		sendOrderList(paramList); 
+	}
+	
+	function buyAllItem(){
+		
+		// 모든 데이터 넘기기
+		let itemList = [];
+
+		$("#cart_table .td_chk").each(function(index,data) {
+			
+			let pno = parseInt($(data).attr("name").replace("pno_", ""));
+			let quantity = parseInt($(data).closest("tr").find(".td_quantity").val());
+			
+			let item = {
+				"pno" :  pno,
+				"quantity" :quantity
+			}
+			itemList.push(item);
+		});
+			
+		let paramList = {
+				"paramList" : JSON.stringify(itemList)
+		}
+			
+		sendOrderList(paramList);
+	}
+	
+	function sendOrderList(paramList){
 		$.ajax( 
 		{
 			url : "<%=request.getContextPath()%>/order/orderListOk.jsp",
 			type : "post",
 			data : paramList,
-			success : function(resData)
-			{
-				if(resData.trim() == 'SUCCESS')
+			success : function(resData) {
+				if(resData.trim() == 'SUCCESS'){
+					location.href = "<%=request.getContextPath()%>/order/order.jsp";
+				}
+				else if(resData.trim() == 'SUCCESS_LOGIN')
 				{
-					$(data).closest("tr").remove();
-					// ws comment - 여기서 페이지 넘김처리 할것.
+					// 로그인 페이지로 이동시키면서 특정 파라메터 추가(order페이지로 이동해야함)
+					location.href = "<%=request.getContextPath()%>/login/login.jsp?order=1";
 				}
 			},
-			error : function()
-			{
+			error : function() {
 				//consloe.log("FAIL");	 
 			}
-		}); 
-	}
-	
-	function buyAllItem(){
-		// ajax로 리스트 만들어서 넘기기.
+		});
 	}
 </script>
 </head>

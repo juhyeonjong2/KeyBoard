@@ -43,11 +43,11 @@
 		ArrayList<BuyItem> cartItemList = (ArrayList<BuyItem>)session.getAttribute("cartList");
 		// 세션
 		int size = cartItemList.size();
-		System.out.println("---------------- before ---------------- ");
+		/* System.out.println("---------------- before ---------------- ");
 		for(int i=0;i<size;i++){
 			BuyItem item = cartItemList.get(i);
 			System.out.println("item[" + i +"] pno:" + item.getPno() + " quantity:" + item.getQuantity() + " price:" + item.getPrice());
-		}
+		} */
 		
 		//세션 장바구니 데이터를 순회하며 pno를 찾아서 index 저장
 		int removeTarget = -1;
@@ -62,12 +62,12 @@
 			cartItemList.remove(removeTarget);
 		}
 		
-		System.out.println("---------------- After ---------------- ");
+		/* System.out.println("---------------- After ---------------- ");
 		size = cartItemList.size();
 		for(int i=0;i<size;i++){
 			BuyItem item = cartItemList.get(i);
 			System.out.println("item[" + i +"] pno:" + item.getPno() + " quantity:" + item.getQuantity() + " price:" + item.getPrice());
-		}
+		} */
 		
 		// 변경된 리스트 세션에 덮어쓰기
 		session.setAttribute("cartList", cartItemList);
