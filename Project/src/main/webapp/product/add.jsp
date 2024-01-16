@@ -9,48 +9,54 @@
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
-	function addImage(){
-		
-		// 추가 버튼은 맨 아래 자식에만 존재해야 함.
-		let childCnt = $("#imageList").children().length;
-		console.log(childCnt);
-		
-		// class="img_Add" 제거
-		$("#imageList .img_add").remove();
-		
-		// 추가 버튼을 포함하여 맨 아래에 추가
-		let html = '<div>';
-		html += ' <input type="file" name="notiFile_' + (childCnt +1) + '">';
-		html += ' <Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>';
-		html += ' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>';
-		html += '</div>';
-			
-		$("#imageList").append(html);   
-		
-		
+function refreshAddButton() {
+	//혹시 모르니 모든 추가 버튼 삭제 class="img_Add" 제거 (모든 "추가"버튼 제거)
+	$("#imageList .img_add").remove();
+	
+	// 마지막에 "추가" 버튼 다시 추가 
+	//let childCnt = $("#imageList").children().length;
+	let childCnt = $("#imageList div").length;
+	if(childCnt != 0){ // 자식이 하나라도 있으면 마지막 자식에 추가
+		$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
+	}else { // 자식이 하나도 없으면 imageList에 자식으로 추가
+		$("#imageList").append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
 	}
 	
-	function removeImage(o){
+}
+function addImage(){
+	
+	// 추가 버튼은 맨 아래 자식에만 존재해야 함.
+	let childCnt = $("#imageList div").length;
+	
 
-		// 자신을 삭제
-		$(o).parent().remove(); // 부모 div를 삭제해서 항목을 삭제함.
+	// 추가 버튼을 포함하여 맨 아래에 추가
+	let html = '<div>';
+	html += ' <input type="file" name="productFile_' + (childCnt) + '">';
+	html += ' <Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>';
+	html += '</div>';
 		
-		// class="img_Add" 제거 (모든 "추가"버튼 제거)
-		$("#imageList .img_add").remove();
-		
-		// 모든 자식리스트를 돌면서 input="file"의 번호를 순차부여
-		let childCnt = $("#imageList").children().length;
-		console.log(childCnt);
-		
-		$("#imageList div input[type=file]").each(function (index, item)
-			{
-				$(item).attr("class", "productFile_" + (index+1) );
-			}
-		);
-		
-		// 마지막에 "추가" 버튼 추가 
-		$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
-	}
+	$("#imageList").append(html);   
+	
+	refreshAddButton();	
+}
+
+function removeImage(o){
+
+	// 자신을 삭제
+	$(o).parent().remove(); // 부모 div를 삭제해서 항목을 삭제함.
+	
+	// 모든 자식리스트를 돌면서 input="file"의 번호를 순차부여
+	//let childCnt = $("#imageList").children().length;
+	let childCnt = $("#imageList div").length;
+	
+	$("#imageList div input[type=file]").each(function (index, item)
+		{
+			$(item).attr("name", "productFile_" + (index) );
+		}
+	);
+	
+	refreshAddButton();
+}
 </script>
 </head>
 <body>
@@ -93,11 +99,7 @@
                             <th>이미지</th>
                             <td>
                             	<div id="imageList">
-                            		<div>
-                                		<input type="file" name="uploadimg"> 
-                                		<Button type="button" class="img_remove small_btn btn_red" onclick="removeImage(this)">제거</Button>
-	                            		<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>                            	
-	                            	</div>
+	                            	<Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>                            	
                             	</div> 
                             </td>
                         </tr> <!-- 이미지부분만 있는 곳 -->

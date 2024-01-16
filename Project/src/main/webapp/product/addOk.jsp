@@ -59,13 +59,6 @@
 		inventory2 = Integer.parseInt(inventory);
 	}
 	
-	System.out.println(pname);
-	System.out.println(price);
-	System.out.println(brand);
-	System.out.println(inventory);
-	System.out.println(description);
-	System.out.println(flag);
-	
 	boolean isSuccess = false;
 	Product product = new Product();
 
@@ -100,22 +93,38 @@
 		Enumeration files = multi.getFileNames(); //input 파일 타입의 파일들을 Enumeration 타입으로 저장
 		while(files.hasMoreElements()) {      //커서가 첫번째면 0이고 1개라도 있다면 트루반환
 			String nameAttr = (String) files.nextElement();
+		
+			System.out.println(files+" 파일");
+			System.out.println(nameAttr+" 1번째");
+			System.out.println(files.nextElement()+" 2번쨰"); //이거 왜 다른수가 나오는거지 결국 처음꺼인 0번째만 올라감 
+			
+			//배열쪽에 여러개가 들어가지 않는듯 하다
 			if(nameAttr.equals("thumbnail")){
-				//여기서는 썸네일 0번째 골라내기.
+				//여기서는 썸네일 0번째 골라내기
+				//썸네일은 관리번호가 0번으로 저장되게 하면 된다 그런데 어차피 처음 업로드한것은 0번임 여기선 뭐해야하지
+				
+				
 				 
 			} else {
 				// 이름뒤에 글자를짤라서 index를 얻자. ('productFile_' + 숫자형태)
-				String numberString =  nameAttr.replace("productFile_",""); // 공백처리함.		
+				String numberString =  nameAttr.replace("productFile_",""); // 공백처리함.
+				
+				
+				System.out.println(numberString+" 3번째");
+				
+				
 				ProductAttach attach = new ProductAttach();
 				attach.setPfidx(Integer.parseInt(numberString)); //번호를 골라내서 관리번호에 집어넣는다.
 				attach.setPno(product.getPno()); // 공지글 외래키
 				attach.setPfrealname(multi.getFilesystemName(nameAttr)); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
 				attach.setPforeignname(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 */
 				fileList.add(attach);
+				
+				System.out.println(fileList);
 			}
 		} 
 		
-		// 3. 파일 정보를 DB에 입력한다. 관리번호가 0은 썸네일 나머지는 순서대로
+		// 3. 파일 정보를 DB에 입력한다.
 		
 		sql = "INSERT INTO productAttach(pfidx, pno, pfrealname, pforeignname, rdate) "
 			+ " VALUES(?, ?, ?, ?, now())";
@@ -130,16 +139,7 @@
 			  .update();
 		}
 		
-		/*)
-		
-		db.prepare(sql);
-		
-		db.setString(pname);
-		db.setString(price); 
-		db.setString(brand);
-		db.setString(inventory);
-		db.setString(description);
-		*/
+
 		int count = db.update();
 			// 상품정보를 저장하고 동시에 상품이미지를 저장했을경우
 			if(count>0 && isSuccess) {

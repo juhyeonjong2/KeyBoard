@@ -3,7 +3,7 @@
 <%@ page import = "allkeyboard.vo.Product" %>
 <%@ page import = "ateam.db.DBManager" %>
 <%@ page import="java.util.ArrayList"%>
-<%
+<%-- <%
 	try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -23,7 +23,7 @@
 		product = new Product();
 		List<Product> list = product.getAllpname();
 	}
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
