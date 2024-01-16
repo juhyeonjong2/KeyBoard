@@ -2,9 +2,10 @@ package allkeyboard.vo;
 
 public class Order {
 	private int ono;
-	private int nno;
+	private int mno;
 	private String oname;
 	private String otell;
+	private String ophone;
 	private String oemail;
 	private String rdate;
 	private String recipient;
@@ -17,7 +18,12 @@ public class Order {
 	private int deliveryFee;
 	private String state;
 	
-	
+	public String getOphone() {
+		return ophone;
+	}
+	public void setOphone(String ophone) {
+		this.ophone = ophone;
+	}
 	public String getDepositor() {
 		return depositor;
 	}
@@ -30,11 +36,11 @@ public class Order {
 	public void setOno(int ono) {
 		this.ono = ono;
 	}
-	public int getNno() {
-		return nno;
+	public int getMno() {
+		return mno;
 	}
-	public void setNno(int nno) {
-		this.nno = nno;
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 	public String getOname() {
 		return oname;

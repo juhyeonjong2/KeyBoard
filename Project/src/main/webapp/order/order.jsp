@@ -338,11 +338,11 @@
                             </tr>
                             <tr>
                                 <td><span class="important">받으실 분</span></td>
-                                <td><input type="text" name="shiping_name" maxlength="20"></td>
+                                <td><input type="text" name="shiping_name" maxlength="20" required></td>
                             </tr>
                             <tr>
                                 <td><span class="important">받으실 곳</span></td>
-                                <td><input type="text" name="delivery_loc" maxlength="200"></td>
+                                <td><input type="text" name="delivery_loc" maxlength="200" required></td>
                             </tr>
                             <tr>
                                 <td>전화번호</span></td>
@@ -350,7 +350,7 @@
                             </tr>
                             <tr>
                                 <td><span class="important">휴대폰 번호</span></td>
-                                <td><input type="text" name="shiping_phone" maxlength="13"></td>
+                                <td><input type="text" name="shiping_phone" maxlength="13" required></td>
                             </tr>
                             <tr>
                                 <td>남기는 말씀</td>
@@ -405,8 +405,8 @@
                             <tr>
                                 <td>일반결제</td>
                                 <td>
-                                    <input type="radio" name="payment_method_type" checked>무통장 입금
-                                    <input type="radio" name="payment_method_type">신용 카드
+                                    <input type="radio" name="payment_method_type" value="1" checked>무통장 입금
+                                    <input type="radio" name="payment_method_type" value="2">신용 카드
                                     
                                     <div class="payment_type1"> <!--hidden-->
                                         <!-- 무통장 입금시-->
