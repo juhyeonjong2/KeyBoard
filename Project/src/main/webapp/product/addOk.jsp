@@ -43,8 +43,8 @@
 	String inventory = multi.getParameter("inventory");
 	String description = multi.getParameter("description");
 	String flag = multi.getParameter("flag");
-	String pfno = multi.getOriginalFileName("pfno");
-	String pfno2 = multi.getFilesystemName("pfno");
+	String pfrealname  = multi.getOriginalFileName("pfrealname");
+	String pforeignname = multi.getFilesystemName("pforeignname");
 	//File file = request.getFile("description");
  
 
@@ -70,15 +70,71 @@
 	System.out.println(description);
 	System.out.println(flag);
 	
-		
+	boolean isSuccess = false;
+	Product product = new Product();
 
 	DBManager db = new DBManager(); 
 	
 	
 	 if(db.connect())
 	{
-		String sql = "INSERT INTO product(pname,price,brand,inventory,description) "
-					+" VALUES(?,?,?,?) ";
+		String sql = "INSERT INTO product(pname, price, brand, inventory, description, delyn) "
+					+" VALUES(?,?,?,?,?,'N') ";
+		
+		if(db.prepare(sql).setString(product.getPname()).setString(product.getBrand()).update() > 0)
+		{ // 업데이트 성공시 pno를 가져온다.
+			
+			// 현재 삽입된 게시글의 기본키(pno)값을 조회하세요. 
+			sql = "select last_insert_id() as pno from product";
+		
+			
+			if(db.prepare(sql).read())
+			{
+				if(db.getNext()){
+					product.setPno(db.getInt("pno"));
+				}
+			}
+			isSuccess = true;			
+		}
+		
+		// 2. 저장된 파일을 정보를 생성한다.
+		List<ProductAttach> fileList = new ArrayList<ProductAttach>();
+		 
+		// 순서가 지켜지지 않음. 소트 필요.
+		Enumeration files = multi.getFileNames();
+		while(files.hasMoreElements()) {
+			String nameAttr = (String) files.nextElement();
+			if(nameAttr.equals("thumbnail")){
+				//특정 이름을 분류하고 싶을 떄.
+				 
+			} else {
+				// 이름뒤에 글자를짤라서 index를 얻자. ('productFile_' + 숫자형태)
+				String numberString =  nameAttr.replace("productFile_",""); // 공백처리함.		
+				ProductAttach attach = new ProductAttach();
+				attach.setPfidx(Integer.parseInt(numberString));
+				attach.setPno(product.getPno()); // 공지글 외래키
+				attach.setPfrealname(multi.getFilesystemName(nameAttr)); // 업로드된 실제 파일명(겹치는경우 이름이 바뀐다.)
+				attach.setPforeignname(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 */
+				fileList.add(attach);
+			}
+		} 
+		
+		// 3. 파일 정보를 DB에 입력한다.
+		
+		sql = "INSERT INTO productAttach(pfidx, pno, pfrealname, pforeignname, rdate) "
+			+ " VALUES(?, ?, ?, ?, now())";
+		
+		for(ProductAttach attach : fileList){
+		
+			db.prepare(sql)
+			  .setInt(attach.getPfidx())
+			  .setInt(attach.getPno())
+			  .setString(attach.getPfrealname())
+			  .setString(attach.getPforeignname())
+			  .update();
+		}
+		
+		/*)
 		
 		db.prepare(sql);
 		
@@ -87,7 +143,7 @@
 		db.setString(brand);
 		db.setString(inventory);
 		db.setString(description);
-		
+		*/
 		int count = db.update();
 			if(count>0) {
 				%>
