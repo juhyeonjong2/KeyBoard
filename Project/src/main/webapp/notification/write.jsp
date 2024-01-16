@@ -43,7 +43,8 @@
 		$("#imageList .img_add").remove();
 		
 		// 마지막에 "추가" 버튼 다시 추가 
-		let childCnt = $("#imageList").children().length;
+		//let childCnt = $("#imageList").children().length;
+		let childCnt = $("#imageList div").length;
 		if(childCnt != 0){ // 자식이 하나라도 있으면 마지막 자식에 추가
 			$("#imageList div").last().append(' <Button type="button" class="img_add small_btn btn_white" onclick="addImage()">추가</Button>');
 		}else { // 자식이 하나도 없으면 imageList에 자식으로 추가
@@ -54,7 +55,8 @@
 	function addImage(){
 		
 		// 추가 버튼은 맨 아래 자식에만 존재해야 함.
-		let childCnt = $("#imageList").children().length;
+		let childCnt = $("#imageList div").length;
+		
 	
 		// 추가 버튼을 포함하여 맨 아래에 추가
 		let html = '<div>';
@@ -73,7 +75,8 @@
 		$(o).parent().remove(); // 부모 div를 삭제해서 항목을 삭제함.
 		
 		// 모든 자식리스트를 돌면서 input="file"의 번호를 순차부여
-		let childCnt = $("#imageList").children().length;
+		//let childCnt = $("#imageList").children().length;
+		let childCnt = $("#imageList div").length;
 		
 		$("#imageList div input[type=file]").each(function (index, item)
 			{
