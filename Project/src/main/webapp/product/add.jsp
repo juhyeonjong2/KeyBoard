@@ -107,8 +107,8 @@ function removeImage(o){
                 </table>
                 
             	<div class="divA"> <!-- 등록과 취소만 적힌 곳 -->
-            		<button type="submit">등록</button>
-                	<button><a href="./delete.jsp">취소</a></button>
+            		<button type="submit" class="btn_red">등록</button>
+                	<button><a href="./delete.jsp" class="btn_white">취소</a></button>
             	</div> <!-- 등록과 취소만 적힌 곳 -->
            	</form> <!-- 전체 폼태그 끝 -->
         </div>

@@ -45,7 +45,6 @@
 		+ " FROM productAttach "
 		+ "WHERE pno = ?"; 
  		ProductAttach thumbnail = new ProductAttach(); // 썸네일 저장용 으로 여기다가
- 		ProductAttach attach = new ProductAttach();
  			
 		if(db.prepare(sql).setInt(product.getPno()).read()){
 			while(db.getNext()){ //next로 차근차근 전부 가져온다.
@@ -57,8 +56,9 @@
 				thumbnail.setPforeignname(db.getString("pforeignname"));
 				thumbnail.setRdate(db.getString("rdate"));
 				thumbnail.setPfidx(db.getInt("pfidx"));
-				attachList.add(thumbnail);
+				//attachList.add(thumbnail); 썸네일은 넣을 필요 없을 듯 함
 			}else{
+				ProductAttach attach = new ProductAttach();
 				attach.setPfno(db.getInt("pfno"));
 				attach.setPno(db.getInt("pno"));
 				attach.setPfrealname(db.getString("pfrealname"));
@@ -69,6 +69,8 @@
 			}
 			}
 		}
+		
+		System.out.println(attachList+" 이미지 배열");
 		//이부분이 순서 맞추는건데 일단 보류
 		attachList.sort((a,b)->{
 			return a.getPfidx() - b.getPfidx();
@@ -84,7 +86,6 @@
 			+ "  where r.pno = ? ";
 	
 		Review review = new Review(); //다른데서도 쓸수 있게 일단 빼둠
-		System.out.println(pno+" 위의pno");
 	 if( db.prepare(sql).setInt(pno).read()) //상품번호는 일단 1로 나중에 수정 필요
 	 {
 		while(db.getNext()){
@@ -243,10 +244,9 @@
 
 	<main>
  		<hr id="main_line">
- 		<!-- 이미지 파일 -->
         <div class="is"> 
             <div class="mImage"> 
-                <img src="<%= request.getContextPath() +"/" + saveDir + "/" + thumbnail.getPfrealname()%>" alt="<%= thumbnail.getForeignFileName() %>"> <!-- 여기가 썸네일인듯 하다 관리번호가 0인 사진을 여기에다가 붙인다.-->
+                <img src="<%= request.getContextPath() +"/" + saveDir + "/" + thumbnail.getPfrealname()%>" alt="<%= thumbnail.getPforeignname() %>">
             </div>
             <!-- 상품 정보 -->
             <div style="width: 680px; float:right"> 
@@ -347,15 +347,18 @@
                 </ul>
             </div>
             <div id="detail">
-                <h3 style="margin-bottom: 30px;" id="list1">상품 상세 정보</h3>
+                <h4 style="margin-bottom: 30px;" id="list1">상품 상세 정보</h3>
                 <div class="imgBox">
-                    <p align="center">
-                        <img src="#">
-                        임시 상품 상세 정보
-                    </p>
-                    <p align="center">
-                        <img src="#">
-                    </p>
+                                
+                <%
+                	// 파일을 이어붙여보자
+                	for(ProductAttach a : attachList )
+                	{
+				%>
+                		 <div><img src="<%= request.getContextPath() +"/" + saveDir + "/" + a.getPfrealname()%>" alt="<%= a.getPforeignname() %>"></div>       	
+				<%
+                	}
+                %>
                 </div>
             </div>
            
