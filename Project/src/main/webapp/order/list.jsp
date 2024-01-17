@@ -150,9 +150,11 @@
         <div class="content_box">
 <%
         if(isMember){
+        	 // 아쉽지만 시간 관계상 기능 축소. (조회기간 X)
 %>        
-            <form name="tracking_frm">
-                <div class="tracking_area" > <!-- hidden -->
+
+<!--             <form name="tracking_frm">
+                <div class="tracking_area" > hidden
                     <div>
                         조회 기간
                     </div>
@@ -174,7 +176,8 @@
                     </div>
                 </div>
             </form>
-<%
+ -->
+ <%
         }            
 %>
 
