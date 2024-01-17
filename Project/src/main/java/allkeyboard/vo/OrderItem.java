@@ -7,14 +7,6 @@ public class OrderItem {
 	private int price;
 	private int quantity;
 	
-	private String pname;
-	
-	public String getPname() {
-		return pname;
-	}
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
 	public int getIno() {
 		return ino;
 	}

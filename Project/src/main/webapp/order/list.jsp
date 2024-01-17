@@ -165,9 +165,9 @@
                         <input type="radio" name="tracking_range_unit" >1년
                     </div>
                     <div>
-                        <input type="date" name="starttime" value="2024-01-07">
+                        <input id="startTime" type="date" name="starttime" value="2024-01-07">
                         ~
-                        <input type="date" name="endtime" value="2024-01-01">
+                        <input id="endTime" type="date" name="endtime" value="2024-01-01">
                     </div>
                     <div>
                         <button type="button" class="medium_btn btn_red" > 조회 </button>
@@ -224,7 +224,26 @@
                                 <strong><%=or.getPrice()%></strong>원<br>
                                 <%=or.getQuantity()%>개
                             </td>
-                            <td><%=or.getState()%></td>
+                            <td>
+                            <% 
+                            	String state = "입금 대기";
+                            	switch(or.getState()){
+                            	case "0" : 
+                            		state = "입금 대기";
+                            		break;
+                            	case "1" : 
+                            		state = "배송 준비";
+                            		break;
+                            	case "2" : 
+                            		state = "배송 중";
+                            		break;
+                            	case "3" : 
+                            		state = "배송 완료";
+                            		break;
+                            	}
+                            %>
+                            <%=state%>
+                            </td>
                         </tr>
 <%
 					} // for(int i=0;i<size;i++)

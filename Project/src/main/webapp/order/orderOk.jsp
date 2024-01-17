@@ -86,7 +86,7 @@
 		String shiping_memo = request.getParameter("shiping_memo"); // onote : 남기는 말
 		String payment_method_type = request.getParameter("payment_method_type"); //(필수) paymenttype :  입금 방법(1이 무통장인데 여기서는 체크 안함 그냥 넣음)
 		String payment_type1_name = request.getParameter("payment_type1_name"); // (필수) depositor : 입금자
-		String state = "입금 대기";  //State ={입금 대기, 배송 준비, 발송, 배송 완료}
+		String state = "0";  //State ={입금 대기, 배송 준비, 발송, 배송 완료}
 		int deliveryFee = 2500; // 기본 배송비.
 		int totalPrice = 0; // 20만 이상일경우 배송비 무료
 		
