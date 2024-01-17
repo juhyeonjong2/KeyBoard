@@ -17,6 +17,10 @@
 	}
 	
 	
+	// 이미지파일 저장경로.
+	String saveDir = "image/product";
+	String saveDirectoryPath = application.getRealPath(saveDir); // 절대 경로 안쓰기위해 톰캣쪽에 저장됨. (디비 합치면 못씀.)
+	
 	Product product = new Product();
 	List<ProductAttach> attachList = new ArrayList<ProductAttach>(); //이미지 배열
 	List<Review> rlist = new ArrayList<Review>(); //리뷰 목록 리뷰 클래스
@@ -40,17 +44,29 @@
  		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
 		+ " FROM productAttach "
 		+ "WHERE pno = ?"; 
-		
+ 		ProductAttach thumbnail = new ProductAttach(); // 썸네일 저장용 으로 여기다가
+ 		ProductAttach attach = new ProductAttach();
+ 			
 		if(db.prepare(sql).setInt(product.getPno()).read()){
 			while(db.getNext()){ //next로 차근차근 전부 가져온다.
-			ProductAttach attach = new ProductAttach();
-			attach.setPfno(db.getInt("pfno"));
-			attach.setPno(db.getInt("pno"));
-			attach.setPfrealname(db.getString("pfrealname"));
-			attach.setPforeignname(db.getString("pforeignname"));
-			attach.setRdate(db.getString("rdate"));
-			attach.setPfidx(db.getInt("pfidx"));
-			attachList.add(attach);
+				int index = db.getInt("pfidx");
+			if(index == 0){
+				thumbnail.setPfno(db.getInt("pfno"));
+				thumbnail.setPno(db.getInt("pno"));
+				thumbnail.setPfrealname(db.getString("pfrealname"));
+				thumbnail.setPforeignname(db.getString("pforeignname"));
+				thumbnail.setRdate(db.getString("rdate"));
+				thumbnail.setPfidx(db.getInt("pfidx"));
+				attachList.add(thumbnail);
+			}else{
+				attach.setPfno(db.getInt("pfno"));
+				attach.setPno(db.getInt("pno"));
+				attach.setPfrealname(db.getString("pfrealname"));
+				attach.setPforeignname(db.getString("pforeignname"));
+				attach.setRdate(db.getString("rdate"));
+				attach.setPfidx(db.getInt("pfidx"));
+				attachList.add(attach);
+			}
 			}
 		}
 		//이부분이 순서 맞추는건데 일단 보류
@@ -230,7 +246,7 @@
  		<!-- 이미지 파일 -->
         <div class="is"> 
             <div class="mImage"> 
-                <img src="../image/product/keyboard1.jpg"> <!-- 임시로 이미지 지정 여기가 썸네일인듯 하다-->
+                <img src="<%= request.getContextPath() +"/" + saveDir + "/" + thumbnail.getPfrealname()%>" alt="<%= thumbnail.getForeignFileName() %>"> <!-- 여기가 썸네일인듯 하다 관리번호가 0인 사진을 여기에다가 붙인다.-->
             </div>
             <!-- 상품 정보 -->
             <div style="width: 680px; float:right"> 
