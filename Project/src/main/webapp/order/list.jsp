@@ -135,7 +135,6 @@
 <link href="<%=request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/css/order/list.css" type="text/css" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/order/list.js"></script>
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
