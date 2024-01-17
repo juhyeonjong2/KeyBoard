@@ -22,7 +22,7 @@
 	Product product = new Product();
 	/*List<ProductAttach> attachList = new ArrayList<ProductAttach>();*/
 	
-	List<Review> rlist = new ArrayList<Review>(); //리뷰 목록 리뷰 클래스 11111111111111111111111111111111111111111111111
+	List<Review> rlist = new ArrayList<Review>(); //리뷰 목록 리뷰 클래스
 	DBManager db = new DBManager();
 	
 	
@@ -64,7 +64,7 @@
 		});
 	*/
 	
-	// 후기 파트 ////////////////////////////////////////////////////////////////////////////////////////
+	// 후기 파트 
 	
 	// 후기의 정보들을 가져온다 (m.mname은 받아오려면 db수정 필요 할듯하다)
 	sql = " select r.rno, r.pno, m.mname, m.mno, r.rnote "
@@ -142,7 +142,7 @@
 	
 	resultE.innerText = number;
 }	
- 		//후기///////////////////////////////////////////////////////////////////////////////////////
+ 		//후기
  		
 	let isModify = false;
 	
@@ -351,7 +351,7 @@
                 	<li><a href="#qna">상품 후기</a></li>
                 </ul>
             </div>
-            <div id="qna"><!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+            <div id="qna"><!-- 후기 -->
 <%
             	if(member != null){ //로그인 된 경우만 이게 보이도록
 %>
@@ -425,7 +425,7 @@
             </div>
             
     </div><!--inner_member2--> 		
-            </div> <!-- 후기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+            </div> <!-- 후기 -->
      	</div>
      		<%@ include file="/include/footer.jsp"%>
 	</main>

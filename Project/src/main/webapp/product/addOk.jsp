@@ -13,24 +13,25 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	Member member = (Member)session.getAttribute("login"); 
 
-	String directory = "D:/EzenTeamProjectFirst/Project/src/main/webapp/image/product";
+	String method = request.getMethod();
+	// get방식이거나 로그인되지 않았거나 관리자가 아닐때 이전페이지로 돌아가기
+	if(method.equals("GET") || member == null || !CertHelper.isAdmin(member.getMno(), member.getToken())){
+		response.sendRedirect("view.jsp");
+	}
+	
+	String saveDir = "image/product";
+	String saveDirectoryPath = application.getRealPath(saveDir); // 절대 경로 안쓰기위해 톰캣쪽에 저장됨. (디비 합치면 못씀.) 
 	int sizeLimit = 100*1024*1024;//100mb 제한
 	
 	MultipartRequest multi = new MultipartRequest(request
-										, directory
+										, saveDirectoryPath
 										,sizeLimit
 										,"UTF-8"
 										, new DefaultFileRenamePolicy());
 
-	Member member = (Member)session.getAttribute("login"); 
-	
-	String method = request.getMethod();
-	// get방식이거나 로그인되지 않았거나 관리자가 아닐때 이전페이지로 돌아가기
-	if(method.equals("GET") || member == null || !CertHelper.isAdmin(member.getMno(), member.getToken())){
-		response.sendRedirect("list.jsp");
-	}
-	//form가 enctype="multipart/form-data" 이거면 리퀘스트로 가져오는게 안된다 그래서 아래방식으로 데이터를 받아온다.	
+	// form가 enctype="multipart/form-data" 이거면 리퀘스트로 가져오는게 안된다 그래서 아래방식으로 데이터를 받아온다.	
 	String pname = multi.getParameter("pname");
 	String price = multi.getParameter("price");
 	String brand = multi.getParameter("brand");
@@ -93,24 +94,17 @@
 		Enumeration files = multi.getFileNames(); //input 파일 타입의 파일들을 Enumeration 타입으로 저장
 		while(files.hasMoreElements()) {      //커서가 첫번째면 0이고 1개라도 있다면 트루반환
 			String nameAttr = (String) files.nextElement();
-		
-			System.out.println(files+" 파일");
-			System.out.println(nameAttr+" 1번째");
-			System.out.println(files.nextElement()+" 2번쨰"); //이거 왜 다른수가 나오는거지 결국 처음꺼인 0번째만 올라감 
 			
 			//배열쪽에 여러개가 들어가지 않는듯 하다
 			if(nameAttr.equals("thumbnail")){
 				//여기서는 썸네일 0번째 골라내기
-				//썸네일은 관리번호가 0번으로 저장되게 하면 된다 그런데 어차피 처음 업로드한것은 0번임 여기선 뭐해야하지
+				//썸네일은 관리번호가 0번으로 저장되게 하면 된다 일단 보류
 				
 				
 				 
 			} else {
 				// 이름뒤에 글자를짤라서 index를 얻자. ('productFile_' + 숫자형태)
 				String numberString =  nameAttr.replace("productFile_",""); // 공백처리함.
-				
-				
-				System.out.println(numberString+" 3번째");
 				
 				
 				ProductAttach attach = new ProductAttach();
@@ -120,12 +114,12 @@
 				attach.setPforeignname(multi.getOriginalFileName(nameAttr)); // 클라이언트에서 올린 파일명 */
 				fileList.add(attach);
 				
-				System.out.println(fileList);
 			}
 		} 
 		
-		// 3. 파일 정보를 DB에 입력한다.
 		
+		// 3. 파일 정보를 DB에 입력한다.
+		int count = 0;
 		sql = "INSERT INTO productAttach(pfidx, pno, pfrealname, pforeignname, rdate) "
 			+ " VALUES(?, ?, ?, ?, now())";
 		
@@ -135,14 +129,13 @@
 			  .setInt(attach.getPfidx())
 			  .setInt(attach.getPno())
 			  .setString(attach.getPfrealname())
-			  .setString(attach.getPforeignname())
-			  .update();
+			  .setString(attach.getPforeignname());
+			  count = db.update();
 		}
 		
-
-		int count = db.update();
+		System.out.println(count); 
 			// 상품정보를 저장하고 동시에 상품이미지를 저장했을경우
-			if(count>0 && isSuccess) {
+			if(count>0) { //alert가 안나옴
 				%>
 				<script>
 					alert("등록이 완료되었습니다.");
