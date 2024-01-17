@@ -22,7 +22,7 @@
 		//지금 아래 구문이 mysql에서는 잘 작동하고 값도 잘 받아왔지만 실패가뜸;; 
 	if(db.connect())
 	{	
-		 String sql = "UPDATE member SET delyn = 'Y' WHERE mno = ? and mid = ? and mpw = md5(?) ";
+		 String sql = "UPDATE member SET delyn = 'y' WHERE mno = ? and mid = ? and mpw = md5(?) ";
 			 	 db.prepare(sql);
 		 		 db.setInt(mno2);
 		 		 db.setString(mid);

@@ -46,7 +46,7 @@
                     <input type="submit" value="로그인" >
                 </div>
                 <div id="joinLink" class="margin1">
-                    <a href="#">회원가입하기</a><!-- 링크넣기 -->
+                    <a href="<%=request.getContextPath()%>/login/join.jsp">회원가입하기</a>
                 </div>
             </form>
 <%
