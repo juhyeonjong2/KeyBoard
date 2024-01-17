@@ -14,7 +14,7 @@
 	<header>
         <div class="inner clearfix">
             <h1 id="logo">
-                <a href="#"><img src="#" alt="top logo"></a>
+                <a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/image/logo/logo1.png" alt="top logo"></a>
             </h1>
 
             <nav id="nav">  
