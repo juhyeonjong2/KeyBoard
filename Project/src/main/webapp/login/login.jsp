@@ -23,7 +23,7 @@
 	
 	<script>
 			function handleOnInput(e){
-				  e.value = e.value.replace(/[^A-Za-z]/ig, '')
+				 e.value = e.value.replace(/[^A-Za-z0-9]/ig, '')
 				}
 	</script>
 </head>
