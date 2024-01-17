@@ -102,19 +102,34 @@
 	
 	function calculatePeriod()
 	{
-		 // 날짜 기록
+		 // 날짜 정보 입력.
+		 // 우선 보류함.
 	}
 
 	function modify(o){
+		
+		let trParent = $(o).closest("tr");
 		// 쿼리 보내기.
+		let ono = trParent.find(".ono").text();
+		let state =  $(o).val();
 		
-		//console.log($(o).val());
+		$(o).attr("disabled",true);
 		
-		
-		
-		
-		// 변경된 ono를 가져와서 아작스로 날림.
-		// SUCCESS 돌아오면 페이지 리로드.
+		$.ajax({
+			url : "<%=request.getContextPath()%>/order/modifyOk.jsp",
+			type : "post",
+			data : {ono:ono, state:state},
+			success : function(resData) {
+				if(resData.trim() == 'SUCCESS'){
+					alert("변경 완료");
+				}
+				$(o).removeAttr("disabled"); 
+			},
+			error : function() {
+				//consloe.log("FAIL");
+				$(o).removeAttr("disabled"); 
+			}
+		});
 	}
 </script>
 </head>
@@ -129,9 +144,9 @@
         </div> <!--inner_member-->
 
         <div class="content_box">
-
-            <form name="tracking_frm" method="get" action="modify.jsp">
-                <div class="tracking_area" > <!-- hidden -->
+ 
+            <!-- <form name="tracking_frm" method="get" action="modify.jsp">
+                <div class="tracking_area" > hidden
                     <div>
                         조회 기간
                     </div>
@@ -154,8 +169,8 @@
                         <button type="submit" class="medium_btn btn_red" > 조회 </button>
                     </div>
                 </div>
-            </form>
-
+            </form> -->
+ 
             <div class="tracking_result_area">
                 <!-- 배송 정보 -->
                 <div class="inner_member clearfix">
