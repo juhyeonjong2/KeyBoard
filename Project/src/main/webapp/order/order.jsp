@@ -93,6 +93,7 @@
 	function isValid()
 	{
 		// 필수 체크 - 우선 발리데이션 없음. 
+		// ws comment - 완료후 작업 예정. 시간없으면 패스.
 		
 		return true;
 	}
