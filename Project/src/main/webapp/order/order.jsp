@@ -57,7 +57,6 @@
 		// 테이블의 tr을 게산해서 배송비용 td 추가.
 		let trList = $("#itemList tbody tr");
 		let html = '<td id="td_delivery" rowspan="' +trList.length  + '"></td>';
-		console.log(trList.first().last());
 		trList.first().last().append(html);
 	}
 	
