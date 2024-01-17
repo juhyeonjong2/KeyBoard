@@ -9,7 +9,7 @@
 	Member member = (Member)session.getAttribute("login");
 	String nowPageParam = request.getParameter("nowPage"); // 페이지 번호
 	
-	String pnoParam = request.getParameter("pno");
+	String pnoParam = request.getParameter("pno"); // list에서 상품 누르면 pno받아온다. 
 	
 	int pno= 1; /* 임시로 1로 값 지정 */ //아래 작업으로 인해 널값으로 바뀌는 듯함
 	if(pnoParam != null  && !pnoParam.equals("")){
@@ -17,14 +17,10 @@
 	}
 	
 	
-	/*String directory = "D:/EzenTeamProjectFirst/Project/src/main/webapp/image/product";*/
-	
 	Product product = new Product();
-	/*List<ProductAttach> attachList = new ArrayList<ProductAttach>();*/
-	
+	List<ProductAttach> attachList = new ArrayList<ProductAttach>(); //이미지 배열
 	List<Review> rlist = new ArrayList<Review>(); //리뷰 목록 리뷰 클래스
 	DBManager db = new DBManager();
-	
 	
 	if(db.connect()) {
 		
@@ -40,29 +36,27 @@
 			}
 		}
 		
-		
-/* 		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx " // 후기파트 구문사용을 위해 미완성인 sql구문을 잠시 주석처리했습니다.
+		// 상품이미지를 가져오는 sql문
+ 		sql = "SELECT pfno, pno, pfrealname, pforeignname, rdate, pfidx "
 		+ " FROM productAttach "
-		+ "WHERE pno = ?"; */
+		+ "WHERE pno = ?"; 
 		
-		/*
 		if(db.prepare(sql).setInt(product.getPno()).read()){
-			while(db.getNext()){
-			productAttach attach = new productAttach();
-			attach.setPfno(db.getInt("nfno"));
-			attach.setPno(db.getInt("nno"));
-			attach.setRealFileName(db.getString("pfrealname"));
-			attach.setForeignFileName(db.getString("pforeignname"));
+			while(db.getNext()){ //next로 차근차근 전부 가져온다.
+			ProductAttach attach = new ProductAttach();
+			attach.setPfno(db.getInt("pfno"));
+			attach.setPno(db.getInt("pno"));
+			attach.setPfrealname(db.getString("pfrealname"));
+			attach.setPforeignname(db.getString("pforeignname"));
 			attach.setRdate(db.getString("rdate"));
 			attach.setPfidx(db.getInt("pfidx"));
 			attachList.add(attach);
 			}
 		}
-		
+		//이부분이 순서 맞추는건데 일단 보류
 		attachList.sort((a,b)->{
 			return a.getPfidx() - b.getPfidx();
 		});
-	*/
 	
 	// 후기 파트 
 	
@@ -73,10 +67,12 @@
 			+ "     on r.mno = m.mno "
 			+ "  where r.pno = ? ";
 	
-	 if( db.prepare(sql).setInt(1).read()) //상품번호는 일단 1로 나중에 수정 필요
+		Review review = new Review(); //다른데서도 쓸수 있게 일단 빼둠
+		System.out.println(pno+" 위의pno");
+	 if( db.prepare(sql).setInt(pno).read()) //상품번호는 일단 1로 나중에 수정 필요
 	 {
 		while(db.getNext()){
-			Review review = new Review();
+			// Review review = new Review();
 			review.setRno(db.getInt("rno"));
 			review.setPno(db.getInt("pno"));
 			review.setMno(db.getInt("mno"));
@@ -93,9 +89,10 @@
 		} 
 	 PagingVO pagingVO = null;
 			// 게시물의 개수를 읽어와서 페이징VO를 작성한다.
-			sql = "SELECT count(*) as cnt FROM review";
+			sql = "SELECT count(*) as cnt FROM review WHERE pno = ?";
 			
 			db.prepare(sql);
+			db.setInt(pno);
 			
 			if(db.read())
 			{
@@ -108,11 +105,11 @@
 			
 			db.release();
 			
-			// 공지 데이터를 가져온다.
-			sql = "SELECT * FROM review";
+			sql = "SELECT * FROM review WHERE pno = ?";
 			sql += " LIMIT ?, ?";// 페이징
 			
 			db.prepare(sql);
+			db.setInt(pno);
 			db.setInt(pagingVO.getStart()-1)
 			  .setInt(pagingVO.getPerPage());
 			if(db.read())
@@ -124,7 +121,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 상세 정보</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
@@ -132,8 +129,8 @@
 <script>
 	function calFn(type, ths) {
 		const resultE = document.getElementById("result");
-	let number = resultE.innerText;
-	
+		const allPrice = document.getElementById("allPrice");
+		let	number = resultE.innerText;
 	if(type == 'p') {
 		number = parseInt(number) +1;
 	} else if(type == 'm') {
@@ -141,6 +138,7 @@
 	}
 	
 	resultE.innerText = number;
+	allPrice.innerText = <%= product.getPrice() %>*number;
 }	
  		//후기
  		
@@ -185,13 +183,13 @@
 			success : function(data){
 				if(data.trim() == 'SUCCESS'){
 					$(obj).parent().prev("span").text(value);
-					let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
 					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
 					$(obj).parent().html(html);							
 				}else{
 					$(obj).parent().prev("span").text(originalValue);
-					let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
 					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
 					$(obj).parent().html(html);
@@ -212,7 +210,7 @@
 		
 		$(obj).parent().prev("span").text(originalValue);
 		
-		let deleteLink = "location.href='review_deleteOk.jsp?rno="+rno+"'";
+		let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
 		
 		let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 		html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
@@ -232,7 +230,7 @@
  		<!-- 이미지 파일 -->
         <div class="is"> 
             <div class="mImage"> 
-                <img src="../image/product/keyboard1.jpg"> <!-- 임시로 이미지 지정 -->
+                <img src="../image/product/keyboard1.jpg"> <!-- 임시로 이미지 지정 여기가 썸네일인듯 하다-->
             </div>
             <!-- 상품 정보 -->
             <div style="width: 680px; float:right"> 
@@ -304,7 +302,7 @@
                                     </span>
                                 </td>
                                 <td style="width: 90px">
-                                    <span><strong>175,000원</strong></span>
+                                    <span id="allPrice"><%= product.getPrice() %></span>
                                 </td>
                             </tr>
                         </tbody>
@@ -375,7 +373,7 @@
 		            <span class="reviewarea"><%=rnote%></span> 
 		            <span id="review_modifyBox">
 			            <button class="reviewBt" onclick="modifyFn(this,<%=rno%>)">수정</button> 
-			            <button class="reviewBt" onclick="location.href='review_deleteOk.jsp?rno=<%=rno%>'">삭제</button>		            		            
+			            <button class="reviewBt" onclick="location.href='reviewDeleteOk.jsp?rno=<%=rno%>'">삭제</button>		            		            
 		       		</span>
 	        </div>			
 <%
@@ -391,7 +389,7 @@
 				if(pagingVO.getStartPage() > pagingVO.getCntPage())
 				{
 %>
-						<li class="prev"><a href="detailView.jsp?nowPage=<%= pagingVO.getStartPage()-1%>">이전</a></li>
+						<li class="prev"><a href="view.jsp?nowPage=<%= pagingVO.getStartPage()-1%>">이전</a></li>
 <%
 		 			}
 %>
@@ -405,7 +403,7 @@
 <%
 		 			} else { //현재 페이지가 아닌경우 링크로 값을 보내줌
 %>
- 							<li><a href="detailView.jsp?nowPage=<%=i%>"><%=i%></a></li>
+ 							<li><a href="view.jsp?nowPage=<%=i%>&pno=<%=pno%>"><%=i%></a></li>
 <%
 			 			}
 					}
@@ -416,7 +414,7 @@
 				//보여지는 페이지의 마지막부분이 전체페이지 끝보다 보다 작을경우 예) 보여지는페이지 마지막=10 전체페이지의 끝=15 이경우 다음페이지 보여줌 
 				if(pagingVO.getEndPage() < pagingVO.getLastPage()){
 %>
-						<li class="next"><a href="detailView.jsp?nowPage=<%= pagingVO.getEndPage()+1 %>">다음</a></li>
+						<li class="next"><a href="view.jsp?nowPage=<%= pagingVO.getEndPage()+1 %>">다음</a></li>
 <%
 		 			}
 %>

@@ -9,15 +9,17 @@
 <jsp:useBean id ="review" class="allkeyboard.vo.Review" />
 <jsp:setProperty property="*" name="review" />
 <%
+
 	String rnote = request.getParameter("rnote");	
 
-
-	String pno = request.getParameter("product");
+	String pno = request.getParameter("pno");
 	int pno2=0;
 	if(pno != null && !pno.equals("")){
 		pno2 = Integer.parseInt(pno);
 	}
 
+	System.out.println(pno2);
+	
 	Member member = (Member)session.getAttribute("login");
 	if(member != null){
 		review.setMno(member.getMno());
@@ -37,11 +39,10 @@
 			    		+ " , now()) ";
 			 
 			db.prepare(sql);
-			db.setInt(1); //pno가 db에 존재하는 값과 일치할 경우 오류해결 지금 문제는 pno값이 0이 나온다는 것 일단 1로 수정
+			db.setInt(pno2); //pno가 db에 존재하는 값과 일치할 경우 오류해결 지금 문제는 pno값이 0이 나온다는 것 일단 1로 수정
 			db.setInt(review.getMno()); 
 			db.setString(rnote); 
 			int count = db.update();
-			System.out.println(count);/////////////////
 			if(count > 0 ){
 								
 			/*
@@ -65,8 +66,8 @@
 			System.out.println(rno); //1234순이 아니고 이상하게 적힘
 %>
 			<script>
-				alert("후기가 작성되었습니다..");
-				location.href="<%=request.getContextPath()%>/product/detailView.jsp";
+				alert("후기가 작성되었습니다.");
+				location.href="<%=request.getContextPath()%>/product/view.jsp?pno=<%=pno2%>";
 			</script>	
 <%
 		}else{

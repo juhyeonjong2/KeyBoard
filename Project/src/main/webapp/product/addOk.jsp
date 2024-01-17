@@ -18,7 +18,7 @@
 	String method = request.getMethod();
 	// get방식이거나 로그인되지 않았거나 관리자가 아닐때 이전페이지로 돌아가기
 	if(method.equals("GET") || member == null || !CertHelper.isAdmin(member.getMno(), member.getToken())){
-		response.sendRedirect("view.jsp");
+		response.sendRedirect("list.jsp");
 	}
 	
 	String saveDir = "image/product";
@@ -133,13 +133,12 @@
 			  count = db.update();
 		}
 		
-		System.out.println(count); 
 			// 상품정보를 저장하고 동시에 상품이미지를 저장했을경우
 			if(count>0) { //alert가 안나옴
 				%>
 				<script>
 					alert("등록이 완료되었습니다.");
-					location.href="<%=request.getContextPath()%>/product/add.jsp"
+					location.href="<%=request.getContextPath()%>/product/view.jsp?pno=<%=product.getPno()%>"
 				</script>
 				<%
 			}else {

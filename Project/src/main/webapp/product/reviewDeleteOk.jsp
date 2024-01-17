@@ -34,14 +34,14 @@
 			 %>
 				<script>
 					alert("후기가 삭제되었습니다.");
-					location.href="<%=request.getContextPath()%>/product/detailView.jsp"
+					location.href="<%=request.getContextPath()%>/product/view.jsp"
 				</script>
 			<%	 
 		 }else{
 			 %>
 				<script>
 					alert("후기삭제에 실패하였습니다.");
-					location.href="<%=request.getContextPath()%>/product/detailView.jsp"
+					location.href="<%=request.getContextPath()%>/product/view.jsp"
 				</script>
 			<%	
 		 }
