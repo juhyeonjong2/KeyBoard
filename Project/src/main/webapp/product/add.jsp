@@ -57,6 +57,14 @@ function removeImage(o){
 	
 	refreshAddButton();
 }
+
+function delFn(){
+	let isDel = confirm("정말 취소하시겠습니까?");
+	 
+	if(isDel){
+		location.href="<%=request.getContextPath()%>/login/adminPage.jsp";
+	}
+}
 </script>
 </head>
 <body>
@@ -71,7 +79,6 @@ function removeImage(o){
         <div class="inner_member2 clearfix">
             <form name="frm" action="addOk.jsp" method="post" enctype="multipart/form-data">
                 <table class="tab1"> 
-                	<input type="hidden" name="flag" value="i"> 
                     <tbody>
                         <tr>
                             <th>상품명</th>
@@ -108,7 +115,7 @@ function removeImage(o){
                 
             	<div class="divA"> <!-- 등록과 취소만 적힌 곳 -->
             		<button type="submit" class="btn_red">등록</button>
-                	<button><a href="./delete.jsp" class="btn_white">취소</a></button>
+                	<a href="<%=request.getContextPath()%>/login/adminPage.jsp" class="btn_white ex">취소</a>
             	</div> <!-- 등록과 취소만 적힌 곳 -->
            	</form> <!-- 전체 폼태그 끝 -->
         </div>

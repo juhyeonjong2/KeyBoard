@@ -144,7 +144,7 @@
 			}else {
 				%>
 				<script>
-					alert("등록을 실패하였습니다.");
+					alert("등록에 실패하였습니다 이미지가 1개이상있는지, 파일명이 너무 길진 않은지 확인해주세요");
 					location.href="<%=request.getContextPath()%>/product/add.jsp"
 				</script>
 				<%

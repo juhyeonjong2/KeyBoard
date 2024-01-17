@@ -83,7 +83,7 @@ input[type="submit"] {
 /* product_DetailView */
 
 .is{
-    height: 700px;
+    height: 550px;
     width: 1200px;
     margin: 0 auto;
     margin-top:80px
@@ -269,7 +269,12 @@ input[type="radio"]:checked + label {
     background: aliceblue;
 }
 
-
+.ex{ 
+    padding: 10px;
+    border: none;
+    background: aliceblue;
+    font-size: 13.3333px;
+}
 
 .btn_red:hover{
     color: #fff;
@@ -291,4 +296,22 @@ input[type="radio"]:checked + label {
 .divA > button:hover .btn_white{ 
     background-color: #8b283d;
      color: #fff;
+}
+
+#adminOption a{
+	width: 397px;
+    height: 80px;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    text-align: center;
+    line-height: 80px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#adminOption a:hover{
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.2); 
+	border:1px solid  #8b283d;
+	background-color: #8b283d;
+	color: #fff;
 }

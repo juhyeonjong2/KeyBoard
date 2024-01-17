@@ -70,7 +70,6 @@
 			}
 		}
 		
-		System.out.println(attachList+" 이미지 배열");
 		//이부분이 순서 맞추는건데 일단 보류
 		attachList.sort((a,b)->{
 			return a.getPfidx() - b.getPfidx();
@@ -237,6 +236,22 @@
 		isModify = false;
 		
 	}
+	
+	function modiFn(){
+		let isDel = confirm("정말 수정하시겠습니까?");
+		 
+		if(isDel){
+			location.href="<%=request.getContextPath()%>/product/modify.jsp?pno=<%=pno%>";
+		}
+	}
+	
+	function delFn(){
+		let isDel = confirm("정말 삭제하시겠습니까?");
+		 
+		if(isDel){
+			location.href="<%=request.getContextPath()%>/product/delete.jsp?pno=<%=pno%>";
+		}
+	}
 </script>
 </head>
 <body>
@@ -337,6 +352,16 @@
             	</div>
         	</div>
         </div>
+<%
+				if(CertHelper.isAdmin(member.getMno(), member.getToken())){	
+%>
+				<div id="adminOption" class="inner_member2">
+					<a onclick="modiFn()">상품 수정</a>
+					<a onclick="delFn()">상품 삭제</a>
+				</div>
+<%
+               }
+%>
         
         <!-- 상세정보 하단부분 -->
         <div style="text-align: center"> 
