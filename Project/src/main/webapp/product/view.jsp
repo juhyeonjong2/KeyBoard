@@ -7,6 +7,14 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	Member member = (Member)session.getAttribute("login");
+	// admin 체크
+	
+	boolean isAdmin = false; 
+	if(member != null){
+		isAdmin = CertHelper.isAdmin(member.getMno(), member.getToken());
+	}
+	
+	
 	String nowPageParam = request.getParameter("nowPage"); // 페이지 번호
 	
 	String pnoParam = request.getParameter("pno"); // list에서 상품 누르면 pno받아온다. 
@@ -28,7 +36,7 @@
 	
 	if(db.connect()) {
 		
-		String sql = "SELECT pno, pname, price, brand, inventory FROM product WHERE pno=? AND delyn='n'";
+		String sql = "SELECT pno, pname, price, brand, inventory, description FROM product WHERE pno=? AND delyn='n'";
 		
 		if(db.prepare(sql).setInt(pno).read()) {
 			if(db.getNext()) {
@@ -37,6 +45,7 @@
 				product.setPrice(db.getInt("price"));
 				product.setBrand(db.getString("brand"));
 				product.setInventory(db.getInt("inventory"));
+				product.setDescription(db.getString("description"));
 			}
 		}
 		
@@ -342,18 +351,18 @@
                    </div>
                    
                 	<div class="bDiv" style="float:right; margin: 15px 100px 0 0;">
-                   		<button id="butt2" style="margin-right: 10px; background-color: white;">
+                   		<a class="butt2" style="margin-right: 10px;" href="<%=request.getContextPath()%>/order/cart.jsp">
                    	     	장바구니
-                  	  	</button>
-                   	 	<button id="butt2" style="width: 200px;">
+                  	  	</a>
+                   	 	<a class="butt2" style="width: 200px;" href="<%=request.getContextPath()%>/order/order.jsp">
                   	     	바로구매
-                    	</button>
+                    	</a>
                 	</div>
             	</div>
         	</div>
         </div>
 <%
-				if(CertHelper.isAdmin(member.getMno(), member.getToken())){	
+				if(isAdmin){	
 %>
 				<div id="adminOption" class="inner_member2">
 					<a onclick="modiFn()">상품 수정</a>
@@ -372,7 +381,7 @@
                 </ul>
             </div>
             <div id="detail">
-                <h4 style="margin-bottom: 30px;" id="list1">상품 상세 정보</h3>
+                <h4 style="margin-bottom: 30px;" id="list1"><%=product.getDescription()%></h3>
                 <div class="imgBox">
                                 
                 <%
