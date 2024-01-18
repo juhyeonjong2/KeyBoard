@@ -60,11 +60,11 @@
 <%
 			}else{
 %>
-            <form name="frm2" id="notLoginBox" action="notloginOk2.jsp" method="post">
+            <form name="frm2" id="notLoginBox" action="order/list.jsp" method="post">
                 <h4>비회원 주문조회 하기</h4>
                 <div class="textBox">
-                    <input type="text" name="orderName" class="margin1" placeholder="주문자명"><br>
-                    <input type="password" name="orderNum" class="margin1" placeholder="주문번호">
+                    <input type="text" name="ordername" class="margin1" placeholder="주문자명"><br>
+                    <input type="password" name="orderno" class="margin1" placeholder="주문번호">
                 </div>
                 <div class="submit">
                     <input type="submit" value="확인">
