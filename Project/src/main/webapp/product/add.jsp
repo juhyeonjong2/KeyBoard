@@ -105,7 +105,7 @@ function delFn(){
                         <tr>
                             <th>타입</th>
                             <td>
-                                <td><input type="text" name="type"></td>
+                                <input type="text" name="type">
                             </td>
                         </tr>
                         <tr> <!-- 이미지부분만 있는 곳 -->

@@ -223,13 +223,13 @@
 			success : function(data){
 				if(data.trim() == 'SUCCESS'){
 					$(obj).parent().prev("span").text(value);
-					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
+					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"&pno="+<%=pno%>+"'";
 					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
 					$(obj).parent().html(html);							
 				}else{
 					$(obj).parent().prev("span").text(originalValue);
-					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
+					let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"&pno="+<%=pno%>+"'";
 					let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 					html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
 					$(obj).parent().html(html);
@@ -250,7 +250,7 @@
 		
 		$(obj).parent().prev("span").text(originalValue);
 		
-		let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"'";
+		let deleteLink = "location.href='reviewDeleteOk.jsp?rno="+rno+"&pno="+<%=pno%>+"'";
 		
 		let html = '<button class="reviewBt2" onclick="modifyFn(this,'+rno+')">수정</button>';
 		html += '<button class="reviewBt" onclick="'+deleteLink+'">삭제</button>';
