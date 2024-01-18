@@ -91,7 +91,7 @@
 			
 			// 회원 비회원 공통 갱신 (세션)
 			ArrayList<BuyItem> cartItemList = (ArrayList<BuyItem>)session.getAttribute("cartList");
-			
+			System.out.println(cartItemList);
 			// 데이터가 있을수 있으므로 세션에서 검색해봄. (세션에 데이터가 없음. - ws comment 회원인경우 로그인시에 세션에 채워야한다.)
 			if(cartItemList == null)
 			{ // 데이터 없음. 생성필요
@@ -101,6 +101,7 @@
 				newItem.setPrice(price);
 				
 				cartItemList.add(newItem);
+				
 			}
 			else {
 				// 데이터 있음 검색해서 수정하거나 추가.
@@ -113,13 +114,22 @@
 				} */
 				
 				//세션 장바구니 데이터를 순회하며 pno를 찾음
+				boolean isFind= false;
 				for(int i=0;i<size;i++){
 					BuyItem item = cartItemList.get(i);
 					if(item.getPno() == pno){
 						// 찾았으면 갯수 증가.
 						item.setQuantity(item.getQuantity()+quantity);
 						item.setPrice(price); // 가격 갱신
+						isFind = true;
+						break;
 					}
+				}
+				
+				if(!isFind){ // 못찾으면 추가
+					BuyItem newItem = new BuyItem(pno,quantity);
+					newItem.setPrice(price);
+					cartItemList.add(newItem);
 				}
 				
 			/* 	System.out.println("---------------- After ---------------- ");
@@ -131,6 +141,7 @@
 			}
 			// 변경된 리스트 세션에 덮어쓰기
 			session.setAttribute("cartList", cartItemList);
+			
 			out.print("SUCCESS");	
 		}
 	}

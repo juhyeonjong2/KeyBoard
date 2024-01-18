@@ -10,24 +10,12 @@ request.setCharacterEncoding("UTF-8");
 	//장바구니는 기본적으로 세션에 담겨있음. (회원인경우 세션정보를 DB에 저장함)
 	ArrayList<BuyItem> cartItemList = (ArrayList<BuyItem>)session.getAttribute("cartList");
 	
-	// 데이터가 없으면 테스트 데이터 삽입
-	if(cartItemList == null)
-	{
-		cartItemList = new ArrayList<BuyItem>();
-		
-		cartItemList.add(new BuyItem(1,1));
-		cartItemList.add(new BuyItem(3,2));
-		cartItemList.add(new BuyItem(5,1));
-		cartItemList.add(new BuyItem(20,5));
-		
-		session.setAttribute("cartList", cartItemList);
-		
-	}
-	
+	int size = 0;
 	if(cartItemList != null)
 	{
 	
-		int size = cartItemList.size();		
+		size = cartItemList.size();
+	}
 %>
 
 <!DOCTYPE html>
@@ -422,7 +410,3 @@ request.setCharacterEncoding("UTF-8");
 </body>
 </html>
 
-
-<%		
-	}
-%>

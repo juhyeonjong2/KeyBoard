@@ -154,20 +154,33 @@
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
 
-	let	number = 0;
-	function calFn(type, ths) {
-		const resultE = document.getElementById("result");
-		const allPrice = document.getElementById("allPrice");
-		number = resultE.innerText; 
-	if(type == 'p') {
-		number = parseInt(number) +1;
-	} else if(type == 'm') {
-		number = parseInt(number) -1;
+	function refreshTotalPrice()
+	{
+		$("#allPrice").text(parseInt($("#result").text()) * <%= product.getPrice() %>);
 	}
 	
-	resultE.innerText = number;
-	allPrice.innerText = <%= product.getPrice() %>*number;
-}	
+	function calFn(type, ths) {
+		
+		let result = $("#result");
+		  
+		if(type == 'p') {
+			result.text(parseInt(result.text()) +1);
+		} 
+		else if(type == 'm') 
+		{
+			if(parseInt(result.text()) -1 < 1)
+			{
+				result.text(1);
+			}
+			else 
+			{
+				result.text(parseInt(result.text()) -1  );
+			}
+		}
+		
+		refreshTotalPrice();
+	
+	}	
  		//후기
  		
 	let isModify = false;
@@ -268,20 +281,28 @@
 	function goCart(){
 		
 		let pno = <%=pno%>;
-		let val = number;
+		let val = parseInt($("#result").text());
+		
+		console.log(pno);
+		console.log(val);
 		
 		$.ajax({
 			url : "<%=request.getContextPath()%>/order/cartAddOk.jsp",
 			type : "post",
 			data : {pno: pno, quantity:val},
 			success : function(data){
+				console.log("1111111111");
 				// 연속으로 호출하면 처리에 부담이 되므로 수량 변경시에  기능을 잠구고 SUCCESS가 오면 잠금을 풀어주자.
-				if(data.trim() == 'SUCCESS'){ 
+				if(data.trim() == 'SUCCESS'){
+					console.log("2222222222");
 					location="<%=request.getContextPath()%>/order/cart.jsp";
 				}
+				confirm();
 			},
 			error : function(){
 				//consloe.log("FAIL"); 
+				console.log("333333333333");
+				confirm();
 			}
 		});
 		
