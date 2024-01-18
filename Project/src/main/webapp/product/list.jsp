@@ -66,8 +66,6 @@
 				if(db.getNext()){
 					product.setRealFileName(db.getString("pfrealname"));
 					product.setForeignFileName(db.getString("pforeignname"));
-					System.out.println("read r: " + db.getString("pfrealname") );
-					System.out.println("read f: " + db.getString("pforeignname") );
 				}
 			}
 		}
