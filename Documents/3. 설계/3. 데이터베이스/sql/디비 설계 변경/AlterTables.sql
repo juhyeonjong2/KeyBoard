@@ -19,3 +19,6 @@ ALTER TABLE notificationattach DROP COLUMN nfhash;
 
 # orders에 입금자 추가 - 따로 테이블로 빼야하지만 시간이 없으므로 orders에 추가됨.
 ALTER TABLE orders ADD COLUMN depositor char(20) NOT NULL comment '입금자';
+
+# product에 중분류 용 type 추가
+ALTER TABLE product ADD COLUMN type varchar(20) comment '타입';
