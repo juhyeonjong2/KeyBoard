@@ -49,45 +49,43 @@
         <div class="inner">
             <ul id="category">
                 <li>
-                    <a href="#">FILCO 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO">FILCO 키보드</a>
                     <ul class="hidden">
-                        <li><a href="#">FILCO 마제스티</a></li>
-                        <li><a href="#">FILCO 닌자</a></li>
-                        <li><a href="#">FILCO 컴버터블</a></li>
-                        <li><a href="#">FILCO MINILA</a></li>
-                        <li><a href="#">FILCO 카모플라쥬</a></li>
-                        <li><a href="#">FILCO 하쿠아</a></li>
-                        <li><a href="#">FILCO Stingray 슬림</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=마제스티">FILCO 마제스티</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=닌자">FILCO 닌자</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=컴버터블">FILCO 컴버터블</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=MINILA">FILCO MINILA</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=하쿠아">FILCO 하쿠아</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Mistel 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=Mistel">Mistel 키보드</a>
                 </li>
                 <li>
-                    <a href="#">Vortex 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=Vortex">Vortex 키보드</a>
                 </li>
                 <li>
-                    <a href="#">iKBC 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=iKBC">iKBC 키보드</a>
                 </li>
                 <li>
-                    <a href="#">DUCKY 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=DUCKY">DUCKY 키보드</a>
                 </li>
                 <li>
-                    <a href="#">LEOPOLD 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD">LEOPOLD 키보드</a>
                     <ul class="hidden">
-                        <li><a href="#">FC650NDS</a></li>
-                        <li><a href="#">FC660M</a></li>
-                        <li><a href="#">FC750R</a></li>
-                        <li><a href="#">FC900R</a></li>
-                        <li><a href="#">FC750R MX2A</a></li>
-                        <li><a href="#">FC900R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC650NDS">FC650NDS</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC660M">FC660M</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R">FC750R</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R">FC900R</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R MX2A">FC750R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R MX2A">FC900R MX2A</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">숫자 패드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=NUMPAD">숫자 패드</a>
                 </li>
                 <li>
-                    <a href="#">정전용량 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=CAPACITY">정전용량 키보드</a>
                 </li>
             </ul>
         </div>
