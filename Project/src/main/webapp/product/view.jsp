@@ -354,9 +354,6 @@
                    		<a class="butt2" style="margin-right: 10px;" href="<%=request.getContextPath()%>/order/cart.jsp">
                    	     	장바구니
                   	  	</a>
-                   	 	<a class="butt2" style="width: 200px;" href="<%=request.getContextPath()%>/order/order.jsp">
-                  	     	바로구매
-                    	</a>
                 	</div>
             	</div>
         	</div>

@@ -26,7 +26,7 @@
                     <a href="<%=request.getContextPath()%>/product/add.jsp">상품 등록</a>
                 </div>
                 <div class="adminBox">
-                    <a href="">주문 목록</a>
+                    <a href="<%=request.getContextPath()%>/order/modify.jsp">주문 목록</a>
                 </div>
             </form>
             </div><!--inner_member2-->
