@@ -12,7 +12,8 @@
 	ArrayList<ProductView> productList = new ArrayList<ProductView>(); 
 	
 	DBManager db = new DBManager();
-	if(db.connect()){
+	if(db.connect())
+	{
 		
 		/* String sql = "SELECT P.pno as pno, P.pname as pname, P.price as price, P.brand as brand, " 
 		           + " P.description as description, P.inventory as inventory, "
@@ -76,7 +77,7 @@
 	 	{
 	 		brand = "모든";
 	 	}
-	}
+	} // if(db.connect())
 	
 	int size = productList.size();
 %>
@@ -104,7 +105,7 @@
 					상품이 없습니다.
 				</p>
 <%
-				}
+				} // if(size == 0)
 				else 
 				{
 %>
@@ -119,10 +120,12 @@
     					String foreignFileName = "noimage.png";
                 		String realFileName = p.getRealFileName();
                 		
-                		if(realFileName == null || realFileName.equals("")){
+                		if(realFileName == null || realFileName.equals(""))
+                		{
                 			realFileName = "noimage.png";
                 		}
-                		else {
+                		else 
+                		{
                 			saveDir = "image/product";
                 			foreignFileName = p.getRealFileName();
                 		} 
@@ -144,16 +147,18 @@
                         </div>
                     </li>
 <%
-                	}
+                	} // for(ProductView p : productList)
 				
 %>
-                  
                 </ul>
 			</div>
-        </div>
+<%
+		} // else
+				
+%>		
+        </div> <!--  <div class="is"> -->
 	</main>
-	
- 
-<%@ include file="/include/footer.jsp"%>
+
+	<%@ include file="/include/footer.jsp"%>
 </body>
 </html>
