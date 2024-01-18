@@ -102,6 +102,12 @@ function delFn(){
                                 <textarea rows=5px cols=22px name="description"></textarea>
                             </td>
                         </tr>
+                        <tr>
+                            <th>타입</th>
+                            <td>
+                                <td><input type="text" name="type"></td>
+                            </td>
+                        </tr>
                         <tr> <!-- 이미지부분만 있는 곳 -->
                             <th>이미지</th>
                             <td>

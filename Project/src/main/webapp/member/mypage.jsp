@@ -122,7 +122,7 @@
                 </table>
                 <div id="myPageLink">
                     <div class="myPageLinkSize"><a href="<%=request.getContextPath()%>/order/cart.jsp">장바구니 보기</a></div>
-                    <div class="myPageLinkSize" id="myPageLinkmd"><a href="<%=request.getContextPath()%>/order/list.jsp">">주문내역 보기</a></div>
+                    <div class="myPageLinkSize" id="myPageLinkmd"><a href="<%=request.getContextPath()%>/order/list.jsp">주문내역 보기</a></div>
                     <div class="myPageLinkSize"><a href="<%=request.getContextPath()%>/member/mypage_modify.jsp?mno=<%=mno2%>">회원 정보 수정</a></div>
                 </div>
 

@@ -8,10 +8,16 @@
   
 
 	String rno = request.getParameter("rno");
+	String pnoParma = request.getParameter("pno");
 	
 	int rno2=0;
 	if(rno != null && !rno.equals("")){
 		rno2 = Integer.parseInt(rno);
+	}
+	
+	int pno=0;
+	if(pnoParma != null && !pnoParma.equals("")){
+		pno = Integer.parseInt(pnoParma);
 	}
 	
 	
@@ -34,14 +40,14 @@
 			 %>
 				<script>
 					alert("후기가 삭제되었습니다.");
-					location.href="<%=request.getContextPath()%>/product/view.jsp"
+					location.href="<%=request.getContextPath()%>/product/view.jsp?pno=<%=pno%>"
 				</script>
 			<%	 
 		 }else{
 			 %>
 				<script>
 					alert("후기삭제에 실패하였습니다.");
-					location.href="<%=request.getContextPath()%>/product/view.jsp"
+					location.href="<%=request.getContextPath()%>/product/view.jsp?pno=<%=pno%>"
 				</script>
 			<%	
 		 }

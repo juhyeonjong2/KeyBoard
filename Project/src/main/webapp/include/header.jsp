@@ -41,7 +41,7 @@
 			}
 %>
                      <li><a href="<%=request.getContextPath()%>/order/cart.jsp">장바구니</a></li>
-                    <li><a href="#">주문조회</a></li>
+                    <li><a href="<%=request.getContextPath()%>/order/list.jsp">주문조회</a></li>
                 </ul>
             </nav>
         </div> <!--inner-->

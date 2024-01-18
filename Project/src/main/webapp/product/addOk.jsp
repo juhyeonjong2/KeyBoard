@@ -37,7 +37,7 @@
 	String brand = multi.getParameter("brand");
 	String inventory = multi.getParameter("inventory");
 	String description = multi.getParameter("description");
-	String flag = multi.getParameter("flag"); //이건 아직 뭔지 모르겠다
+	String type = multi.getParameter("type");
 	// 업로드된 실제 파일명
 	String realImgNM  = multi.getOriginalFileName("uploadimg");
 	//원본 파일명
@@ -51,7 +51,7 @@
 		price2 = 0;
 	} else {
 		price2 = Integer.parseInt(price);
-		// Integer.valueOf(price); 래퍼객체로 받는것인데 일반 위 방식 사용
+		// Integer.valueOf(price); 래퍼객체로 받는것인데 일단 위 방식 사용
 	}
 	
 	if(inventory.isEmpty()) {
@@ -68,10 +68,10 @@
 	
 	 if(db.connect())
 	{
-		String sql = "INSERT INTO product(pname, price, brand, inventory, description, delyn) "
-					+" VALUES(?,?,?,?,?,'n') ";
+		String sql = "INSERT INTO product(pname, price, brand, inventory, description, type, delyn) "
+					+" VALUES(?,?,?,?,?,?,'n') ";
 		
-		if(db.prepare(sql).setString(pname).setInt(price2).setString(brand).setInt(inventory2).setString(description).update() > 0)
+		if(db.prepare(sql).setString(pname).setInt(price2).setString(brand).setInt(inventory2).setString(description).setString(type).update() > 0)
 		{ // 업데이트 성공시 pno를 가져온다.
 			
 			// 현재 삽입된 상품목록의 기본키(pno)값을 조회후 pno안에 순서대로 집어넣는다.

@@ -102,6 +102,8 @@
 			review.setPno(db.getInt("pno"));
 			review.setMno(db.getInt("mno"));
 			review.setRnote(db.getString("rnote"));
+			review.setPname(db.getString("m.mname"));
+			System.out.println(db.getString("m.mname"));
 				
 			rlist.add(review);
 			}
@@ -130,8 +132,7 @@
 			
 			db.release();
 			
-			sql = "SELECT * FROM review WHERE pno = ?";
-			sql += " LIMIT ?, ?";// 페이징
+			sql = "select r.mno, m.mname, r.rno, r.rnote  from review r inner join member m on r.mno = m.mno where r.pno = ? limit ?, ?";
 			
 			db.prepare(sql);
 			db.setInt(pno);
@@ -152,10 +153,12 @@
 <link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
+
+	let	number = 0;
 	function calFn(type, ths) {
 		const resultE = document.getElementById("result");
 		const allPrice = document.getElementById("allPrice");
-		let	number = resultE.innerText;
+		number = resultE.innerText; 
 	if(type == 'p') {
 		number = parseInt(number) +1;
 	} else if(type == 'm') {
@@ -261,6 +264,29 @@
 			location.href="<%=request.getContextPath()%>/product/delete.jsp?pno=<%=pno%>";
 		}
 	}
+	
+	function goCart(){
+		
+		let pno = <%=pno%>;
+		let val = number;
+		
+		$.ajax({
+			url : "<%=request.getContextPath()%>/order/cartAddOk.jsp",
+			type : "post",
+			data : {pno: pno, quantity:val},
+			success : function(data){
+				// 연속으로 호출하면 처리에 부담이 되므로 수량 변경시에  기능을 잠구고 SUCCESS가 오면 잠금을 풀어주자.
+				if(data.trim() == 'SUCCESS'){ 
+					location="<%=request.getContextPath()%>/order/cart.jsp";
+				}
+			},
+			error : function(){
+				//consloe.log("FAIL"); 
+			}
+		});
+		
+		
+	}
 </script>
 </head>
 <body>
@@ -351,7 +377,7 @@
                    </div>
                    
                 	<div class="bDiv" style="float:right; margin: 15px 100px 0 0;">
-                   		<a class="butt2" style="margin-right: 10px;" href="<%=request.getContextPath()%>/order/cart.jsp">
+                   		<a class="butt2" style="margin-right: 10px;" onclick="goCart()">
                    	     	장바구니
                   	  	</a>
                 	</div>
@@ -362,7 +388,7 @@
 				if(isAdmin){	
 %>
 				<div id="adminOption" class="inner_member2">
-					<a onclick="modiFn()">상품 수정</a>
+					<!-- <a onclick="modiFn()">상품 수정</a> -->
 					<a onclick="delFn()">상품 삭제</a>
 				</div>
 <%
@@ -417,13 +443,15 @@
                 		int mno = db.getInt("mno");
                 		String rnote = db.getString("rnote");
                 		int rno = db.getInt("rno");
+                		String pname = db.getString("m.mname");
+                		
 %>
 			<div class="reviewBox2">
-				<div id="idBox"><%=mno%>번 유저</div> 
+				<div id="idBox"><%=pname%></div> 
 		            <span class="reviewarea"><%=rnote%></span> 
 		            <span id="review_modifyBox">
 			            <button class="reviewBt" onclick="modifyFn(this,<%=rno%>)">수정</button> 
-			            <button class="reviewBt" onclick="location.href='reviewDeleteOk.jsp?rno=<%=rno%>'">삭제</button>		            		            
+			            <button class="reviewBt" onclick="location.href='reviewDeleteOk.jsp?rno=<%=rno%>&pno=<%=pno%>'">삭제</button>		            		            
 		       		</span>
 	        </div>			
 <%

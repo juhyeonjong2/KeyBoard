@@ -56,7 +56,7 @@
 		%>
 			<script>
 				alert("로그인 되었습니다");
-				location.href="<%=request.getContextPath()%>/login/test.jsp";
+				location.href="<%=request.getContextPath()%>";
 			</script>
 		<%
 		}else{

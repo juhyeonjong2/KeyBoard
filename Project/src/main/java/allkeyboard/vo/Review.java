@@ -6,7 +6,15 @@ public class Review {
 	private int pno;
 	private String rnote;
 	private String rdate;
+	private String pname;
 	
+	
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 	public int getMno() {
 		return mno;
 	}
