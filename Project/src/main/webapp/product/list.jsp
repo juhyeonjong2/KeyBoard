@@ -5,7 +5,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	
 	String brand = request.getParameter("brand");
 	String type = request.getParameter("type");
 
@@ -80,6 +79,16 @@
 	} // if(db.connect())
 	
 	int size = productList.size();
+	
+	String reBrand = brand;
+	if(reBrand.equals("NUMPAD"))
+	{
+		reBrand ="숫자 패드";
+	}
+	else if(reBrand.equals("CAPACITY"))
+	{
+		reBrand ="정전용량";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -95,7 +104,7 @@
  	<main>
 		<hr id="main_line">
 		<div class="is"><!--임시이름 , 밑에 마진 넣기 위해-->
-                <h2 style="height: 100px;"><%=brand%> 키보드</h2>                
+                <h2 style="height: 100px;"><%=reBrand%> 키보드</h2>                
 <%
             	
 				if(size == 0)

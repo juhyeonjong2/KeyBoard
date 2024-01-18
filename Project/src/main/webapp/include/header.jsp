@@ -77,8 +77,8 @@
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC660M">FC660M</a></li>
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R">FC750R</a></li>
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R">FC900R</a></li>
-                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R MX2A">FC750R MX2A</a></li>
-                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R MX2A">FC900R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R_MX2A">FC750R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R_MX2A">FC900R MX2A</a></li>
                     </ul>
                 </li>
                 <li>
