@@ -103,7 +103,6 @@
 			review.setMno(db.getInt("mno"));
 			review.setRnote(db.getString("rnote"));
 			review.setPname(db.getString("m.mname"));
-			System.out.println(db.getString("m.mname"));
 				
 			rlist.add(review);
 			}
@@ -188,7 +187,7 @@
 	function modifyFn(obj, rno){
 			if(!isModify){
 				let value = $(obj).parent().prev("span").text().trim();
-				console.log(value);
+				
 				
 				let html = "<textarea name='rnote' id='textarea'  maxlength='100'>"+value+"</textarea>";
 				html += "<input type='hidden' name='rno' value='"+rno+"'>";
@@ -237,7 +236,7 @@
 					alert("권한이 없습니다.");
 				}
 			},error:function(){
-				console.log("error");
+				//console.log("error");
 			}
 		});
 		
@@ -245,7 +244,7 @@
 	
 	function cancleFn(obj){
 		let originalValue = $(obj).parent().prev("span").find("input[name=oldRnote]").val();
-		console.log(originalValue);
+		
 
 		let rno = $(obj).parent().prev("span").find("input[name=rno]").val();
 		
@@ -283,26 +282,18 @@
 		let pno = <%=pno%>;
 		let val = parseInt($("#result").text());
 		
-		console.log(pno);
-		console.log(val);
-		
 		$.ajax({
 			url : "<%=request.getContextPath()%>/order/cartAddOk.jsp",
 			type : "post",
 			data : {pno: pno, quantity:val},
 			success : function(data){
-				console.log("1111111111");
 				// 연속으로 호출하면 처리에 부담이 되므로 수량 변경시에  기능을 잠구고 SUCCESS가 오면 잠금을 풀어주자.
 				if(data.trim() == 'SUCCESS'){
-					console.log("2222222222");
 					location="<%=request.getContextPath()%>/order/cart.jsp";
 				}
-				confirm();
 			},
 			error : function(){
 				//consloe.log("FAIL"); 
-				console.log("333333333333");
-				confirm();
 			}
 		});
 		

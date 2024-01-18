@@ -51,7 +51,7 @@
                 <li>
                     <a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO">FILCO 키보드</a>
                     <ul class="hidden">
-                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=마제스티">FILCO 마제스티</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=마제스터치">FILCO 마제스터치</a></li>
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=닌자">FILCO 닌자</a></li>
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=컴버터블">FILCO 컴버터블</a></li>
                         <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=MINILA">FILCO MINILA</a></li>
