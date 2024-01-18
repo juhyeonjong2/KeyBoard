@@ -60,7 +60,7 @@
 <%
 			}else{
 %>
-            <form name="frm2" id="notLoginBox" action="order/list.jsp" method="post">
+            <form name="frm2" id="notLoginBox" action="<%=request.getContextPath()%>/order/list.jsp" method="post">
                 <h4>비회원 주문조회 하기</h4>
                 <div class="textBox">
                     <input type="text" name="ordername" class="margin1" placeholder="주문자명"><br>
