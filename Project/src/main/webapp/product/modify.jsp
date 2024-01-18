@@ -95,34 +95,34 @@
                     <tbody>
                         <tr>
                             <th>상품번호</th>
-                            <td>1</td>
+                            <td><%=pno %></td>
                         </tr>
                         <tr>
                             <th>상품명</th>
-                            <td><input type="text" name="pname" placeholder="<%= request.getParameter("pname") %>"></td>
+                            <td><input type="text" name="pname" value=pname></td>
                         </tr>
                         <tr>
                             <th>판매가</th>
-                            <td><input type="text" name="price" placeholder="금액만 표기"></td>
+                            <td><input type="text" name="price" value=price></td>
                         </tr>
                         <tr>
                             <th>브랜드</th>
-                            <td><input type="text" name="brand"></td>
+                            <td><input type="text" name="brand" value=brand></td>
                         </tr>
                         <tr>
                             <th>재고수량</th>
-                            <td><input type="text" placeholder="수량만 표기" name="inventory"></td>
+                            <td><input type="text" value=price name="inventory"></td>
                         </tr>
                         <tr>
                             <th>상세설명</th>
                             <td>
-                                <input type="file" name="description">
+                                <input type="file" name="description" value=description>
                             </td>
                         </tr>
                         <tr>
                             <th>이미지</th>
                             <td>
-                                <input type="file" name="pfno">
+                                <input type="file" name="pfno"> <!-- 그냥 여기에 만들면 업데이트 시킴 -->
                             </td>
                         </tr>
                     </tbody>
