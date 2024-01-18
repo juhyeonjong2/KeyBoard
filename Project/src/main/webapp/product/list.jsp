@@ -1,172 +1,129 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import = "allkeyboard.vo.Product" %>
-<%@ page import = "ateam.db.DBManager" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="allkeyboard.vo.ProductView" %>
+<%@ page import="ateam.db.DBManager" %>
 <%@ page import="java.util.ArrayList"%>
-<%-- <%
-	try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	//비회원 처리
+	String brand = request.getParameter("brand");
+	String type = request.getParameter("type");
+
+	ArrayList<ProductView> productList = new ArrayList<ProductView>(); 
 	
-		while(rs.next()) {
-		Product product = new Product();
-			product.setPname(rs.getString("pname"));
-			product.setPrice(rs.getString("price"));
-			product.setBrand(rs.getString("brand"));
-			product.setPno(rs.getInt("pno");
-			product.setInventory(rs.getString("inventory"));
-			product.setPfrealname(rs.getFilesystemName(""));
-			product.setPforeignname(rs.getOriginalFileName(""));
-		//리스트에 추가
-		list.add(product);
+	DBManager db = new DBManager();
+	if(db.connect()){
 		
-		product = new Product();
-		List<Product> list = product.getAllpname();
+		String sql = "SELECT P.pno as pno, P.pname as pname, P.price as price, P.brand as brand, " 
+		           + " P.description as description, P.inventory as inventory, "
+				   + " A.pfrealname as realanme, A.pforeignname as systemname "
+		  		   + " FROM product P "
+		  		   + " LEFT JOIN productattach A "
+		  		   + " ON P.pno = A.pno"
+				   + " WHERE A.pfidx = 0 AND P.delyn ='n'";
+		
+		if(brand!=null && !brand.equals("")){
+			sql += " AND P.brand=?";
+			
+			if(type!=null && !type.equals("")){
+				sql += " AND P.type=?";
+			}
+		}
+		
+		
+		
+		db.prepare(sql);
+		
+		if(brand!=null && !brand.equals("")){
+			db.setString(brand);
+			
+			if(type!=null && !type.equals("")){
+				db.setString(type);
+			}
+		}
+		
+		if(db.read())
+		{
+			while(db.getNext()){
+				ProductView product = new ProductView();
+				product.setPno(db.getInt("pno"));
+				product.setPname(db.getString("pname"));
+				product.setPrice(db.getInt("price"));
+				product.setBrand(db.getString("brand"));
+				//product.setType(db.getString("type"));
+				product.setDescription(db.getString("description"));
+				product.setInventory(db.getInt("inventory"));
+				product.setRealFileName(db.getString("realanme"));
+				product.setForeignFileName(db.getString("systemname"));
+				productList.add(product);
+			}
+		}
+		
+	 	db.disconnect();
+	 	
+	 	
+	 	if(brand == null || brand.equals(""))
+	 	{
+	 		brand = "모든";
+	 	}
 	}
-%> --%>
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 목록</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
-<link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/product/list.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="/include/header.jsp"%>
- <hr id="main_line">
- <%--
-	<div class="is">
-    	<section>
-	<div>
-		<div>
-			<div>
-				<!-- <h3><a href="./product_DetailView.html"><img src="../image/< %= product.getPfrealname() %>" style="width:100%;"></a></h3> -->
-				<p><a href="./product_DetailView.html"><Strong><%= request.getPname() %></Strong></a></p>
-				<p><%= request.getPrice() %>원</p>
-			</div>
-		</div>
-	</div>
-	
---%>
-<%--
-	<main>
-	<div class="listDiv">
-		<div class="container">
-			<h1 class="display=3">상품 목록</h1>
-		</div>
-	</div>
-	<%
-		ArrayList<Product> listProducts = ();
-	%>
-	
-	<div class=container>
-		<div class="row" align="center">
-			<%
-				for(int i = 0; i < listProducts.size(); i++){
-					Product product = listProducts.get(i);
-			%>
-			<div class="col-md-4">
-				<p><%=product.getPfidx() %></p>
-				<p><%=product.getPname() %></p>
-				<p><%=product.getPrice() %>원</p>
-				
-				<p> <a href="./product.jsp?id=<%=product.getProductId()%>"
-				class="btn btn-secondary" role="button">상세 정보 &raquo;</a>
-				
-			</div>
-			<%
-				}
-			%>
-		</div>
-		<hr>
-	</div>
-	
-	</main>
-	 --%>
-			<!--  
-                <h2 style="height: 100px;">LEOPOLD 키보드</h2>
+
+ 	<main>
+		<hr id="main_line">
+		<div class="is"><!--임시이름 , 밑에 마진 넣기 위해-->
+                <h2 style="height: 100px;"><%=brand%> 키보드</h2>
                 <div>
                 <ul class="ul1">
+<%
+					
+					String noImagefileName = application.getRealPath("image") + "/noimage.png"; // 썸네일 이미지가 없는경우.
+                	for(ProductView p : productList)
+                	{
+                		String realFileName = p.getRealFileName();
+                		String thumbnailPath = "";
+                		if(realFileName == null || realFileName.equals("")){
+                			thumbnailPath = noImagefileName;
+                		}else {
+                			thumbnailPath = request.getContextPath() +"/" + application.getRealPath("image/product") + "/" + p.getRealFileName();
+                		} 
+%>
+                
                     <li>
                         <div>
                             <div>
-                                <a href="./product_DetailView.html">
-                                    <img src="./keyboard1.jpg">
+                                <a href="view.jsp?pno=<%=p.getPno()%>">
+                                    <img src="<%=thumbnailPath%>" alt="<%= p.getForeignFileName()%>">
                                 </a>
                             </div>
                             <div class="listA">
-                                <a href="./product_DetailView.html" >
-                                    <Strong>레오폴드 FC750RBT MX2A코랄 블루 영문</Strong>
+                                <a href="view.jsp?pno=<%=p.getPno()%>" >
+                                    <Strong><%=p.getPname()%></Strong>
                                 </a>
                             </div>
-                            <div class="listB"><Strong>123,000원</Strong></div>
+                            <div class="listB"><Strong><%=p.getPrice()%>123,000</Strong>원</div>
                         </div>
                     </li>
-                    <li>                  
-                        <div>
-                            <div>
-                                <a href="./product_DetailView.html">
-                                    <img src="./keyboard1.jpg">
-                                </a>
-                            </div>
-                            <div class="listA">
-                                <a href="./product_DetailView.html" >
-                                  <Strong>레오폴드 FC750RBT MX2A코랄 블루 영문</Strong>
-                                      </a>
-                            </div>
-                            <div class="listB"><Strong>123,000원</Strong></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <div>
-                                <a href="./product_DetailView.html">
-                                    <img src="./keyboard1.jpg">
-                                </a>
-                            </div>
-                            <div class="listA">
-                                <a href="./product_DetailView.html" >
-                                  <Strong>레오폴드 FC750RBT MX2A코랄 블루 영문</Strong>
-                                      </a>
-                            </div>
-                            <div class="listB"><Strong>123,000원</Strong></div>
-                            
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <div>
-                                <a href="./product_DetailView.html">
-                                    <img src="./keyboard1.jpg">
-                                </a>
-                            </div>
-                            <div class="listA">
-                                <a href="./product_DetailView.html" >
-                                  <Strong>레오폴드 FC750RBT MX2A코랄 블루 영문</Strong>
-                                </a>
-                            </div>
-                            <div class="listB"><Strong>123,000원</Strong></div>
-                        </div>
-                   </li>
-                   <li>
-                    <div>
-                        <div>
-                                <a href="./product_DetailView.html">
-                                    <img src="./keyboard1.jpg">
-                                </a>
-                            </div>
-                            <div class="listA">
-                                <a href="./product_DetailView.html" >
-                                  <Strong>레오폴드 FC750RBT MX2A코랄 블루 영문</Strong>
-                                      </a>
-                           </div>
-                          <div class="listB"><Strong>123,000원</Strong></div>
-                    </div>
-               </li>
+<%
+                	}
+%>
+                  
                 </ul>
-                -->
-       <!--  </div> -->
+			</div>
+        </div>
+	</main>
+	
+ 
 <%@ include file="/include/footer.jsp"%>
 </body>
 </html>

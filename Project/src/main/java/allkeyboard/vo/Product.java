@@ -8,7 +8,7 @@ public class Product {
 	private String brand;
 	private String description;
 	private int inventory;
-	private char delyn;
+	//private char delyn;
 	
 	
 	public Product() {
@@ -71,13 +71,11 @@ public class Product {
 		this.inventory = inventory;
 	}
 
-	public char getDelyn() {
-		return delyn;
-	}
-
-	public void setDelyn(char delyn) {
-		this.delyn = delyn;
-	}
+	/*
+	 * public char getDelyn() { return delyn; }
+	 * 
+	 * public void setDelyn(char delyn) { this.delyn = delyn; }
+	 */
 	
 }
 	

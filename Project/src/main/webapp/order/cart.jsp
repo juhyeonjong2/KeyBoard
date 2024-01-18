@@ -350,7 +350,7 @@ request.setCharacterEncoding("UTF-8");
 %>							
 									<tr>
 			                            <td><input type="checkbox" class="td_chk" name="pno_<%=item.getPno()%>" onclick="toggleProduct(this)" checked></td>
-										<td><a href="<%=request.getContextPath()%>/order/cart/detailView.jsp?pno=<%=item.getPno()%>"><%=name%></a></td>		
+										<td><a href="<%=request.getContextPath()%>/product/view.jsp?pno=<%=item.getPno()%>"><%=name%></a></td>		
 										<td><strong class="td_price"><%= price %></strong>원</td>
 										<td><input type="number" class="td_quantity" onchange="editQuantity(this)" value="<%=item.getQuantity()%>"></td>
 										<td><strong class="td_total_price"><%= price * item.getQuantity() %></strong>원</td>
@@ -359,7 +359,8 @@ request.setCharacterEncoding("UTF-8");
 <%
 									} // if(db.getNext())
 	                    		} //if(db.prepare(sql).setInt(item.getPno()).read())
-                    		} // for(int i=0;i<size;i++)		
+                    		} // for(int i=0;i<size;i++)
+                    			db.disconnect();
 						} // if(db.connect())
 %>
                     </tbody>
@@ -371,7 +372,7 @@ request.setCharacterEncoding("UTF-8");
             	
                 <div class="shop_go_link">
                     <!-- 계속 쇼핑하기-->
-                    <a href="#"> <em>&lt;계속 쇼핑하기</em></a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp"> <em>&lt;계속 쇼핑하기</em></a>
                 </div>
 
                 <div class="price_area">
