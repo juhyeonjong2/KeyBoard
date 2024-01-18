@@ -47,6 +47,7 @@
                 </div>
                 <div id="joinLink" class="margin1">
                     <a href="<%=request.getContextPath()%>/login/join.jsp">회원가입하기</a>
+                    <input type="hidden" name="order" value="<%=order%>">
                 </div>
             </form>
 <%

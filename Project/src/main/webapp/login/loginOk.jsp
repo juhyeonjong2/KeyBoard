@@ -8,6 +8,13 @@
 	
 	String mid = request.getParameter("mid");
 	String mpw = request.getParameter("mpw");
+	String orderParam = request.getParameter("order");
+	
+	int order =0;
+	
+	if(orderParam != null && !orderParam.equals("")){
+		order = Integer.parseInt(orderParam);
+	}
 	
 	boolean isLogin = false;
 	Member member = null;
@@ -49,16 +56,23 @@
 		
 		session.setAttribute("login",member); //프린트해보니 섹션은 들어감
 	}
-		
 	
 	// page 처리
-	if(isLogin){ //여기 트루일 경우의 링크가 잘 안됨 그래서 테스트로 일단 이동
-		%>
+	if(isLogin){
+		if(order == 1){
+%>
+			<script>
+				location.href="<%=request.getContextPath()%>/order/order.jsp";
+			</script>
+<%
+		}else{
+%>
 			<script>
 				alert("로그인 되었습니다");
 				location.href="<%=request.getContextPath()%>";
 			</script>
-		<%
+<%
+		}
 		}else{
 			%>
 			<script>
