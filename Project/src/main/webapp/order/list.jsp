@@ -26,7 +26,7 @@
 			|| (orderNo == null || orderNo.equals("")))
 	{
 		// 로그인되지 않았는데 비회원도 아니면 로그인창으로 보냄.
-		response.sendRedirect(request.getContextPath()+"//login//login.jsp?order=2");
+		response.sendRedirect(request.getContextPath()+"/login/login.jsp");
 	}
 	
 	
