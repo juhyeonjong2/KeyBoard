@@ -3,8 +3,7 @@
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="allkeyboard.util.CertHelper" %>
 <%
-	Member member1 = (Member)session.getAttribute("login"); //인덱스에 합쳐지는 헤드가 인덱스와 겹쳐서 이름 바꿔준다.
-	boolean isAdmin = false;
+	Member memberHeader = (Member)session.getAttribute("login"); //인덱스에 합쳐지는 헤드가 인덱스와 겹쳐서 이름 바꿔준다.
 %>
 <!DOCTYPE html>
 <html>
@@ -20,17 +19,17 @@
             <nav id="nav">  
                 <ul>
 <%
-			if(member1 != null){
+			if(memberHeader != null){
 %>
                     <li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
 <%
-                    if(CertHelper.isAdmin(member1.getMno(), member1.getToken())){
+                    if(CertHelper.isAdmin(memberHeader.getMno(), memberHeader.getToken())){
 %>
                     <li><a href="<%=request.getContextPath()%>/login/adminPage.jsp">관리페이지</a></li>
 <%
                     }else{
 %>
-					<li><a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=member1.getMno()%>">마이페이지</a></li>
+					<li><a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=memberHeader.getMno()%>">마이페이지</a></li>
 <%	
                     } //member1이 널이 아닐경우
 			}else{
@@ -50,45 +49,43 @@
         <div class="inner">
             <ul id="category">
                 <li>
-                    <a href="#">FILCO 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO">FILCO 키보드</a>
                     <ul class="hidden">
-                        <li><a href="#">FILCO 마제스티</a></li>
-                        <li><a href="#">FILCO 닌자</a></li>
-                        <li><a href="#">FILCO 컴버터블</a></li>
-                        <li><a href="#">FILCO MINILA</a></li>
-                        <li><a href="#">FILCO 카모플라쥬</a></li>
-                        <li><a href="#">FILCO 하쿠아</a></li>
-                        <li><a href="#">FILCO Stingray 슬림</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=마제스티">FILCO 마제스티</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=닌자">FILCO 닌자</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=컴버터블">FILCO 컴버터블</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=MINILA">FILCO MINILA</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=FILCO&type=하쿠아">FILCO 하쿠아</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Mistel 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=Mistel">Mistel 키보드</a>
                 </li>
                 <li>
-                    <a href="#">Vortex 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=Vortex">Vortex 키보드</a>
                 </li>
                 <li>
-                    <a href="#">iKBC 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=iKBC">iKBC 키보드</a>
                 </li>
                 <li>
-                    <a href="#">DUCKY 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=DUCKY">DUCKY 키보드</a>
                 </li>
                 <li>
-                    <a href="#">LEOPOLD 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD">LEOPOLD 키보드</a>
                     <ul class="hidden">
-                        <li><a href="#">FC650NDS</a></li>
-                        <li><a href="#">FC660M</a></li>
-                        <li><a href="#">FC750R</a></li>
-                        <li><a href="#">FC900R</a></li>
-                        <li><a href="#">FC750R MX2A</a></li>
-                        <li><a href="#">FC900R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC650NDS">FC650NDS</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC660M">FC660M</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R">FC750R</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R">FC900R</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC750R MX2A">FC750R MX2A</a></li>
+                        <li><a href="<%=request.getContextPath()%>/product/list.jsp?brand=LEOPOLD&type=FC900R MX2A">FC900R MX2A</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">숫자 패드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=NUMPAD">숫자 패드</a>
                 </li>
                 <li>
-                    <a href="#">정전용량 키보드</a>
+                    <a href="<%=request.getContextPath()%>/product/list.jsp?brand=CAPACITY">정전용량 키보드</a>
                 </li>
             </ul>
         </div>

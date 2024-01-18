@@ -329,7 +329,6 @@
                             	<div id="imageList">
                             	<% 
                             	int max = attachList.size();
-                            	System.out.println("attachList.size : " + max);
                             	if(max != 0)
                             	{
                             	  for(int i=0; i<max;i++)

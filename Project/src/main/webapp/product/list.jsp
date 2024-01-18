@@ -5,7 +5,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	//비회원 처리
+	
 	String brand = request.getParameter("brand");
 	String type = request.getParameter("type");
 
@@ -14,23 +14,24 @@
 	DBManager db = new DBManager();
 	if(db.connect()){
 		
-		String sql = "SELECT P.pno as pno, P.pname as pname, P.price as price, P.brand as brand, " 
+		/* String sql = "SELECT P.pno as pno, P.pname as pname, P.price as price, P.brand as brand, " 
 		           + " P.description as description, P.inventory as inventory, "
 				   + " A.pfrealname as realanme, A.pforeignname as systemname "
 		  		   + " FROM product P "
 		  		   + " LEFT JOIN productattach A "
 		  		   + " ON P.pno = A.pno"
-				   + " WHERE A.pfidx = 0 AND P.delyn ='n'";
+				   + " WHERE A.pfidx = 0 AND P.delyn ='n'"; */
+		// pfidx =0 인것만 가져오는 방법을 모르겠어서 루프 두번돌림. 위처럼하면 pfidx=0이 없으면 검색이 아예안됨.
+				   
+		String sql = "SELECT pno, pname, price, brand, type, description, inventory FROM product WHERE delyn='n'";
 		
 		if(brand!=null && !brand.equals("")){
-			sql += " AND P.brand=?";
+			sql += " AND brand=?";
 			
 			if(type!=null && !type.equals("")){
-				sql += " AND P.type=?";
+				sql += " AND type=?";
 			}
 		}
-		
-		
 		
 		db.prepare(sql);
 		
@@ -53,20 +54,31 @@
 				//product.setType(db.getString("type"));
 				product.setDescription(db.getString("description"));
 				product.setInventory(db.getInt("inventory"));
-				product.setRealFileName(db.getString("realanme"));
-				product.setForeignFileName(db.getString("systemname"));
+				/* product.setRealFileName(db.getString("realanme"));
+				product.setForeignFileName(db.getString("systemname")); */
 				productList.add(product);
 			}
 		}
 		
+		sql = "SELECT pfrealname, pforeignname FROM productattach WHERE pno=? AND pfidx=0 ";
+		for(ProductView product : productList){
+			if(db.prepare(sql).setInt(product.getPno()).read()){
+				if(db.getNext()){
+					product.setRealFileName(db.getString("pfrealname"));
+					product.setForeignFileName(db.getString("pforeignname"));
+				}
+			}
+		}
+		
 	 	db.disconnect();
-	 	
 	 	
 	 	if(brand == null || brand.equals(""))
 	 	{
 	 		brand = "모든";
 	 	}
 	}
+	
+	int size = productList.size();
 %>
 <!DOCTYPE html>
 <html>
@@ -82,20 +94,37 @@
  	<main>
 		<hr id="main_line">
 		<div class="is"><!--임시이름 , 밑에 마진 넣기 위해-->
-                <h2 style="height: 100px;"><%=brand%> 키보드</h2>
+                <h2 style="height: 100px;"><%=brand%> 키보드</h2>                
+<%
+            	
+				if(size == 0)
+				{
+%>
+				<p class="no_data">
+					상품이 없습니다.
+				</p>
+<%
+				}
+				else 
+				{
+%>
+                
                 <div>
                 <ul class="ul1">
 <%
-					
-					String noImagefileName = application.getRealPath("image") + "/noimage.png"; // 썸네일 이미지가 없는경우.
+
                 	for(ProductView p : productList)
                 	{
+                		String saveDir = "image";
+    					String foreignFileName = "noimage.png";
                 		String realFileName = p.getRealFileName();
-                		String thumbnailPath = "";
+                		
                 		if(realFileName == null || realFileName.equals("")){
-                			thumbnailPath = noImagefileName;
-                		}else {
-                			thumbnailPath = request.getContextPath() +"/" + application.getRealPath("image/product") + "/" + p.getRealFileName();
+                			realFileName = "noimage.png";
+                		}
+                		else {
+                			saveDir = "image/product";
+                			foreignFileName = p.getRealFileName();
                 		} 
 %>
                 
@@ -103,7 +132,7 @@
                         <div>
                             <div>
                                 <a href="view.jsp?pno=<%=p.getPno()%>">
-                                    <img src="<%=thumbnailPath%>" alt="<%= p.getForeignFileName()%>">
+                                    <img src="<%=request.getContextPath() +"/" + saveDir + "/" + realFileName%>" alt="<%= foreignFileName%>" >
                                 </a>
                             </div>
                             <div class="listA">
@@ -111,11 +140,12 @@
                                     <Strong><%=p.getPname()%></Strong>
                                 </a>
                             </div>
-                            <div class="listB"><Strong><%=p.getPrice()%>123,000</Strong>원</div>
+                            <div class="listB"><Strong><%=p.getPrice()%></Strong>원</div>
                         </div>
                     </li>
 <%
                 	}
+				
 %>
                   
                 </ul>
