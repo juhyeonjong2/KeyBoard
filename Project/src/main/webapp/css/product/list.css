@@ -315,3 +315,12 @@ input[type="radio"]:checked + label {
 	background-color: #8b283d;
 	color: #fff;
 }
+
+.no_data{
+	width:  1000px;
+	margin:0px 0px 20px;
+	padding:60px 0px;
+	border-bottom:1px solid #d9dadb;
+	text-align: center;
+
+}
