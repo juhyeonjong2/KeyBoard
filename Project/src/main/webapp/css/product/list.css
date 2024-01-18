@@ -83,7 +83,7 @@ input[type="submit"] {
 /* product_DetailView */
 
 .is{
-    height: 550px;
+    height: auto;
     width: 1200px;
     margin: 0 auto;
     margin-top:80px
