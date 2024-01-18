@@ -3,8 +3,7 @@
 <%@ page import="allkeyboard.vo.Member" %>
 <%@ page import="allkeyboard.util.CertHelper" %>
 <%
-	Member member1 = (Member)session.getAttribute("login"); //인덱스에 합쳐지는 헤드가 인덱스와 겹쳐서 이름 바꿔준다.
-	boolean isAdmin = false;
+	Member memberHeader = (Member)session.getAttribute("login"); //인덱스에 합쳐지는 헤드가 인덱스와 겹쳐서 이름 바꿔준다.
 %>
 <!DOCTYPE html>
 <html>
@@ -20,17 +19,17 @@
             <nav id="nav">  
                 <ul>
 <%
-			if(member1 != null){
+			if(memberHeader != null){
 %>
                     <li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
 <%
-                    if(CertHelper.isAdmin(member1.getMno(), member1.getToken())){
+                    if(CertHelper.isAdmin(memberHeader.getMno(), memberHeader.getToken())){
 %>
                     <li><a href="<%=request.getContextPath()%>/login/adminPage.jsp">관리페이지</a></li>
 <%
                     }else{
 %>
-					<li><a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=member1.getMno()%>">마이페이지</a></li>
+					<li><a href="<%=request.getContextPath()%>/member/mypage.jsp?mno=<%=memberHeader.getMno()%>">마이페이지</a></li>
 <%	
                     } //member1이 널이 아닐경우
 			}else{
