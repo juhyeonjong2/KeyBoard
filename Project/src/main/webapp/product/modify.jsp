@@ -53,7 +53,6 @@
 					+" , brand " 
 					+" , description " //아직 사용처 없음
 					+" , inventory " 
-					+" , delyn " //부활용
 				 	+"  FROM product"
 					+" WHERE pno=? ";
 		 
@@ -65,8 +64,7 @@
 					price = db.getInt("price");
 					brand = db.getString("brand");
 					description = db.getString("description"); 
-					inventory = db.getInt("inventory");
-					delyn = db.getString("delyn"); //생각해보니 여기 들어올려면 상품 상세페이지 와야하는데 delyn이 y면 상세페이지가 안보임			 			
+					inventory = db.getInt("inventory");			 			
 			 }
 		 }
 		 db.disconnect();
@@ -81,7 +79,7 @@
 <meta charset="UTF-8">
 <title>관리자 상품 수정</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
-<link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/product/list.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="/include/header.jsp"%>
@@ -103,7 +101,7 @@
                         </tr>
                         <tr>
                             <th>판매가</th>
-                            <td><input type="text" name="price" value=price></td>
+                            <td><input type="number" name="price" value=price></td>
                         </tr>
                         <tr>
                             <th>브랜드</th>
@@ -111,7 +109,7 @@
                         </tr>
                         <tr>
                             <th>재고수량</th>
-                            <td><input type="text" value=price name="inventory"></td>
+                            <td><input type="number" value=price name="inventory"></td>
                         </tr>
                         <tr>
                             <th>상세설명</th>

@@ -139,7 +139,7 @@
 <meta charset="UTF-8">
 <title>상품 상세 정보</title>
 <link href="<%= request.getContextPath()%>/css/base.css" type="text/css" rel="stylesheet">
-<link href="<%= request.getContextPath()%>/css/product.css" type="text/css" rel="stylesheet">
+<link href="<%= request.getContextPath()%>/css/product/list.css" type="text/css" rel="stylesheet">
 <link href="<%= request.getContextPath()%>/css/review.css" type="text/css" rel="stylesheet">
 <script src="<%= request.getContextPath()%>/js/jquery-3.7.1.min.js"></script>
 <script>
